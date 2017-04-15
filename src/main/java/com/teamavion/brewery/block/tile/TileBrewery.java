@@ -70,7 +70,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                 ingredient2Time++;
             if(ingredient3Time != -100)
                 ingredient3Time++;
-            System.out.println("time: " + time + " temp: " + temperature);
+            //System.out.println("time: " + time + " temp: " + temperature);
         }
     }
     private boolean createPotion() {
