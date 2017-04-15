@@ -11,6 +11,7 @@ public class Reference {
 
     public static final String MODID = "brewery", VERSION = "0.1a";
     public static final Item[] POTION_ITEMS = {
+            null,
             Items.SUGAR,
             Item.getItemFromBlock(Blocks.SOUL_SAND),
             Items.EMERALD,
