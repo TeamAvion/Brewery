@@ -12,9 +12,9 @@ import static com.teamavion.brewery.recipe.BreweryRecipeHandler.isIngredient;
  */
 public class TileBrewery extends TileEntity implements ITickable {
     private int liquidMB, tempreture, ingredient, time,
-            ingredient1PotionID = -100, ingredient1Ammount, ingredient1Tempreture, ingredient1Time,
-            ingredient2PotionID = -100, ingredient2Ammount, ingredient2Tempreture, ingredient2Time,
-            ingredient3PotionID = -100, ingredient3Ammount, ingredient3Tempreture, ingredient3Time;
+            ingredient1PotionID = -100, ingredient1Ammount, ingredient1Tempreture, ingredient1Time = -100,
+            ingredient2PotionID = -100, ingredient2Ammount, ingredient2Tempreture, ingredient2Time = -100,
+            ingredient3PotionID = -100, ingredient3Ammount, ingredient3Tempreture, ingredient3Time = -100;
     private boolean tempretureSwitchOn;
 
     public TileBrewery(){
@@ -48,7 +48,12 @@ public class TileBrewery extends TileEntity implements ITickable {
             }
             if((tempreture >= 100) && liquidMB > 0)
                 liquidMB--;
-
+            if(ingredient1Time != -100)
+                ingredient1Time++;
+            if(ingredient2Time != -100)
+                ingredient2Time++;
+            if(ingredient3Time != -100)
+                ingredient3Time++;
         }
     }
 
