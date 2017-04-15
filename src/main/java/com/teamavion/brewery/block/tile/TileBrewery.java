@@ -60,7 +60,7 @@ public class TileBrewery extends TileEntity implements ITickable {
 
     private boolean isLit(){
         //TODO: Not tested code, should work
-        return world.getBlockState(this.getPos().down()).getBlock() == Blocks.FIRE || world.getBlockState(this.getPos().down(2)).getBlock() == Blocks.FIRE && !world.getBlockState(this.getPos().down()).isFullBlock();
+        return !world.isRemote && world.getBlockState(this.getPos().down()).getBlock() == Blocks.FIRE || !world.isRemote && world.getBlockState(this.getPos().down(2)).getBlock() == Blocks.FIRE && !world.getBlockState(this.getPos().down()).isFullBlock();
     }
 
     private int timeToIncrease(){
