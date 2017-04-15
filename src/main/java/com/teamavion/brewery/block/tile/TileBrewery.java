@@ -97,8 +97,8 @@ public class TileBrewery extends TileEntity implements ITickable {
                     return true;
                 }
             }
-            return false;
         }
+        return false;
     }
 
     private int getNewIngredientTime(int ingredientNumber){
