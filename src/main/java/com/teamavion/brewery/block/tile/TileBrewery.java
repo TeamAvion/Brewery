@@ -81,7 +81,7 @@ public class TileBrewery extends TileEntity implements ITickable {
         return true;
     }
 
-    private void captureItems() {
+    public void captureItems() {
         for (EntityItem a : world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.getPos()).setMaxY(5))) {
             System.out.println("There is an Item on top of me");
             if (addIngredient(a.getEntityItem().getItem())) {
@@ -108,7 +108,7 @@ public class TileBrewery extends TileEntity implements ITickable {
         return 180;
     }
 
-    private boolean addIngredient(Item input) {
+    public boolean addIngredient(Item input) {
         if (isIngredient(input)) {
             if (ingredient < 9) {
                 if (ingredient1PotionID == -100) {
