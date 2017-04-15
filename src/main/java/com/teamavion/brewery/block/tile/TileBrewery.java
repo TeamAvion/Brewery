@@ -1,9 +1,16 @@
 package com.teamavion.brewery.block.tile;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.AxisAlignedBB;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.teamavion.brewery.recipe.BreweryRecipeHandler.getPotionId;
 import static com.teamavion.brewery.recipe.BreweryRecipeHandler.isIngredient;
@@ -29,6 +36,7 @@ public class TileBrewery extends TileEntity implements ITickable {
     @Override
     public void update() {
         if(!world.isRemote){
+            captureItems();
             if(!temperatureSwitchOn && isLit()){
                 time = 0;
                 temperatureSwitchOn = true;
@@ -55,6 +63,26 @@ public class TileBrewery extends TileEntity implements ITickable {
                 ingredient2Time++;
             if(ingredient3Time != -100)
                 ingredient3Time++;
+        }
+    }
+    private boolean createPotion() {
+        EntityItem potionEntity = new EntityItem(world, this.getPos().getX(), this.getPos().getY() + 0.25, this.getPos().getZ(),
+                new ItemStack(Items.ARROW));
+        potionEntity.motionY = ThreadLocalRandom.current().nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;
+        world.spawnEntity(potionEntity);
+        return true;
+    }
+
+    private void captureItems() {
+        for (EntityItem a : world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.getPos()).setMaxY(1.5))) {
+            if (addIngredient(a.getEntityItem().getItem())) {
+                ItemStack hold = a.getEntityItem().copy();
+                a.setDead();
+                if (hold.getCount() > 1) {
+                    hold.setCount(hold.getCount() - 1);
+                    world.spawnEntity(new EntityItem(world, this.getPos().getX(), this.getPos().getY() + 0.25, this.getPos().getZ(), hold));
+                }
+            }
         }
     }
 
