@@ -4,8 +4,11 @@ import com.teamavion.brewery.block.tile.TileBrewery;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -25,5 +28,16 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileBrewery();
     }
+
+    @Override
+    public boolean isFullyOpaque(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    @Deprecated
+    @SideOnly(Side.CLIENT)
+    public boolean isTranslucent(IBlockState state) { return true; }
 
 }

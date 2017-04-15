@@ -37,6 +37,7 @@ public class TileBrewery extends TileEntity implements ITickable {
     public void update() {
         if(!world.isRemote){
             captureItems();
+            //System.out.println("im ruining update");
             if(!temperatureSwitchOn && isLit()){
                 time = 0;
                 temperatureSwitchOn = true;
@@ -46,14 +47,20 @@ public class TileBrewery extends TileEntity implements ITickable {
                 temperatureSwitchOn = false;
             }
             if(isLit()) {
-                time++;
-                if((time >= timeToIncrease()) && temperature < 101)
+                if(time < 1000)
+                    time++;
+                if((time >= timeToIncrease()) && temperature < 101) {
                     temperature++;
+                    time = 0;
+                }
             }
             if(!isLit()){
-                time++;
-                if((time >= timeToDecrease()) && temperature > 22)
+                if(time < 1000)
+                    time++;
+                if((time >= timeToDecrease()) && temperature > 22){
                     temperature--;
+                    time = 0;
+                }
             }
             if((temperature >= 100) && liquidMB > 0)
                 liquidMB--;
@@ -63,6 +70,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                 ingredient2Time++;
             if(ingredient3Time != -100)
                 ingredient3Time++;
+            System.out.println("time: " + time + " temp: " + temperature);
         }
     }
     private boolean createPotion() {
@@ -74,7 +82,8 @@ public class TileBrewery extends TileEntity implements ITickable {
     }
 
     private void captureItems() {
-        for (EntityItem a : world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.getPos()).setMaxY(1.5))) {
+        for (EntityItem a : world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.getPos()).setMaxY(5))) {
+            System.out.println("There is an Item on top of me");
             if (addIngredient(a.getEntityItem().getItem())) {
                 ItemStack hold = a.getEntityItem().copy();
                 a.setDead();
@@ -92,11 +101,11 @@ public class TileBrewery extends TileEntity implements ITickable {
     }
 
     private int timeToIncrease(){
-        return 25;
+        return 180;
     }
 
     private int timeToDecrease(){
-        return 25;
+        return 180;
     }
 
     private boolean addIngredient(Item input) {
