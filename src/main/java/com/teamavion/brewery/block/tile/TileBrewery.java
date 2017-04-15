@@ -1,8 +1,13 @@
 package com.teamavion.brewery.block.tile;
 
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.teamavion.brewery.recipe.BreweryRecipeHandler.getPotionId;
 import static com.teamavion.brewery.recipe.BreweryRecipeHandler.isIngredient;
@@ -67,6 +72,13 @@ public class TileBrewery extends TileEntity implements ITickable {
 
     private int timeToDecrease(){
         return 25;
+    }
+
+    private boolean createPotion(){
+        EntityItem potionEntity = new EntityItem(world, this.getPos().getX(), this.getPos().getY() + 0.5, this.getPos().getZ(),
+                new ItemStack(Items.ARROW));
+        potionEntity.motionY = ThreadLocalRandom.current().nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;
+        world.spawnEntity(potionEntity);
     }
 
     private boolean addIngredient(Item input) {
