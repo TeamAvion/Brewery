@@ -1,8 +1,10 @@
 package com.teamavion.brewery.block.tile;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 
 import static com.teamavion.brewery.recipe.BreweryRecipeHandler.getPotionId;
 import static com.teamavion.brewery.recipe.BreweryRecipeHandler.isIngredient;
@@ -11,42 +13,42 @@ import static com.teamavion.brewery.recipe.BreweryRecipeHandler.isIngredient;
  * Created by TjKenMate on 4/15/2017XD
  */
 public class TileBrewery extends TileEntity implements ITickable {
-    private int liquidMB, tempreture, ingredient, time,
+    private int liquidMB, temperature, ingredient, time,
             ingredient1PotionID = -100, ingredient1Ammount, ingredient1Tempreture, ingredient1Time = -100,
             ingredient2PotionID = -100, ingredient2Ammount, ingredient2Tempreture, ingredient2Time = -100,
             ingredient3PotionID = -100, ingredient3Ammount, ingredient3Tempreture, ingredient3Time = -100;
-    private boolean tempretureSwitchOn;
+    private boolean temperatureSwitchOn;
 
     public TileBrewery(){
         ingredient1Ammount = 0;
         ingredient2Ammount = 0;
         ingredient3Ammount = 0;
-        tempreture = 22;
+        temperature = 22;
         liquidMB = 0;
     }
 
     @Override
     public void update() {
         if(!world.isRemote){
-            if(!tempretureSwitchOn && isLit()){
+            if(!temperatureSwitchOn && isLit()){
                 time = 0;
-                tempretureSwitchOn = true;
+                temperatureSwitchOn = true;
             }
-            if(tempretureSwitchOn && !isLit()){
+            if(temperatureSwitchOn && !isLit()){
                 time = 0;
-                tempretureSwitchOn = false;
+                temperatureSwitchOn = false;
             }
             if(isLit()) {
                 time++;
-                if((time >= timeToIncrease()) && tempreture < 101)
-                    tempreture++;
+                if((time >= timeToIncrease()) && temperature < 101)
+                    temperature++;
             }
             if(!isLit()){
                 time++;
-                if((time >= timeToDecrease()) && tempreture > 22)
-                    tempreture--;
+                if((time >= timeToDecrease()) && temperature > 22)
+                    temperature--;
             }
-            if((tempreture >= 100) && liquidMB > 0)
+            if((temperature >= 100) && liquidMB > 0)
                 liquidMB--;
             if(ingredient1Time != -100)
                 ingredient1Time++;
@@ -58,7 +60,8 @@ public class TileBrewery extends TileEntity implements ITickable {
     }
 
     private boolean isLit(){
-        return true;
+        //TODO: Not tested code, should work
+        return world.getBlockState(this.getPos().down()).getBlock() == Blocks.FIRE || world.getBlockState(this.getPos().down(2)).getBlock() == Blocks.FIRE && !world.getBlockState(this.getPos().down()).isFullBlock();
     }
 
     private int timeToIncrease(){
