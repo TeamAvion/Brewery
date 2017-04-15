@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import net.minecraft.item.Item;
 
 /**
- * Created by TjKenMate on 4/15/2017.
+ * Created by TjKenMate on 4/15/2017XD
  */
 public class BreweryRecipeHandler {
     public static boolean isIngredient(Item input){return true;}

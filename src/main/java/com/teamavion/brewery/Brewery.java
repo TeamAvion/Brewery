@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**
- * Created by TjKenMate on 4/15/2017
+ * Created by TjKenMate on 4/15/2017XD
  */
 
 @Mod(modid = Reference.MODID, version = Reference.VERSION)
