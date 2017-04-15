@@ -71,13 +71,13 @@ public class TileBrewery extends TileEntity implements ITickable {
 
     private boolean addIngredient(Item input) {
         if (isIngredient(input)) {
-            if (ingredient < 20) {
+            if (ingredient < 9) {
                 if (ingredient1PotionID == -100) {
                     ingredient1PotionID = getPotionId(input);
                     ingredient1Ammount = 1;
                     ingredient++;
                     ingredient1Time = 0;
-                    return true;
+                    return   true;
                 } else if (getPotionId(input) == ingredient1PotionID) {
                     ingredient1Ammount++;
                     ingredient++;
