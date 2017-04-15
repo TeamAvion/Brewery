@@ -8,7 +8,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.teamavion.brewery.recipe.BreweryRecipeHandler.getPotionId;
@@ -81,14 +83,15 @@ public class TileBrewery extends TileEntity implements ITickable {
     }
 
     public void captureItems() {
-        for (EntityItem a : world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.getPos()).setMaxY(5))) {
+        List<EntityItem> entityItems = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ()), this.getPos()));
+        for (int i = 0; i < entityItems.size(); i++) {
             System.out.println("There is an Item on top of me");
-            if (addIngredient(a.getEntityItem().getItem())) {
-                ItemStack hold = a.getEntityItem().copy();
-                a.setDead();
+            if (addIngredient(entityItems.get(i).getEntityItem().getItem())) {
+                ItemStack hold = entityItems.get(i).getEntityItem().copy();
+                entityItems.get(i).setDead();
                 if (hold.getCount() > 1) {
                     hold.setCount(hold.getCount() - 1);
-                    world.spawnEntity(new EntityItem(world, this.getPos().getX(), this.getPos().getY() + 0.25, this.getPos().getZ(), hold));
+                    world.spawnEntity(new EntityItem(world, this.getPos().getX(), this.getPos().getY() + 0.5, this.getPos().getZ(), hold));
                 }
             }
         }
