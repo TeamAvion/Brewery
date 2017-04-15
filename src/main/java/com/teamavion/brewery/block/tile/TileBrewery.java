@@ -1,6 +1,5 @@
 package com.teamavion.brewery.block.tile;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
