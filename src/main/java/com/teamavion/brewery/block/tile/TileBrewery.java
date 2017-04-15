@@ -1,19 +1,23 @@
 package com.teamavion.brewery.block.tile;
 
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+
+import static com.teamavion.brewery.recipe.BreweryRecipeHandler.getPotionId;
+import static com.teamavion.brewery.recipe.BreweryRecipeHandler.isIngredient;
 
 /**
  * Created by TjKenMate on 4/15/2017XD
  */
 public class TileBrewery extends TileEntity implements ITickable {
     private int liquidMB, tempreture, ingredient, time,
-            ingredient1PotionID, ingredient1Ammount, ingredient1Tempreture, ingredient1Time,
-            ingredient2PotionID, ingredient2Ammount, ingredient2Tempreture, ingredient2Time,
-            ingredient3PotionID, ingredient3Ammount, ingredient3Tempreture, ingredient3Time;
+            ingredient1PotionID = -100, ingredient1Ammount, ingredient1Tempreture, ingredient1Time,
+            ingredient2PotionID = -100, ingredient2Ammount, ingredient2Tempreture, ingredient2Time,
+            ingredient3PotionID = -100, ingredient3Ammount, ingredient3Tempreture, ingredient3Time;
     private boolean tempretureSwitchOn;
     public TileBrewery(){
-
+        ingredient1Ammount = 0;
     }
 
     @Override
@@ -29,7 +33,7 @@ public class TileBrewery extends TileEntity implements ITickable {
             }
             if(isLit()) {
                 time++;
-                if(time >= timeToIncrease())
+                if((time >= timeToIncrease()) && tempreture < 101)
                     tempreture++;
             }
             if(!isLit()){
@@ -37,10 +41,13 @@ public class TileBrewery extends TileEntity implements ITickable {
                 if((time >= timeToDecrease()) && tempreture > 25)
                     tempreture--;
             }
+            if((tempreture >= 100) && liquidMB > 0)
+                liquidMB--;
+
         }
     }
 
-    public static boolean isLit(){
+    private boolean isLit(){
         return true;
     }
 
@@ -50,5 +57,57 @@ public class TileBrewery extends TileEntity implements ITickable {
 
     private int timeToDecrease(){
         return 25;
+    }
+
+    private boolean addIngredient(Item input) {
+        if (isIngredient(input)) {
+            if (ingredient < 20) {
+                if (ingredient1PotionID == -100) {
+                    ingredient1PotionID = getPotionId(input);
+                    ingredient1Ammount = 1;
+                    ingredient++;
+                    ingredient1Time = 0;
+                    return true;
+                } else if (getPotionId(input) == ingredient1PotionID) {
+                    ingredient1Ammount++;
+                    ingredient++;
+                    ingredient1Time = getNewIngredientTime(1);
+                    return true;
+                } else if (ingredient2PotionID == -100) {
+                    ingredient2PotionID = getPotionId(input);
+                    ingredient2Ammount = 1;
+                    ingredient++;
+                    ingredient2Time = 0;
+                    return true;
+                } else if (getPotionId(input) == ingredient2PotionID) {
+                    ingredient2Ammount++;
+                    ingredient++;
+                    ingredient2Time = getNewIngredientTime(2);
+                    return true;
+                } else if (ingredient3PotionID == -100) {
+                    ingredient3PotionID = getPotionId(input);
+                    ingredient3Ammount = 1;
+                    ingredient++;
+                    ingredient3Time = 0;
+                    return true;
+                } else if (getPotionId(input) == ingredient3PotionID) {
+                    ingredient3Ammount++;
+                    ingredient++;
+                    ingredient3Time = getNewIngredientTime(3);
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    private int getNewIngredientTime(int ingredientNumber){
+        if (ingredientNumber == 1)
+            return 0;
+        if (ingredientNumber == 2)
+            return 0;
+        if (ingredientNumber == 3)
+            return 0;
+        return -256856852;
     }
 }
