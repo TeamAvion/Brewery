@@ -16,8 +16,13 @@ public class TileBrewery extends TileEntity implements ITickable {
             ingredient2PotionID = -100, ingredient2Ammount, ingredient2Tempreture, ingredient2Time,
             ingredient3PotionID = -100, ingredient3Ammount, ingredient3Tempreture, ingredient3Time;
     private boolean tempretureSwitchOn;
+
     public TileBrewery(){
         ingredient1Ammount = 0;
+        ingredient2Ammount = 0;
+        ingredient3Ammount = 0;
+        tempreture = 22;
+        liquidMB = 0;
     }
 
     @Override
@@ -38,7 +43,7 @@ public class TileBrewery extends TileEntity implements ITickable {
             }
             if(!isLit()){
                 time++;
-                if((time >= timeToDecrease()) && tempreture > 25)
+                if((time >= timeToDecrease()) && tempreture > 22)
                     tempreture--;
             }
             if((tempreture >= 100) && liquidMB > 0)
