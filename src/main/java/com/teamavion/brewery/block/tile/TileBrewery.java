@@ -79,6 +79,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                 new ItemStack(Items.ARROW));
         potionEntity.motionY = ThreadLocalRandom.current().nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;
         world.spawnEntity(potionEntity);
+        return true;
     }
 
     private boolean addIngredient(Item input) {
