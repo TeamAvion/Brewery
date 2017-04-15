@@ -16,6 +16,8 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
 
     public BlockBrewery(){
         super(Material.IRON);
+        setUnlocalizedName("brewery");
+        setRegistryName("BlockBrewery");
     }
 
     @Nullable
