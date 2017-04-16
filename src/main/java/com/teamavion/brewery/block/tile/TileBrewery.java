@@ -80,8 +80,9 @@ public class TileBrewery extends TileEntity implements ITickable {
         }
     }
    public boolean createPotion() {
-        EntityItem potionEntity = new EntityItem(world, this.getPos().getX(), this.getPos().getY() + 0.25, this.getPos().getZ(),
-                new ItemStack(ModItems.potion, 1,0, formPotionNBT()));
+        ItemStack potion = new ItemStack(ModItems.potion);
+        potion.setTagCompound(formPotionNBT());
+        EntityItem potionEntity = new EntityItem(world, this.getPos().getX(), this.getPos().getY() + 0.25, this.getPos().getZ(), potion);
         potionEntity.motionY = ThreadLocalRandom.current().nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;
         world.spawnEntity(potionEntity);
         return true;
