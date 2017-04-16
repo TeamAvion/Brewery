@@ -137,6 +137,7 @@ public class TileBrewery extends TileEntity implements ITickable {
             }
             ingredientList.add(new Ingredient(getPotionId(item), 1, 22, getNewIngredientTime()));
             ingredientCount++;
+            return true;
         }
         return false;
     }
