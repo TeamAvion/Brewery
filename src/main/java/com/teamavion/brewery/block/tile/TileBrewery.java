@@ -201,7 +201,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                     return true;
                 }
             }
-            ingredientList.add(new Ingredient(getPotionId(item), 1, 22, getNewIngredientTime()));
+            ingredientList.add(new Ingredient(getPotionId(item), 1, temperature, getNewIngredientTime()));
             ingredientCount++;
             return true;
         }
@@ -211,6 +211,8 @@ public class TileBrewery extends TileEntity implements ITickable {
     public int getTemperature(){
         return temperature;
     }
+
+    public int getLiquidMB() {return liquidMB;}
 
     private int getNewIngredientTime(){
         return 0;
