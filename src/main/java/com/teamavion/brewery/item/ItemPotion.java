@@ -24,9 +24,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class ItemPotion extends ItemFood {
 
-    private int iPotion1, iPotion2, iPotion3, time;
-    private char cPotion1, cPotion2, cPotion3;
-
     //TODO: Add durability like flint and steal
     public ItemPotion() {
         super(0,0,false);
@@ -35,13 +32,6 @@ public class ItemPotion extends ItemFood {
         setMaxStackSize(1);
         setUnlocalizedName("potion");
         setRegistryName("ItemPotion");
-        iPotion1 = 1;
-        iPotion2 = -100;
-        iPotion3 = -100;
-        cPotion1 = 'A';
-        cPotion2 = '@';
-        cPotion3 = '@';
-        time = 10;
     }
 
     /**
@@ -68,12 +58,16 @@ public class ItemPotion extends ItemFood {
          */
         if(stack.getTagCompound().hasKey("potion_ID_1"))
             addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_1"), stack.getTagCompound().getShort("potion_grade_1"), false);
-            stack.damageItem(1, entityLiving);
-            if (stack.isEmpty()) {
-                return new ItemStack(Items.GLASS_BOTTLE);
-            }
-            return stack;
+        if(stack.getTagCompound().hasKey("potion_ID_2"))
+            addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_2"), stack.getTagCompound().getShort("potion_grade_2"), false);
+        if(stack.getTagCompound().hasKey("potion_ID_3"))
+            addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_3"), stack.getTagCompound().getShort("potion_grade_3"), false);
+        stack.damageItem(1, entityLiving);
+        if (stack.isEmpty()) {
+            return new ItemStack(Items.GLASS_BOTTLE);
         }
+        return stack;
+    }
 
     public String getItemStackDisplayName(ItemStack stack)
     {
@@ -88,7 +82,7 @@ public class ItemPotion extends ItemFood {
 
     private void addPotion(EntityLivingBase entityLiving, int id, short grade, boolean isScalable){
        if(isScalable)
-            entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(id), Reference.durationFromGradeScalable((char)grade), Reference.amplification(grade)));
+            entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(id), Reference.durationFromGradeScalable((char)grade), Reference.amplification((char)grade)));
        else
            entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(id), Reference.durationFromGradeNotScalable((char)grade)));
     }
