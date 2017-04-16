@@ -121,7 +121,9 @@ public class TileBrewery extends TileEntity implements ITickable {
     }
 
     private boolean isLit(){
-        return !world.isRemote && world.getBlockState(this.getPos().down()).getBlock() == Blocks.FIRE || !world.isRemote && world.getBlockState(this.getPos().down(2)).getBlock() == Blocks.FIRE && !world.getBlockState(this.getPos().down()).isFullBlock();
+      if (world.isRemote) return false;
+        return  world.getBlockState(this.getPos().down()).getBlock() == Blocks.FIRE
+                || world.getBlockState(this.getPos().down(2)).getBlock() == Blocks.FIRE && !world.getBlockState(this.getPos().down()).isFullBlock();
     }
 
     private int timeToIncrease(){
