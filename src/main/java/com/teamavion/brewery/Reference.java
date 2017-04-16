@@ -34,6 +34,7 @@ public class Reference {
             Items.SPIDER_EYE,
             Items.SKULL,
             Items.APPLE,
+            Items.LEATHER,
             Items.CAKE,
             Items.GLOWSTONE_DUST,
             Items.FEATHER,
