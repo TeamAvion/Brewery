@@ -126,7 +126,6 @@ public class TileBrewery extends TileEntity implements ITickable {
     }
 
     public boolean addIngredient(Item item) {
-        System.out.println("!ADDINGREDIENT CALLED \n isIngredient: "+isIngredient(item)+" ingredientCount: "+ingredientCount+" !world.isRemote: "+!world.isRemote);
         if (isIngredient(item) && ingredientCount < 9 && !world.isRemote) {
             for (Ingredient ingredient : ingredientList) {
                 if (ingredient.id == getPotionId(item)) {
