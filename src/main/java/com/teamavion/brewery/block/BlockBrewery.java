@@ -7,6 +7,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -35,6 +36,9 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
             if(((TileBrewery) worldIn.getTileEntity(pos)).addIngredient(playerIn.getHeldItemMainhand().getItem())){
                 playerIn.getHeldItem(hand).setCount(playerIn.getHeldItem(hand).getCount() - 1);
             }
+            if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(Items.GLASS_BOTTLE.getUnlocalizedName())))
+                if(worldIn.getTileEntity(pos) instanceof TileBrewery)
+                    ((TileBrewery)worldIn.getTileEntity(pos)).createPotion();
         }
         return true;
     }

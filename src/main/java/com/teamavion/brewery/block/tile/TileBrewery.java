@@ -1,10 +1,12 @@
 package com.teamavion.brewery.block.tile;
 
+import com.teamavion.brewery.item.ModItems;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -13,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.teamavion.brewery.recipe.BreweryRecipeHandler.getPotionGrade;
 import static com.teamavion.brewery.recipe.BreweryRecipeHandler.getPotionId;
 import static com.teamavion.brewery.recipe.BreweryRecipeHandler.isIngredient;
 
@@ -32,6 +35,8 @@ public class TileBrewery extends TileEntity implements ITickable {
         ingredient3Ammount = 0;
         temperature = 22;
         liquidMB = 0;
+        //For Testing Purposes only
+        ingredient1PotionID = 1;
     }
 
     @Override
@@ -74,12 +79,29 @@ public class TileBrewery extends TileEntity implements ITickable {
             //System.out.println("time: " + time + " temp: " + temperature);
         }
     }
-    private boolean createPotion() {
+   public boolean createPotion() {
         EntityItem potionEntity = new EntityItem(world, this.getPos().getX(), this.getPos().getY() + 0.25, this.getPos().getZ(),
-                new ItemStack(Items.ARROW));
+                new ItemStack(ModItems.potion, 1,0, formPotionNBT()));
         potionEntity.motionY = ThreadLocalRandom.current().nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;
         world.spawnEntity(potionEntity);
         return true;
+    }
+
+  private NBTTagCompound formPotionNBT(){
+        NBTTagCompound compound = new NBTTagCompound();
+        if(ingredient1PotionID != -100){
+            compound.setInteger("potion_ID_1", ingredient1PotionID);
+            compound.setShort("potion_grade_1", getPotionGrade(ingredient1PotionID, ingredient1Ammount, ingredient1Time, ingredient1Tempreture, 5, false, false));
+        }
+        if(ingredient2PotionID != -100){
+            compound.setInteger("potion_ID_2", ingredient2PotionID);
+            compound.setShort("potion_grade_2", getPotionGrade(ingredient2PotionID, ingredient2Ammount, ingredient2Time, ingredient2Tempreture, 5, false, false));
+        }
+        if(ingredient3PotionID != -100){
+            compound.setInteger("potion_ID_3", ingredient3PotionID);
+            compound.setShort("potion_grade_3", getPotionGrade(ingredient3PotionID, ingredient3Ammount, ingredient3Time, ingredient3Tempreture, 5, false, false));
+        }
+        return compound;
     }
 
     public void captureItems() {

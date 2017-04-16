@@ -56,11 +56,12 @@ public class ItemPotion extends ItemFood {
             if (iPotion3 != -100)
                 addPotion(entityLiving,iPotion3, cPotion3, false);
          */
-        if(stack.getTagCompound().hasKey("potion_ID_1"))
+        if(worldIn.isRemote){return stack;}
+        if(stack.getTagCompound().hasKey("potion_ID_1", 99))
             addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_1"), stack.getTagCompound().getShort("potion_grade_1"), false);
-        if(stack.getTagCompound().hasKey("potion_ID_2"))
+        if(stack.getTagCompound().hasKey("potion_ID_2", 99))
             addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_2"), stack.getTagCompound().getShort("potion_grade_2"), false);
-        if(stack.getTagCompound().hasKey("potion_ID_3"))
+        if(stack.getTagCompound().hasKey("potion_ID_3", 99))
             addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_3"), stack.getTagCompound().getShort("potion_grade_3"), false);
         stack.damageItem(1, entityLiving);
         if (stack.isEmpty()) {
