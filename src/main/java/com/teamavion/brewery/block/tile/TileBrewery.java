@@ -85,7 +85,25 @@ public class TileBrewery extends TileEntity implements ITickable {
         EntityItem potionEntity = new EntityItem(world, this.getPos().getX(), this.getPos().getY() + 0.25, this.getPos().getZ(), potion);
         potionEntity.motionY = ThreadLocalRandom.current().nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;
         world.spawnEntity(potionEntity);
-        return true;
+
+       liquidMB = 0;
+       temperature = 22;
+       ingredient = 0;
+
+       ingredient1PotionID = -100;
+       ingredient2PotionID = -100;
+       ingredient3PotionID = -100;
+       ingredient1Ammount = 0;
+       ingredient2Ammount = 0;
+       ingredient3Ammount = 0;
+       ingredient1Tempreture = -100;
+       ingredient1Tempreture = -100;
+       ingredient1Tempreture = -100;
+       ingredient1Time = -100;
+       ingredient2Time = -100;
+       ingredient3Time = -100;
+
+       return true;
     }
 
   private NBTTagCompound formPotionNBT(){
