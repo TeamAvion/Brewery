@@ -34,6 +34,7 @@ public class TileBrewery extends TileEntity implements ITickable {
     public TileBrewery() {
         temperature = 22;
         liquidMB = 0;
+        this.markDirty();
         //For Testing Purposes only
         //ingredient1PotionID = 1;
     }
