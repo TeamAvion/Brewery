@@ -55,6 +55,8 @@ public class ItemPotion extends ItemFood {
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+        /**
+         * Old Method
         System.out.println("im being called");
         // (!worldIn.isRemote) {
             if (iPotion1 != -100)
@@ -63,6 +65,9 @@ public class ItemPotion extends ItemFood {
                 addPotion(entityLiving,iPotion2, cPotion2, false);
             if (iPotion3 != -100)
                 addPotion(entityLiving,iPotion3, cPotion3, false);
+         */
+        if(stack.getTagCompound().hasKey("potion_ID_1"))
+            addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_1"), stack.getTagCompound().getShort("potion_grade_1"), false);
             stack.damageItem(1, entityLiving);
             if (stack.isEmpty()) {
                 return new ItemStack(Items.GLASS_BOTTLE);
@@ -81,10 +86,10 @@ public class ItemPotion extends ItemFood {
         return true;
     }
 
-    private void addPotion(EntityLivingBase entityLiving, int id, char grade, boolean isScalable){
+    private void addPotion(EntityLivingBase entityLiving, int id, short grade, boolean isScalable){
        if(isScalable)
-            entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(id), Reference.durationFromGradeScalable(grade), Reference.amplification(grade)));
+            entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(id), Reference.durationFromGradeScalable((char)grade), Reference.amplification(grade)));
        else
-           entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(id), Reference.durationFromGradeNotScalable(grade)));
+           entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(id), Reference.durationFromGradeNotScalable((char)grade)));
     }
 }
