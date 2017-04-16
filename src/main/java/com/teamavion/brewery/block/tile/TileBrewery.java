@@ -36,7 +36,7 @@ public class TileBrewery extends TileEntity implements ITickable {
         temperature = 22;
         liquidMB = 0;
         //For Testing Purposes only
-        ingredient1PotionID = 1;
+        //ingredient1PotionID = 1;
     }
 
     @Override
