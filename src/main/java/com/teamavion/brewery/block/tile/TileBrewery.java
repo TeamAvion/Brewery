@@ -52,6 +52,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                     time++;
                 if((time >= timeToIncrease()) && temperature < 101) {
                     temperature++;
+                    System.out.println(temperature);
                     time = 0;
                 }
             }
@@ -139,6 +140,10 @@ public class TileBrewery extends TileEntity implements ITickable {
             return true;
         }
         return false;
+    }
+
+    public int getTemperature(){
+        return temperature;
     }
 
     private int getNewIngredientTime(){

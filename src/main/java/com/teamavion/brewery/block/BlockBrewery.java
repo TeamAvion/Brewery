@@ -42,8 +42,8 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
                     ((TileBrewery)worldIn.getTileEntity(pos)).createPotion();
             if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(Items.WATER_BUCKET.getUnlocalizedName())))
                 if(worldIn.getTileEntity(pos) instanceof TileBrewery){
-                   // if(((TileBrewery)worldIn.getTileEntity(pos)).addWater(1000))
-                        //playerIn.getHeldItemMainhand().setCount(0);
+                    // if(((TileBrewery)worldIn.getTileEntity(pos)).addWater(1000))
+                    //playerIn.getHeldItemMainhand().setCount(0);
                 }
         }
         return true;
@@ -55,16 +55,16 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
         return new TileBrewery();
     }
     /**
-    @Override
-    public boolean isFullyOpaque(IBlockState state)
-    {
-        return true;
-    }
+     @Override
+     public boolean isFullyOpaque(IBlockState state)
+     {
+     return true;
+     }
 
-    @Override
-    @Deprecated
-    @SideOnly(Side.CLIENT)
-    public boolean isTranslucent(IBlockState state) { return true; }
-    */
+     @Override
+     @Deprecated
+     @SideOnly(Side.CLIENT)
+     public boolean isTranslucent(IBlockState state) { return true; }
+     */
 
 }

@@ -1,5 +1,5 @@
 {
   "variants": {
-    "normal": { "model": "brewery:blockbrewery" }
+    "normal": { "model": "brewery:brewery_empty" }
   }
 }

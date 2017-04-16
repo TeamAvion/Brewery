@@ -1,11 +1,13 @@
 package com.teamavion.brewery.block;
 
 import com.teamavion.brewery.block.tile.TileBrewery;
+import com.teamavion.brewery.block.tile.TileBreweryRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import static net.minecraftforge.fml.common.registry.GameRegistry.registerTileEntity;
 
@@ -36,6 +38,8 @@ public class ModBlocks {
 
     public static void registerRenders(){
         registerRender(brewery);
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileBrewery.class, new TileBreweryRenderer());
     }
 
     private static void registerRender(Block block) {
