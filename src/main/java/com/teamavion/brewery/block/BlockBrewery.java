@@ -26,7 +26,7 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
     public BlockBrewery(){
         super(Material.IRON);
         setUnlocalizedName("brewery");
-        setRegistryName("BlockBrewery");
+        setRegistryName("blockbrewery");
     }
 
     @Override
@@ -40,6 +40,11 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
             if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(Items.GLASS_BOTTLE.getUnlocalizedName())))
                 if(worldIn.getTileEntity(pos) instanceof TileBrewery)
                     ((TileBrewery)worldIn.getTileEntity(pos)).createPotion();
+            if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(Items.WATER_BUCKET.getUnlocalizedName())))
+                if(worldIn.getTileEntity(pos) instanceof TileBrewery){
+                   // if(((TileBrewery)worldIn.getTileEntity(pos)).addWater(1000))
+                        //playerIn.getHeldItemMainhand().setCount(0);
+                }
         }
         return true;
     }

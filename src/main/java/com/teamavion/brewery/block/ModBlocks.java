@@ -24,7 +24,7 @@ public class ModBlocks {
         //blocks
         registerBlock(brewery);
 
-        registerTileEntity(TileBrewery.class, "Brewery");
+        registerTileEntity(TileBrewery.class, "brewery");
     }
 
     private static void registerBlock(Block block) {
