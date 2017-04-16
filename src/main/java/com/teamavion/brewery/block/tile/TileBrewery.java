@@ -131,6 +131,7 @@ public class TileBrewery extends TileEntity implements ITickable {
             for (Ingredient ingredient : ingredientList) {
                 if (ingredient.id == getPotionId(item)) {
                     ingredient.amount++;
+                    ingredientCount++;
                     return true;
                 }
             }
