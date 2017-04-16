@@ -31,6 +31,7 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
+        if(worldIn.isRemote){ return true; }
         if(worldIn.getTileEntity(pos) == null){ return false;}
         if(worldIn.getTileEntity(pos) instanceof TileBrewery){
             if(((TileBrewery) worldIn.getTileEntity(pos)).addIngredient(playerIn.getHeldItemMainhand().getItem())){
