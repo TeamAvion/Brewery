@@ -58,6 +58,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                     temperature++;
                     System.out.println(temperature);
                     time = 0;
+                    sync(this);
                 }
             }
             if (!isLit()) {
@@ -66,13 +67,17 @@ public class TileBrewery extends TileEntity implements ITickable {
                 if ((time >= timeToDecrease()) && temperature > 22) {
                     temperature--;
                     time = 0;
+                    sync(this);
                 }
             }
-            if ((temperature >= 100) && liquidMB > 0)
+            if ((temperature >= 100) && liquidMB > 0) {
+                sync(this);
                 liquidMB--;
+            }
 
             for (Ingredient ingredient : ingredientList) {
                 ingredient.time++;
+                sync(this);
             }
             //System.out.println("time: " + time + " temp: " + temperature);
         }
@@ -81,12 +86,32 @@ public class TileBrewery extends TileEntity implements ITickable {
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
+        temperature = compound.getInteger("temperature");
+        liquidMB = compound.getInteger("liquidMB");
+        ingredientCount = compound.getInteger("ingredientCount");
+        for(int i = 0; i < compound.getInteger("ingredientTypes"); i++){
+            compound.getInteger("ingredient_"+i+"_id");
+            compound.getInteger("ingredient_"+i+"_amount");
+            compound.getInteger("ingredient_"+i+"_temperature");
+            compound.getInteger("ingredient_"+i+"_time");
+        }
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
+        if(compound == null)
+            return compound;
         compound.setInteger("temperature", temperature);
+        compound.setInteger("liquidMB", liquidMB);
+        compound.setInteger("ingredientCount", ingredientCount);
+        compound.setInteger("ingredientTypes", ingredientList.size());
+        for(int i = 0; i < ingredientList.size(); i++){
+            ingredientList.add(new Ingredient(compound.getInteger("ingredient_"+i+"_id"),
+            compound.getInteger("ingredient_"+i+"_amount"),
+            compound.getInteger("ingredient_"+i+"_temperature"),
+            compound.getInteger("ingredient_"+i+"_time")));
+        }
         return compound;
     }
 
@@ -123,7 +148,8 @@ public class TileBrewery extends TileEntity implements ITickable {
        liquidMB = 0;
        temperature = 22;
        ingredientCount = 0;
-       ingredientList = new ArrayList<>();
+       ingredientList = new ArrayList<>(0);
+       sync(this);
 
        return true;
     }
