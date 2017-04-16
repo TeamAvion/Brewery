@@ -4,6 +4,7 @@ import com.teamavion.brewery.Reference;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -40,18 +41,26 @@ public class ItemPotion extends Item {
         time = 10;
     }
 
-    /**
-     * Called when the equipped item is right clicked.
-     */
+    @Override
+    public int getMaxItemUseDuration(ItemStack stack)
+    {
+        return 40;
+    }
+
+    public EnumAction getItemUseAction(ItemStack stack)
+    {
+        return EnumAction.EAT;
+    }
+
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
-        playerIn.setActiveHand(handIn);
-        return new ActionResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+        ItemStack itemstack = playerIn.getHeldItem(handIn);
+        return new ActionResult(EnumActionResult.SUCCESS, itemstack);
     }
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
-        if (!worldIn.isRemote) {
+        // (!worldIn.isRemote) {
             if (iPotion1 != -100)
                 addPotion(entityLiving,iPotion1, cPotion1, false);
             if (iPotion2 != -100)
@@ -64,8 +73,6 @@ public class ItemPotion extends Item {
             }
             return stack;
         }
-        return stack;
-    }
 
     public String getItemStackDisplayName(ItemStack stack)
     {
