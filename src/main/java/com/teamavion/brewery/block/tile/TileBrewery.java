@@ -222,6 +222,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                 if (ingredientList[i][0] != -100) {
                     ingredientList[i][0] = getPotionId(item);
                     ingredientList[i][1]++;
+                    ingredientList[i][3] = getNewIngredientTime(ingredientList[i]);
                     ingredientCount++;
                     return true;
                 }
@@ -236,8 +237,8 @@ public class TileBrewery extends TileEntity implements ITickable {
 
     public int getLiquidMB() {return liquidMB;}
 
-    private int getNewIngredientTime(){
-        return 0;
+    private int getNewIngredientTime(int[] a){
+        return (int)((a[3]*(a[1]-1.0))/a[1]);
     }
 
     private class Ingredient {
