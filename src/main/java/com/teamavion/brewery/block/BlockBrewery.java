@@ -54,7 +54,7 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileBrewery();
     }
-
+    /**
     @Override
     public boolean isFullyOpaque(IBlockState state)
     {
@@ -65,5 +65,6 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
     @Deprecated
     @SideOnly(Side.CLIENT)
     public boolean isTranslucent(IBlockState state) { return true; }
+    */
 
 }
