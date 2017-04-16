@@ -4,7 +4,8 @@
         "0": "brewery:blocks/cauldron_side",
         "1": "brewery:blocks/cauldron_inner",
         "2": "brewery:blocks/stonedark",
-        "3": "brewery:blocks/iron_block"
+        "3": "brewery:blocks/iron_block",
+        "particle": "brewery:blocks/cauldron_inner"
     },
     "elements": [
         {
