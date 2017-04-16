@@ -27,7 +27,26 @@ import static com.teamavion.brewery.recipe.BreweryRecipeHandler.isIngredient;
  * Created by TjKenMate on 4/15/2017XD
  */
 public class TileBrewery extends TileEntity implements ITickable {
-    private List<Ingredient> ingredientList = new ArrayList<>(0);
+    public static final int[][] RESETLIST =
+            {{-100, 0, 0, 0},
+                    {-100, 0, 0, 0},
+                    {-100, 0, 0, 0},
+                    {-100, 0, 0, 0},
+                    {-100, 0, 0, 0},
+                    {-100, 0, 0, 0},
+                    {-100, 0, 0, 0},
+                    {-100, 0, 0, 0},
+                    {-100, 0, 0, 0}};
+    private int[][] ingredientList =
+            {{-100, 0, 0, 0},
+            {-100, 0, 0, 0},
+            {-100, 0, 0, 0},
+            {-100, 0, 0, 0},
+            {-100, 0, 0, 0},
+            {-100, 0, 0, 0},
+            {-100, 0, 0, 0},
+            {-100, 0, 0, 0},
+            {-100, 0, 0, 0}};
     private int liquidMB, temperature, ingredientCount, time;
     private boolean temperatureSwitchOn;
 
@@ -76,9 +95,11 @@ public class TileBrewery extends TileEntity implements ITickable {
                 liquidMB--;
             }
 
-            for (Ingredient ingredient : ingredientList) {
-                ingredient.time++;
-                sync(this);
+            for (int i = 0; i < 9; i++) {
+                if(ingredientList[i][0] != -100){
+                    ingredientList[i][3]++;
+                    sync(this);
+                }
             }
             //System.out.println("time: " + time + " temp: " + temperature);
         }
@@ -90,11 +111,8 @@ public class TileBrewery extends TileEntity implements ITickable {
         temperature = compound.getInteger("temperature");
         liquidMB = compound.getInteger("liquidMB");
         ingredientCount = compound.getInteger("ingredientCount");
-        for(int i = 0; i < compound.getInteger("ingredientTypes"); i++){
-            compound.getInteger("ingredient_"+i+"_id");
-            compound.getInteger("ingredient_"+i+"_amount");
-            compound.getInteger("ingredient_"+i+"_temperature");
-            compound.getInteger("ingredient_"+i+"_time");
+        for(int i = 0; i < 9; i++){
+            ingredientList[i] = compound.getIntArray("potion_"+i);
         }
     }
 
@@ -106,12 +124,8 @@ public class TileBrewery extends TileEntity implements ITickable {
         compound.setInteger("temperature", temperature);
         compound.setInteger("liquidMB", liquidMB);
         compound.setInteger("ingredientCount", ingredientCount);
-        compound.setInteger("ingredientTypes", ingredientList.size());
-        for(int i = 0; i < ingredientList.size(); i++){
-            ingredientList.add(new Ingredient(compound.getInteger("ingredient_"+i+"_id"),
-            compound.getInteger("ingredient_"+i+"_amount"),
-            compound.getInteger("ingredient_"+i+"_temperature"),
-            compound.getInteger("ingredient_"+i+"_time")));
+        for(int i = 0; i < 9; i++){
+            compound.setIntArray("potion_"+i,ingredientList[i]);
         }
         return compound;
     }
@@ -149,7 +163,7 @@ public class TileBrewery extends TileEntity implements ITickable {
        liquidMB = 0;
        temperature = 22;
        ingredientCount = 0;
-       ingredientList = new ArrayList<>(0);
+       ingredientList = RESETLIST;
        sync(this);
 
        return true;
@@ -157,9 +171,11 @@ public class TileBrewery extends TileEntity implements ITickable {
 
   private NBTTagCompound formPotionNBT(){
         NBTTagCompound compound = new NBTTagCompound();
-        for (int i = 0; i < ingredientList.size(); i++) {
-            compound.setInteger("potion_ID_" + i, ingredientList.get(i).id);
-            compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList.get(i).id, ingredientList.get(i).amount, ingredientList.get(i).time, ingredientList.get(i).time,5, false, false));
+        for (int i = 0; i < 9; i++) {
+            if (ingredientList[i][0] != -100) {
+                compound.setInteger("potion_ID_" + i, ingredientList[i][0]);
+                compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList[i][0], ingredientList[i][1], ingredientList[i][3], ingredientList[i][2], 5, false, false));
+            }
         }
         return compound;
     }
@@ -195,16 +211,21 @@ public class TileBrewery extends TileEntity implements ITickable {
 
     public boolean addIngredient(Item item) {
         if (isIngredient(item) && ingredientCount < 9 && !world.isRemote) {
-            for (Ingredient ingredient : ingredientList) {
-                if (ingredient.id == getPotionId(item)) {
-                    ingredient.amount++;
+            for(int i = 0; i <9; i++) {
+                if (ingredientList[i][0] == getPotionId(item)) {
+                    ingredientList[i][1]++;
                     ingredientCount++;
                     return true;
                 }
             }
-            ingredientList.add(new Ingredient(getPotionId(item), 1, temperature, getNewIngredientTime()));
-            ingredientCount++;
-            return true;
+            for(int i = 0; i <9; i++) {
+                if (ingredientList[i][0] != -100) {
+                    ingredientList[i][0] = getPotionId(item);
+                    ingredientList[i][1]++;
+                    ingredientCount++;
+                    return true;
+                }
+            }
         }
         return false;
     }
