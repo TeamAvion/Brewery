@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -21,13 +22,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by WhiteAutumn on 2017-04-15.
  */
-public class ItemPotion extends Item {
+public class ItemPotion extends ItemFood {
 
     private int iPotion1, iPotion2, iPotion3, time;
     private char cPotion1, cPotion2, cPotion3;
 
     //TODO: Add durability like flint and steal
     public ItemPotion() {
+        super(0,0,false);
+        setAlwaysEdible();
         setMaxDamage(4);
         setMaxStackSize(1);
         setUnlocalizedName("potion");
@@ -41,25 +44,18 @@ public class ItemPotion extends Item {
         time = 10;
     }
 
-    @Override
-    public int getMaxItemUseDuration(ItemStack stack)
-    {
-        return 40;
-    }
-
-    public EnumAction getItemUseAction(ItemStack stack)
-    {
-        return EnumAction.EAT;
-    }
-
+    /**
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
+        System.out.println("im being called2");
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         return new ActionResult(EnumActionResult.SUCCESS, itemstack);
     }
+     */
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+        System.out.println("im being called");
         // (!worldIn.isRemote) {
             if (iPotion1 != -100)
                 addPotion(entityLiving,iPotion1, cPotion1, false);
