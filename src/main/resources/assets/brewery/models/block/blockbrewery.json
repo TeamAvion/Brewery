@@ -1,9 +1,9 @@
 {
-    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)XD",
     "textures": {
         "0": "blocks/cauldron_side",
         "1": "blocks/cauldron_inner",
-        "2": "blocks/stone_slab_top_dark",
+        "2": "blocks/stonedark",
         "3": "blocks/iron_block"
     },
     "elements": [
