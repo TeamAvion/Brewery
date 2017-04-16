@@ -1,16 +1,20 @@
 package com.teamavion.brewery.block.tile;
 
 import com.teamavion.brewery.item.ModItems;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -36,43 +40,79 @@ public class TileBrewery extends TileEntity implements ITickable {
 
     @Override
     public void update() {
-        if(!world.isRemote){
+        if (!world.isRemote) {
             captureItems();
             //System.out.println("im ruining update");
-            if(!temperatureSwitchOn && isLit()){
+            if (!temperatureSwitchOn && isLit()) {
                 time = 0;
                 temperatureSwitchOn = true;
             }
-            if(temperatureSwitchOn && !isLit()){
+            if (temperatureSwitchOn && !isLit()) {
                 time = 0;
                 temperatureSwitchOn = false;
             }
-            if(isLit()) {
-                if(time < 1000)
+            if (isLit()) {
+                if (time < 1000)
                     time++;
-                if((time >= timeToIncrease()) && temperature < 101) {
+                if ((time >= timeToIncrease()) && temperature < 101) {
                     temperature++;
                     System.out.println(temperature);
                     time = 0;
                 }
             }
-            if(!isLit()){
-                if(time < 1000)
+            if (!isLit()) {
+                if (time < 1000)
                     time++;
-                if((time >= timeToDecrease()) && temperature > 22){
+                if ((time >= timeToDecrease()) && temperature > 22) {
                     temperature--;
                     time = 0;
                 }
             }
-            if((temperature >= 100) && liquidMB > 0)
+            if ((temperature >= 100) && liquidMB > 0)
                 liquidMB--;
 
-            for (Ingredient ingredient: ingredientList) {
+            for (Ingredient ingredient : ingredientList) {
                 ingredient.time++;
             }
             //System.out.println("time: " + time + " temp: " + temperature);
         }
     }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        super.writeToNBT(compound);
+        compound.setInteger("temperature", temperature);
+        return compound;
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag() {
+        return this.writeToNBT(new NBTTagCompound());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+        this.readFromNBT(pkt.getNbtCompound());
+    }
+
+    @Nullable
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        return new SPacketUpdateTileEntity(this.pos, 0, this.getUpdateTag());
+    }
+
+    public static void sync(TileEntity tileEntity) {
+        if (tileEntity.getWorld() != null) {
+            IBlockState state = tileEntity.getWorld().getBlockState(tileEntity.getPos());
+            tileEntity.getWorld().notifyBlockUpdate(tileEntity.getPos(), state, state, 3);
+        }
+    }
+
    public boolean createPotion() {
         ItemStack potion = new ItemStack(ModItems.potion);
         potion.setTagCompound(formPotionNBT());
