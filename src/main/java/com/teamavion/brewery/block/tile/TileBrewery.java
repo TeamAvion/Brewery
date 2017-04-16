@@ -95,7 +95,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                 liquidMB--;
             }
 
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < ingredientList.length; i++) {
                 if(ingredientList[i][0] != -100){
                     ingredientList[i][3]++;
                     sync(this);
@@ -124,7 +124,7 @@ public class TileBrewery extends TileEntity implements ITickable {
         compound.setInteger("temperature", temperature);
         compound.setInteger("liquidMB", liquidMB);
         compound.setInteger("ingredientCount", ingredientCount);
-        for(int i = 0; i < 9; i++){
+        for(int i = 0; i < ingredientList.length; i++){
             compound.setIntArray("potion_"+i,ingredientList[i]);
         }
         return compound;
@@ -171,7 +171,7 @@ public class TileBrewery extends TileEntity implements ITickable {
 
   private NBTTagCompound formPotionNBT(){
         NBTTagCompound compound = new NBTTagCompound();
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < ingredientList.length; i++) {
             if (ingredientList[i][0] != -100) {
                 compound.setInteger("potion_ID_" + i, ingredientList[i][0]);
                 compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList[i][0], ingredientList[i][1], ingredientList[i][3], ingredientList[i][2], 5, false, false));
@@ -211,7 +211,7 @@ public class TileBrewery extends TileEntity implements ITickable {
 
     public boolean addIngredient(Item item) {
         if (isIngredient(item) && ingredientCount < 9 && !world.isRemote) {
-            for(int i = 0; i <9; i++) {
+            for(int i = 0; i < ingredientList.length; i++) {
                 if (ingredientList[i][0] == getPotionId(item)) {
                     ingredientList[i][1]++;
                     ingredientCount++;
