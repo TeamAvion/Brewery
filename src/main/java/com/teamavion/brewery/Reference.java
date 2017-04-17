@@ -41,6 +41,37 @@ public class Reference {
             Items.GOLD_NUGGET,
             Item.getItemFromBlock(Blocks.COBBLESTONE)
     };
+    public static final boolean[] EFFECTS_SCALABLE = {
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            true,
+            true,
+    };
+
     public static int durationFromGradeNotScalable(char A){
         int D = 1;
         if(A == 'A')

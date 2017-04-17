@@ -40,7 +40,7 @@ public class ItemPotion extends Item {
         if(stack.getTagCompound() != null) {
             for(int i = 0; i < TileBrewery.RESETLIST.length; i++)
             if (stack.getTagCompound().hasKey("potion_ID_"+i, 99))
-                addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_"+i), stack.getTagCompound().getShort("potion_grade_"+i), false);
+                addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_"+i), stack.getTagCompound().getShort("potion_grade_"+i), Reference.EFFECTS_SCALABLE[stack.getTagCompound().getInteger("potion_ID_"+i)]);
         }
         stack.damageItem(1, entityLiving);
         if (stack.getItemDamage() == stack.getMaxDamage()) {
