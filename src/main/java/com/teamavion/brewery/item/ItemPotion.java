@@ -27,12 +27,12 @@ import java.util.List;
 
 public class ItemPotion extends Item {
 
-    ItemPotion() {
+    ItemPotion(String unlocalizedName, String registryName, int maxDamage) {
         setCreativeTab(CreativeTabs.BREWING);
-        setMaxDamage(4);
         setMaxStackSize(1);
-        setUnlocalizedName("potion");
-        setRegistryName("ItemPotion");
+        setMaxDamage(maxDamage);
+        setUnlocalizedName(unlocalizedName);
+        setRegistryName(registryName);
     }
 
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {

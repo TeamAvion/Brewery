@@ -10,27 +10,35 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  */
 public class ModItems {
 
-    public static Item potion;
+    public static Item potionSmall;
+    public static Item potionMedium;
+    public static Item potionLarge;
     public static Item bottleSmall;
     public static Item bottleMedium;
     public static Item bottleLarge;
 
     public static void init(){
-        potion = new ItemPotion();
-        bottleSmall = new ItemBottle("bottleSmall", "ItemBottleSmall");
-        bottleMedium = new ItemBottle("bottleMedium", "ItemBottleMedium");
-        bottleLarge = new ItemBottle("bottleLarge", "ItemBottleLarge");
+        potionSmall = new ItemPotion("potionSmall", "ItemPotionSmall", 2);
+        potionMedium = new ItemPotion("potionMedium", "ItemPotionMedium", 4);
+        potionLarge = new ItemPotion("potionLarge", "ItemPotionLarge", 6);
+        bottleSmall = new ItemBasic("bottleSmall", "ItemBottleSmall", 64);
+        bottleMedium = new ItemBasic("bottleMedium", "ItemBottleMedium", 64);
+        bottleLarge = new ItemBasic("bottleLarge", "ItemBottleLarge", 64);
     }
 
     public static void register() {
-        GameRegistry.register(potion);
+        GameRegistry.register(potionSmall);
+        GameRegistry.register(potionMedium);
+        GameRegistry.register(potionLarge);
         GameRegistry.register(bottleSmall);
         GameRegistry.register(bottleMedium);
         GameRegistry.register(bottleLarge);
     }
 
     public static void registerRenders() {
-        registerRender(potion);
+        registerRender(potionSmall);
+        registerRender(potionMedium);
+        registerRender(potionLarge);
         registerRender(bottleSmall);
         registerRender(bottleMedium);
         registerRender(bottleLarge);

@@ -6,11 +6,11 @@ import net.minecraft.item.Item;
 /**
  * Created by White Autumn on 2017-04-17.
  */
-public class ItemBottle extends Item {
+public class ItemBasic extends Item {
 
-    ItemBottle(String unlocalizedName, String registryName) {
+    ItemBasic(String unlocalizedName, String registryName, int maxStackSize) {
         setCreativeTab(CreativeTabs.BREWING);
-        setMaxStackSize(16);
+        setMaxStackSize(maxStackSize);
         setUnlocalizedName(unlocalizedName);
         setRegistryName(registryName);
     }

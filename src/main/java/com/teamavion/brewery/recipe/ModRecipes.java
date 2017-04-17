@@ -2,7 +2,6 @@ package com.teamavion.brewery.recipe;
 
 import com.teamavion.brewery.item.ModItems;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
