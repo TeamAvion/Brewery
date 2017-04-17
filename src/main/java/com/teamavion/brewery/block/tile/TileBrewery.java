@@ -270,6 +270,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                 ingredientList.get(i).amount -= ammountHolder;
                 if(ingredientList.get(i).amount == 0){
                     ingredientList.remove(i);
+                    i--;
                 }
                 tempRemoval += ammountHolder;
                 ammountHolder = 0;
