@@ -1,6 +1,5 @@
 package com.teamavion.brewery.recipe;
 
-import com.sun.istack.internal.NotNull;
 import com.teamavion.brewery.Reference;
 import net.minecraft.item.Item;
 
@@ -14,7 +13,7 @@ public class BreweryRecipeHandler {
                 return true;
         return false;
     }
-    @NotNull
+
     public static int getPotionId(Item input) {
         for (int i = 0; i < Reference.EFFECT_ITEMS.length; i++){
             if(Reference.EFFECT_ITEMS[i] != null && Reference.EFFECT_ITEMS[i].getUnlocalizedName().equals(input.getUnlocalizedName()))
