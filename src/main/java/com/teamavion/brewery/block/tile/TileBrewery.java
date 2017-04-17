@@ -57,12 +57,13 @@ public class TileBrewery extends TileEntity implements ITickable {
     */
     //id, amount, temperature, time
 
-    private int liquidMB, temperature, ingredientCount, time;
+    private int liquidMB, maxLiquidMB, temperature, ingredientCount, time;
     private boolean temperatureSwitchOn;
 
     public TileBrewery() {
         temperature = 22;
         liquidMB = 0;
+        maxLiquidMB = 0;
         this.markDirty();
         //For Testing Purposes only
         //ingredient1PotionID = 1;
@@ -106,7 +107,7 @@ public class TileBrewery extends TileEntity implements ITickable {
             }
 
             for (Ingredient ingredient : ingredientList) {
-                ingredient.time++;
+                ingredient.temperature = this.temperature;
                 sync(this);
             }
             //TODO:
@@ -127,6 +128,7 @@ public class TileBrewery extends TileEntity implements ITickable {
         super.readFromNBT(compound);
         temperature = compound.getInteger("temperature");
         liquidMB = compound.getInteger("liquidMB");
+        maxLiquidMB = compound.getShort("maxLiquidMB");
         ingredientCount = compound.getInteger("ingredientCount");
         ingredientList = new ArrayList<>(0);
         for (int i = 0; i < ingredientCount; i++) {
@@ -156,6 +158,7 @@ public class TileBrewery extends TileEntity implements ITickable {
             return compound;
         compound.setInteger("temperature", temperature);
         compound.setInteger("liquidMB", liquidMB);
+        compound.setInteger("maxLiquidMB", maxLiquidMB);
         compound.setInteger("ingredientCount", ingredientCount);
         for (int i = 0; i < ingredientList.size(); i++) {
             compound.setIntArray("potion_" + i, ingredientList.get(i).getArray());
@@ -218,7 +221,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                potion = new ItemStack(ModItems.potionLarge);
                break;
        }
-       potion.setTagCompound(formPotionNBT(size));
+       potion.setTagCompound(formPotionNBT());
        EntityItem potionEntity = new EntityItem(world, this.getPos().getX(), this.getPos().getY() + 1, this.getPos().getZ(), potion);
        potionEntity.motionY = ThreadLocalRandom.current().nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;
        world.spawnEntity(potionEntity);
@@ -227,6 +230,7 @@ public class TileBrewery extends TileEntity implements ITickable {
        ingredientCount = 0;
        if(liquidMB == 0) {
            temperature = 22;
+           maxLiquidMB = 0;
            ingredientList = new ArrayList<>(0);
        }
        sync(this);
@@ -237,6 +241,7 @@ public class TileBrewery extends TileEntity implements ITickable {
     public boolean addWater(){
         if(!(ingredientCount > 0) && (liquidMB+1000) <= 3000){
             liquidMB+=1000;
+            maxLiquidMB = liquidMB;
             sync(this);
             return true;
         }
@@ -253,11 +258,11 @@ public class TileBrewery extends TileEntity implements ITickable {
     */
 
 
-    private NBTTagCompound formPotionNBT(int liquidMB) {
+    private NBTTagCompound formPotionNBT() {
         NBTTagCompound compound = new NBTTagCompound();
         for (int i = 0; i < ingredientList.size(); i++) {
             compound.setInteger("potion_ID_" + i, ingredientList.get(i).id);
-            compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList.get(i).id, ingredientList.get(i).amount, ingredientList.get(i).time, ingredientList.get(i).time,1, false, false, liquidMB));
+            compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList.get(i).id, ingredientList.get(i).amount, ingredientList.get(i).time, ingredientList.get(i).temperature,1, false, false, maxLiquidMB));
         }
         return compound;
     }

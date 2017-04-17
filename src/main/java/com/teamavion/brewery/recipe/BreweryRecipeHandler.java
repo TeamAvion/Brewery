@@ -25,9 +25,9 @@ public class BreweryRecipeHandler {
 
     public static short getPotionGrade(int id, int amount, int time, int averageTempreture, int marginOfError, boolean gradeIncreaseModifier, boolean gradeDecreaseModifer, int liquidMB){
         char tempGrade;
-        char concentration = 'A';
+        char concentration;
         char grade;
-        if(Math.abs(averageTempreture-Reference.EFFECT_TEMPRETURES[id]) < marginOfError*5)
+        if(Math.abs(averageTempreture-Reference.EFFECT_TEMPRETURES[id]) < marginOfError*3)
             tempGrade = 'A';
         else if(Math.abs(averageTempreture-Reference.EFFECT_TEMPRETURES[id]) < marginOfError*5*2)
             tempGrade = 'B';
@@ -35,6 +35,14 @@ public class BreweryRecipeHandler {
             tempGrade = 'C';
         else
             tempGrade = 'D';
+        if((amount/(double)(liquidMB/1000)) > 2.5)
+            concentration = 'A';
+        else if((amount/(double)(liquidMB/1000)) > 1.0)
+            concentration = 'B';
+        else if((amount/(double)(liquidMB/1000)) > 0.5)
+            concentration = 'C';
+        else
+            concentration = 'D';
         if(getAverageGrade(tempGrade,concentration) > 'D')
             grade = 'D';
         else
