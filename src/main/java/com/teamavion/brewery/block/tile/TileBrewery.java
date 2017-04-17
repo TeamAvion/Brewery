@@ -234,6 +234,7 @@ public class TileBrewery extends TileEntity implements ITickable {
     public boolean addWater(){
         if((liquidMB+1000) <= 3000){
             liquidMB+=1000;
+            sync(this);
             return true;
         }
         return false;

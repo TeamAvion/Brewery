@@ -9,6 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -53,7 +54,7 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
             if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(Items.WATER_BUCKET.getUnlocalizedName())))
                 if(worldIn.getTileEntity(pos) instanceof TileBrewery){
                      if(((TileBrewery)worldIn.getTileEntity(pos)).addWater())
-                         playerIn.getHeldItemMainhand().setCount(0);
+                         playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
                 }
         }
         return true;
