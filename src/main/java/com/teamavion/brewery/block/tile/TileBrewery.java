@@ -333,6 +333,7 @@ public class TileBrewery extends TileEntity implements ITickable {
         */
     }
 
+
     public int getTemperature(){
         return temperature;
     }
