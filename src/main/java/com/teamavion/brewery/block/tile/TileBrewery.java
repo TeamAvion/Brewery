@@ -225,12 +225,13 @@ public class TileBrewery extends TileEntity implements ITickable {
 
        liquidMB-=((size+1)*1000);
        temperature = 22;
-       ingredientCount-=ingredientList.size();
+       ingredientCount-=tempRemoval;
        if(liquidMB == 0)
        {
            ingredientList = new ArrayList<>(0);
            ingredientCount = 0;
        }
+       tempRemoval=0;
        sync(this);
 
        return true;
@@ -266,6 +267,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                 ammountHolder = ingredientList.get(i).amount;
             compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList.get(i).id, ammountHolder, ingredientList.get(i).time, ingredientList.get(i).time,1, false, false, liquidMB));
             ingredientList.get(i).amount-=ammountHolder;
+            tempRemoval+=ammountHolder;
             ammountHolder = 0;
         }
         return compound;
