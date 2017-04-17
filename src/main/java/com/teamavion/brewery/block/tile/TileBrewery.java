@@ -203,7 +203,7 @@ public class TileBrewery extends TileEntity implements ITickable {
     }
 
    public boolean createPotion(int size) {
-       if((liquidMB-(size+1)*1000) >= 0)
+       if((liquidMB-((size+1)*1000)) >= 0)
            return false;
        ItemStack potion = null;
        switch (size) {
@@ -230,6 +230,8 @@ public class TileBrewery extends TileEntity implements ITickable {
 
        return true;
     }
+
+    public boolean
 
     //TODO:
     /* Y U DO DIS?
