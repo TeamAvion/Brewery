@@ -21,7 +21,7 @@ public class TileBreweryRenderer extends TileEntitySpecialRenderer {
 
         if(te instanceof TileBrewery){
             watt_her = ((TileBrewery) te).getLiquidMB();
-            iTextComponent = "Temperature: " + ((TileBrewery) te).getTemperature();
+            iTextComponent = "Temperature: " + ((TileBrewery) te).getTemperature() + "\nWaterLvl: " +((TileBrewery) te).getLiquidMB();
         }
 
         if (iTextComponent != null && this.rendererDispatcher.cameraHitResult != null && te.getPos().equals(this.rendererDispatcher.cameraHitResult.getBlockPos()))
