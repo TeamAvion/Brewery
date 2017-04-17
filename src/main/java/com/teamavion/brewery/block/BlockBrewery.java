@@ -52,8 +52,8 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
                         playerIn.getHeldItem(hand).setCount(playerIn.getHeldItem(hand).getCount() - 1);
             if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(Items.WATER_BUCKET.getUnlocalizedName())))
                 if(worldIn.getTileEntity(pos) instanceof TileBrewery){
-                    // if(((TileBrewery)worldIn.getTileEntity(pos)).addWater(1000))
-                    //playerIn.getHeldItemMainhand().setCount(0);
+                     if(((TileBrewery)worldIn.getTileEntity(pos)).addWater())
+                         playerIn.getHeldItemMainhand().setCount(0);
                 }
         }
         return true;
