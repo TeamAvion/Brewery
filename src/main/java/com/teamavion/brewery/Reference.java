@@ -103,6 +103,39 @@ public class Reference {
             66
     };
 
+    public static final int[] EFFECT_TIMES = {
+            //TODO: Implement time that not 1.5 min on all
+            //x*20*60 (converts x from minuets to ticks)
+            -100,
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20),
+            (int)(1.5*60*20)
+    };
+
     public static int durationFromGradeNotScalable(char A){
         int D = 1;
         if(A == 'A')
