@@ -260,17 +260,15 @@ public class TileBrewery extends TileEntity implements ITickable {
         NBTTagCompound compound = new NBTTagCompound();
         int ammountHolder = 0;
         for (int i = 0; i < ingredientList.size(); i++) {
-            if (ingredientList.get(i).amount != 0) {
-                compound.setInteger("potion_ID_" + i, ingredientList.get(i).id);
-                if ((size + 1) * 1000 != liquidMB)
-                    ammountHolder += ingredientList.get(i).amount / (liquidMB / 1000) + ingredientList.get(i).amount % (liquidMB / 1000);
-                else
-                    ammountHolder = ingredientList.get(i).amount;
-                compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList.get(i).id, ammountHolder, ingredientList.get(i).time, ingredientList.get(i).time, 1, false, false, liquidMB));
-                ingredientList.get(i).amount -= ammountHolder;
-                tempRemoval += ammountHolder;
-                ammountHolder = 0;
-            }
+            compound.setInteger("potion_ID_" + i, ingredientList.get(i).id);
+            if((size+1)*1000 != liquidMB && ingredientList.get(i).amount != 0)
+                ammountHolder+=ingredientList.get(i).amount/(liquidMB/1000)+ingredientList.get(i).amount%(liquidMB/1000);
+            else
+                ammountHolder = ingredientList.get(i).amount;
+            compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList.get(i).id, ammountHolder, ingredientList.get(i).time, ingredientList.get(i).time,1, false, false, liquidMB));
+            ingredientList.get(i).amount-=ammountHolder;
+            tempRemoval+=ammountHolder;
+            ammountHolder = 0;
         }
         return compound;
     }
