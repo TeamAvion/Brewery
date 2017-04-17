@@ -268,6 +268,9 @@ public class TileBrewery extends TileEntity implements ITickable {
                     ammountHolder = ingredientList.get(i).amount;
                 compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList.get(i).id, ammountHolder, ingredientList.get(i).time, ingredientList.get(i).time, 1, false, false, liquidMB));
                 ingredientList.get(i).amount -= ammountHolder;
+                if(ingredientList.get(i).amount == 0){
+                    ingredientList.remove(i);
+                }
                 tempRemoval += ammountHolder;
                 ammountHolder = 0;
             }
