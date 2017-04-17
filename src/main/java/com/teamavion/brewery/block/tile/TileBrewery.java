@@ -130,7 +130,8 @@ public class TileBrewery extends TileEntity implements ITickable {
         ingredientCount = compound.getInteger("ingredientCount");
         ingredientList = new ArrayList<>(0);
         for (int i = 0; i < ingredientCount; i++) {
-            ingredientList.add(new Ingredient(compound.getIntArray("potion_" + i)));
+            if(compound.hasKey("potion_"+i))
+                ingredientList.add(new Ingredient(compound.getIntArray("potion_" + i)));
         }
     }
 
