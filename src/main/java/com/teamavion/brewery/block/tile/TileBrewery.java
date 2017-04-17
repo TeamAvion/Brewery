@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -28,7 +29,7 @@ import static com.teamavion.brewery.recipe.BreweryRecipeHandler.isIngredient;
  */
 public class TileBrewery extends TileEntity implements ITickable {
     public static final int[][] RESETLIST =
-            {{-100, 0, 0, 0},
+                    {{-100, 0, 0, 0},
                     {-100, 0, 0, 0},
                     {-100, 0, 0, 0},
                     {-100, 0, 0, 0},
@@ -163,10 +164,16 @@ public class TileBrewery extends TileEntity implements ITickable {
        liquidMB = 0;
        temperature = 22;
        ingredientCount = 0;
-       ingredientList = RESETLIST;
+       resetArray();
        sync(this);
 
        return true;
+    }
+
+    private void resetArray(){
+        for(int i = 0; i < RESETLIST.length; i++)
+            for(int j = 0; j < RESETLIST.length; j++)
+                ingredientList[i][j] = RESETLIST[i][j] + 0;
     }
 
   private NBTTagCompound formPotionNBT(){
@@ -219,7 +226,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                 }
             }
             for(int i = 0; i <9; i++) {
-                if (ingredientList[i][0] != -100) {
+                if (ingredientList[i][0] == -100) {
                     ingredientList[i][0] = getPotionId(item);
                     ingredientList[i][1]++;
                     ingredientList[i][3] = getNewIngredientTime(ingredientList[i]);

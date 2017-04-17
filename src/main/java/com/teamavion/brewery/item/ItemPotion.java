@@ -1,6 +1,7 @@
 package com.teamavion.brewery.item;
 
 import com.teamavion.brewery.Reference;
+import com.teamavion.brewery.block.tile.TileBrewery;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +18,8 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 /**
  * Created by WhiteAutumn on 2017-04-16.
@@ -35,12 +38,9 @@ public class ItemPotion extends Item {
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         if(worldIn.isRemote){return stack;}
         if(stack.getTagCompound() != null) {
-            if (stack.getTagCompound().hasKey("potion_ID_1", 99))
-                addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_1"), stack.getTagCompound().getShort("potion_grade_1"), false);
-            if (stack.getTagCompound().hasKey("potion_ID_2", 99))
-                addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_2"), stack.getTagCompound().getShort("potion_grade_2"), false);
-            if (stack.getTagCompound().hasKey("potion_ID_3", 99))
-                addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_3"), stack.getTagCompound().getShort("potion_grade_3"), false);
+            for(int i = 0; i < TileBrewery.RESETLIST.length; i++)
+            if (stack.getTagCompound().hasKey("potion_ID_"+i, 99))
+                addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_"+i), stack.getTagCompound().getShort("potion_grade_"+i), false);
         }
         stack.damageItem(1, entityLiving);
         if (stack.getItemDamage() == stack.getMaxDamage()) {
@@ -57,17 +57,19 @@ public class ItemPotion extends Item {
     }
 
         public String getItemStackDisplayName(ItemStack stack) {
-        String name = "";
         if(stack.getTagCompound() == null)
-                return "broken potion";
-        if (stack.getTagCompound().hasKey("potion_ID_1", 99))
-            name += I18n.translateToLocal(Potion.getPotionById(stack.getTagCompound().getInteger("potion_ID_1")).getName());
-        if (stack.getTagCompound().hasKey("potion_ID_2", 99))
-            name = name + " " + I18n.translateToLocal(Potion.getPotionById(stack.getTagCompound().getInteger("potion_ID_2")).getName());
-        if (stack.getTagCompound().hasKey("potion_ID_3", 99))
-            name = name + " " + I18n.translateToLocal(Potion.getPotionById(stack.getTagCompound().getInteger("potion_ID_3")).getName());
-        return "Potion of: " + name;
+                return "Is Inconceivable";
+        return "Custom Potion";
     }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced){
+        if(stack.getTagCompound() != null)
+            for(int i = 0; i < TileBrewery.RESETLIST.length; i++)
+                if (stack.getTagCompound().hasKey("potion_ID_"+i, 99))
+                    tooltip.add(I18n.translateToLocal(Potion.getPotionById(stack.getTagCompound().getInteger("potion_ID_"+i)).getName())+ ": (" + Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i))) + ")");
+    }
+
 
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.DRINK;

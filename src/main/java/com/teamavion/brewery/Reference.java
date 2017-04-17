@@ -41,15 +41,42 @@ public class Reference {
             Items.GOLD_NUGGET,
             Item.getItemFromBlock(Blocks.COBBLESTONE)
     };
-    public static int durationFromGradeNotScalable(char a){
-        return 10000;
+    public static int durationFromGradeNotScalable(char A){
+        int D = 1;
+        if(A == 'A')
+            D = 2000*6;
+        if(A == 'B')
+            D = 1000*6;
+        if(A == 'C')
+            D = 100*6;
+        if(A == 'D')
+            D = 10*6;
+        return D;
     }
 
-    public static int amplification(char grade) {
-        return 10;
+    public static int amplification(char A) {
+        int D = 1;
+        if(A == 'A')
+            D = 10;
+        if(A == 'B')
+            D = 5;
+        if(A == 'C')
+            D = 2;
+        if(A == 'D')
+            D = 1;
+        return D;
     }
 
-    public static int durationFromGradeScalable(char grade) {
-        return 5000;
+    public static int durationFromGradeScalable(char A) {
+        int D = 1;
+        if(A == 'A')
+            D = 1000*6;
+        if(A == 'B')
+            D = 600*6;
+        if(A == 'C')
+            D = 100*6;
+        if(A == 'D')
+            D = 10*6;
+        return D;
     }
 }
