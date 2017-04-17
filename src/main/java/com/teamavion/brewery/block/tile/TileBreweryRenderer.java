@@ -21,7 +21,7 @@ public class TileBreweryRenderer extends TileEntitySpecialRenderer {
 
         if(te instanceof TileBrewery){
             watt_her = ((TileBrewery) te).getLiquidMB();
-            iTextComponent = "Temperature: " + ((TileBrewery) te).getTemperature() + "\nWaterLvl: " +((TileBrewery) te).getLiquidMB();
+            iTextComponent = "Temperature: " + ((TileBrewery) te).getTemperature() + " WaterLvl: " +((TileBrewery) te).getLiquidMB();
         }
 
         if (iTextComponent != null && this.rendererDispatcher.cameraHitResult != null && te.getPos().equals(this.rendererDispatcher.cameraHitResult.getBlockPos()))
@@ -30,14 +30,15 @@ public class TileBreweryRenderer extends TileEntitySpecialRenderer {
             this.drawNameplate(te, iTextComponent, x, y, z, 12);
             this.setLightmapDisabled(false);
         }
-
+        /**
         if(watt_her > 0){
-            ResourceLocation image = new ResourceLocation(Reference.MODID + ":waterStill");
-            this.bindTexture(image);
-            Tessellator t = Tessellator.getInstance();
-            GL11.glPushMatrix();
-            GL11.glTranslated(x, y + 1, z);
+         ResourceLocation image = new ResourceLocation(Reference.MODID + ":waterStill");
+         this.bindTexture(image);
+         Tessellator t = Tessellator.getInstance();
+         GL11.glPushMatrix();
+         GL11.glTranslated(x, y + 1, z);
         }
+         */
     }
 
     protected void drawNameplate(TileEntity te, String str, double x, double y, double z, int maxDistance)
