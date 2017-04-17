@@ -231,7 +231,6 @@ public class TileBrewery extends TileEntity implements ITickable {
        return true;
     }
 
-    public boolean
 
     //TODO:
     /* Y U DO DIS?
