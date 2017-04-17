@@ -72,6 +72,37 @@ public class Reference {
             true,
     };
 
+    public static final int[] EFFECT_TEMPRETURES = {
+            -100,
+            52,
+            77,
+            49,
+            82,
+            74,
+            73,
+            77,
+            53,
+            40,
+            74,
+            76,
+            100,
+            24,
+            60,
+            100,
+            56,
+            66,
+            84,
+            40,
+            88,
+            71,
+            72,
+            78,
+            100,
+            59,
+            69,
+            66
+    };
+
     public static int durationFromGradeNotScalable(char A){
         int D = 1;
         if(A == 'A')

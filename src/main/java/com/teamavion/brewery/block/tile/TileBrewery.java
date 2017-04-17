@@ -203,7 +203,7 @@ public class TileBrewery extends TileEntity implements ITickable {
     }
 
    public boolean createPotion(int size) {
-       if((liquidMB-((size+1)*1000)) >= 0)
+       if(!((liquidMB-((size+1)*1000)) >= 0))
            return false;
        ItemStack potion = null;
        switch (size) {
@@ -254,7 +254,7 @@ public class TileBrewery extends TileEntity implements ITickable {
         NBTTagCompound compound = new NBTTagCompound();
         for (int i = 0; i < ingredientList.size(); i++) {
             compound.setInteger("potion_ID_" + i, ingredientList.get(i).id);
-            compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList.get(i).id, ingredientList.get(i).amount, ingredientList.get(i).time, ingredientList.get(i).time,5, false, false, liquidMB));
+            compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList.get(i).id, ingredientList.get(i).amount, ingredientList.get(i).time, ingredientList.get(i).time,1, false, false, liquidMB));
         }
         return compound;
     }
@@ -295,11 +295,11 @@ public class TileBrewery extends TileEntity implements ITickable {
     }
 
     private int timeToIncrease(){
-        return 180;
+        return 80;
     }
 
     private int timeToDecrease(){
-        return 180;
+        return 20;
     }
 
     public boolean addIngredient(Item item) {
