@@ -299,13 +299,13 @@ public class TileBrewery extends TileEntity implements ITickable {
             for (Ingredient ingredient : ingredientList) {
                 if (ingredient.id == getPotionId(item)) {
                     ingredient.amount++;
-                    ingredient.time = getNewIngredientTime();
+                    ingredient.time = getNewIngredientTime(ingredient);
                     ingredientCount++;
                     return true;
                 }
             }
             //Add new ingredient
-            ingredientList.add(new Ingredient(getPotionId(item), 1, 22, getNewIngredientTime()));
+            ingredientList.add(new Ingredient(getPotionId(item), 1, 22, 0));
             ingredientCount++;
             return true;
         }
@@ -334,6 +334,7 @@ public class TileBrewery extends TileEntity implements ITickable {
         return false;
         */
     }
+
 
     public int getTemperature(){
         return temperature;
