@@ -297,6 +297,7 @@ public class TileBrewery extends TileEntity implements ITickable {
             for (Ingredient ingredient : ingredientList) {
                 if (ingredient.id == getPotionId(item)) {
                     ingredient.amount++;
+                    ingredient.time = getNewIngredientTime();
                     ingredientCount++;
                     return true;
                 }
@@ -338,8 +339,8 @@ public class TileBrewery extends TileEntity implements ITickable {
 
     public int getLiquidMB() {return liquidMB;}
 
-    private int getNewIngredientTime(){
-        return 0;
+    private int getNewIngredientTime(Ingredient ingredient) {
+        return (int) (ingredient.time * ingredient.amount - 1.0 / ingredient.amount);
 
         //TODO:
         /* wtf was the point of this? it always returns 0.
