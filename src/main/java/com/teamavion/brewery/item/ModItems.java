@@ -11,17 +11,29 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModItems {
 
     public static Item potion;
+    public static Item bottleSmall;
+    public static Item bottleMedium;
+    public static Item bottleLarge;
 
     public static void init(){
         potion = new ItemPotion();
+        bottleSmall = new ItemBottle("bottleSmall", "ItemBottleSmall");
+        bottleMedium = new ItemBottle("bottleMedium", "ItemBottleMedium");
+        bottleLarge = new ItemBottle("bottleLarge", "ItemBottleLarge");
     }
 
     public static void register() {
         GameRegistry.register(potion);
+        GameRegistry.register(bottleSmall);
+        GameRegistry.register(bottleMedium);
+        GameRegistry.register(bottleLarge);
     }
 
     public static void registerRenders() {
         registerRender(potion);
+        registerRender(bottleSmall);
+        registerRender(bottleMedium);
+        registerRender(bottleLarge);
     }
 
     private static void registerRender(Item item) {

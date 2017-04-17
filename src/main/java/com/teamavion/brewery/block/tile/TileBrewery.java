@@ -202,9 +202,9 @@ public class TileBrewery extends TileEntity implements ITickable {
         }
     }
 
-   public boolean createPotion() {
+   public boolean createPotion(int size) {
         ItemStack potion = new ItemStack(ModItems.potion);
-        potion.setTagCompound(formPotionNBT());
+        potion.setTagCompound(formPotionNBT(size));
         EntityItem potionEntity = new EntityItem(world, this.getPos().getX(), this.getPos().getY() + 0.25, this.getPos().getZ(), potion);
         potionEntity.motionY = ThreadLocalRandom.current().nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;
         world.spawnEntity(potionEntity);
@@ -228,8 +228,13 @@ public class TileBrewery extends TileEntity implements ITickable {
     */
 
 
-    private NBTTagCompound formPotionNBT(){
+    private NBTTagCompound formPotionNBT(int size) {
+        //SIZE:
+        //0 = SMALL
+        //1 = MEDIUM
+        //2 = LARGE
         NBTTagCompound compound = new NBTTagCompound();
+        compound.setInteger("size", size);
         for (int i = 0; i < ingredientList.size(); i++) {
             compound.setInteger("potion_ID_" + i, ingredientList.get(i).id);
             compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList.get(i).id, ingredientList.get(i).amount, ingredientList.get(i).time, ingredientList.get(i).time,5, false, false));

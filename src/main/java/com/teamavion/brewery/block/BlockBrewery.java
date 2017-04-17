@@ -1,6 +1,7 @@
 package com.teamavion.brewery.block;
 
 import com.teamavion.brewery.block.tile.TileBrewery;
+import com.teamavion.brewery.item.ModItems;
 import com.teamavion.brewery.recipe.BreweryRecipeHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -37,9 +38,15 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
             if(((TileBrewery) worldIn.getTileEntity(pos)).addIngredient(playerIn.getHeldItemMainhand().getItem())){
                 playerIn.getHeldItem(hand).setCount(playerIn.getHeldItem(hand).getCount() - 1);
             }
-            if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(Items.GLASS_BOTTLE.getUnlocalizedName())))
+            if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(ModItems.bottleSmall.getUnlocalizedName())))
                 if(worldIn.getTileEntity(pos) instanceof TileBrewery)
-                    ((TileBrewery)worldIn.getTileEntity(pos)).createPotion();
+                    ((TileBrewery)worldIn.getTileEntity(pos)).createPotion(0);
+            if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(ModItems.bottleMedium.getUnlocalizedName())))
+                if(worldIn.getTileEntity(pos) instanceof TileBrewery)
+                    ((TileBrewery)worldIn.getTileEntity(pos)).createPotion(1);
+            if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(ModItems.bottleLarge.getUnlocalizedName())))
+                if(worldIn.getTileEntity(pos) instanceof TileBrewery)
+                    ((TileBrewery)worldIn.getTileEntity(pos)).createPotion(2);
             if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(Items.WATER_BUCKET.getUnlocalizedName())))
                 if(worldIn.getTileEntity(pos) instanceof TileBrewery){
                     // if(((TileBrewery)worldIn.getTileEntity(pos)).addWater(1000))
