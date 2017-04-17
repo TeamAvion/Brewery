@@ -23,6 +23,6 @@ public class BreweryRecipeHandler {
         return 0;
     }
 
-    public static short getPotionGrade(int id, int amount, int time, int averageTempreture, int marginOfError, boolean gradeIncreaseModifier, boolean gradeDecreaseModifer){
+    public static short getPotionGrade(int id, int amount, int time, int averageTempreture, int marginOfError, boolean gradeIncreaseModifier, boolean gradeDecreaseModifer, int liquidMB){
         return (short)'A';}
 }
