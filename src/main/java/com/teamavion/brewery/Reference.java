@@ -88,7 +88,7 @@ public class Reference {
     public static int amplification(char A) {
         int D = 1;
         if(A == 'A')
-            D = 10;
+            D = 5;
         if(A == 'B')
             D = 5;
         if(A == 'C')
