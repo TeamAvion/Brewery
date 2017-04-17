@@ -57,13 +57,12 @@ public class TileBrewery extends TileEntity implements ITickable {
     */
     //id, amount, temperature, time
 
-    private int liquidMB, temperature, ingredientCount, time, tempRemoval;
+    private int liquidMB, temperature, ingredientCount, time;
     private boolean temperatureSwitchOn;
 
     public TileBrewery() {
         temperature = 22;
         liquidMB = 0;
-        tempRemoval = 0;
         this.markDirty();
         //For Testing Purposes only
         //ingredient1PotionID = 1;
@@ -225,12 +224,8 @@ public class TileBrewery extends TileEntity implements ITickable {
 
        liquidMB-=((size+1)*1000);
        temperature = 22;
-       ingredientCount-=ingredientList.size();
-       if(liquidMB == 0)
-       {
-           ingredientList = new ArrayList<>(0);
-           ingredientCount = 0;
-       }
+       ingredientCount = 0;
+       ingredientList = new ArrayList<>(0);
        sync(this);
 
        return true;
@@ -255,18 +250,11 @@ public class TileBrewery extends TileEntity implements ITickable {
     */
 
 
-    private NBTTagCompound formPotionNBT(int size) {
+    private NBTTagCompound formPotionNBT(int liquidMB) {
         NBTTagCompound compound = new NBTTagCompound();
-        int ammountHolder = 0;
         for (int i = 0; i < ingredientList.size(); i++) {
             compound.setInteger("potion_ID_" + i, ingredientList.get(i).id);
-            if((size+1)*1000 != liquidMB && ingredientList.get(i).amount != 0)
-                ammountHolder+=ingredientList.get(i).amount/(liquidMB/1000);
-            else
-                ammountHolder = ingredientList.get(i).amount;
-            compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList.get(i).id, ammountHolder, ingredientList.get(i).time, ingredientList.get(i).time,1, false, false, liquidMB));
-            ingredientList.get(i).amount-=ammountHolder;
-            ammountHolder = 0;
+            compound.setShort("potion_grade_" + i, getPotionGrade(ingredientList.get(i).id, ingredientList.get(i).amount, ingredientList.get(i).time, ingredientList.get(i).time,1, false, false, liquidMB));
         }
         return compound;
     }
