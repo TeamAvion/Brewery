@@ -24,33 +24,25 @@ public class BreweryRecipeHandler {
     }
 
     public static short getPotionGrade(int id, int amount, int time, int averageTempreture, int marginOfError, boolean gradeIncreaseModifier, boolean gradeDecreaseModifer, int liquidMB){
-        char timeGrade;
         char tempGrade;
+        char concentration = 'A';
         char grade;
         if(Math.abs(averageTempreture-Reference.EFFECT_TEMPRETURES[id]) < marginOfError*5)
             tempGrade = 'A';
-        else if(Math.abs(averageTempreture-Reference.EFFECT_TEMPRETURES[id]) < marginOfError*5+3)
-            tempGrade = 'B';
         else if(Math.abs(averageTempreture-Reference.EFFECT_TEMPRETURES[id]) < marginOfError*5*2)
+            tempGrade = 'B';
+        else if(Math.abs(averageTempreture-Reference.EFFECT_TEMPRETURES[id]) < marginOfError*5*2+5)
             tempGrade = 'C';
         else
             tempGrade = 'D';
-        if(Math.abs(time-Reference.EFFECT_TIMES[id]) < marginOfError*5*20)
-            timeGrade = 'A';
-        else if(Math.abs(time-Reference.EFFECT_TIMES[id]) < marginOfError*5*20*3)
-            timeGrade = 'B';
-        else if(Math.abs(time-Reference.EFFECT_TIMES[id]) < marginOfError*5*20*5)
-            timeGrade = 'C';
-        else
-            timeGrade = 'D';
-        if(getAverageGrade(tempGrade,timeGrade) > 'D')
+        if(getAverageGrade(tempGrade,concentration) > 'D')
             grade = 'D';
         else
-            grade = getAverageGrade(tempGrade,timeGrade);
+            grade = getAverageGrade(tempGrade,concentration);
         if(grade != 'A' && gradeIncreaseModifier)
             grade = (char)((short)grade - 1);
         if(grade != 'D' && gradeDecreaseModifer)
-            grade = (char)((short)grade - 1);
+            grade = (char)((short)grade + 1);
         return (short)grade;
     }
 

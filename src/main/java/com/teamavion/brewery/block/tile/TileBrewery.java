@@ -84,7 +84,7 @@ public class TileBrewery extends TileEntity implements ITickable {
             if (isLit()) {
                 if (time < 1000)
                     time++;
-                if ((time >= timeToIncrease()) && temperature < 101) {
+                if (liquidMB > 0 &&(time >= timeToIncrease()) && temperature < 101) {
                     temperature++;
                     System.out.println(temperature);
                     time = 0;
@@ -94,7 +94,7 @@ public class TileBrewery extends TileEntity implements ITickable {
             if (!isLit()) {
                 if (time < 1000)
                     time++;
-                if ((time >= timeToDecrease()) && temperature > 22) {
+                if (liquidMB > 0 && (time >= timeToDecrease()) && temperature > 22) {
                     temperature--;
                     time = 0;
                     sync(this);
@@ -223,11 +223,12 @@ public class TileBrewery extends TileEntity implements ITickable {
        potionEntity.motionY = ThreadLocalRandom.current().nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;
        world.spawnEntity(potionEntity);
 
-       liquidMB-=((size+1)*1000);
-       temperature = 22;
+       liquidMB-=((size+1)*1000);;
        ingredientCount = 0;
-       if(liquidMB == 0)
+       if(liquidMB == 0) {
+           temperature = 22;
            ingredientList = new ArrayList<>(0);
+       }
        sync(this);
 
        return true;
