@@ -40,6 +40,14 @@ public class ItemPotion extends Item {
             return stack;
         }
 
+        ItemStack death = null;
+        if(stack.getMaxDamage() == 2)
+            death = new ItemStack(ModItems.bottleSmall);
+        if(stack.getMaxDamage() == 4)
+            death = new ItemStack(ModItems.bottleMedium);
+        if(stack.getMaxDamage() == 6)
+            death = new ItemStack(ModItems.bottleLarge);
+
         if(stack.getTagCompound() != null) {
             for(int i = 0; i < TileBrewery.INGREDIENTLIMIT; i++)
                 if (stack.getTagCompound().hasKey("potion_ID_"+i, 99))
@@ -56,7 +64,7 @@ public class ItemPotion extends Item {
          */
         stack.damageItem(1, entityLiving);
         if (stack.getItemDamage() == stack.getMaxDamage()) {
-            return new ItemStack(Items.GLASS_BOTTLE);
+            return death;
         }
         return stack;
     }
