@@ -36,12 +36,24 @@ public class ItemPotion extends Item {
     }
 
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
-        if(worldIn.isRemote){return stack;}
+        if(worldIn.isRemote) {
+            return stack;
+        }
+
+        if(stack.getTagCompound() != null) {
+            for(int i = 0; i < TileBrewery.INGREDIENTLIMIT; i++)
+                if (stack.getTagCompound().hasKey("potion_ID_"+i, 99))
+                    addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_"+i), stack.getTagCompound().getShort("potion_grade_"+i), Reference.EFFECTS_SCALABLE[stack.getTagCompound().getInteger("potion_ID_"+i)]);
+        }
+
+        //TODO:
+        /*
         if(stack.getTagCompound() != null) {
             for(int i = 0; i < TileBrewery.RESETLIST.length; i++)
             if (stack.getTagCompound().hasKey("potion_ID_"+i, 99))
                 addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_"+i), stack.getTagCompound().getShort("potion_grade_"+i), Reference.EFFECTS_SCALABLE[stack.getTagCompound().getInteger("potion_ID_"+i)]);
         }
+         */
         stack.damageItem(1, entityLiving);
         if (stack.getItemDamage() == stack.getMaxDamage()) {
             return new ItemStack(Items.GLASS_BOTTLE);
@@ -65,11 +77,21 @@ public class ItemPotion extends Item {
     @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced){
         if(stack.getTagCompound() != null)
-            for(int i = 0; i < TileBrewery.RESETLIST.length; i++)
+            for(int i = 0; i < TileBrewery.INGREDIENTLIMIT; i++)
                 if (stack.getTagCompound().hasKey("potion_ID_"+i, 99))
                     tooltip.add(I18n.translateToLocal(Potion.getPotionById(stack.getTagCompound().getInteger("potion_ID_"+i)).getName())+ ": (" + Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i))) + ")");
     }
 
+    //TODO:
+    /*
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced){
+        if(stack.getTagCompound() != null)
+            for(int i = 0; i < TileBrewery.RESETLIST.length; i++)
+                if (stack.getTagCompound().hasKey("potion_ID_"+i, 99))
+                    tooltip.add(I18n.translateToLocal(Potion.getPotionById(stack.getTagCompound().getInteger("potion_ID_"+i)).getName())+ ": (" + Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i))) + ")");
+    }
+    */
 
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.DRINK;

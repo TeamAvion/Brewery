@@ -16,18 +16,18 @@ public class TileBreweryRenderer extends TileEntitySpecialRenderer {
 
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage){
 
-        String itextcomponent = null;
-        int watt_her = -100;
+        String iTextComponent = null;
+        int watt_her = -100; //TODO: "YOU DON'T HAVE TO COMMENT IF YOU NAME YOUR VARIABLES WELL"
 
         if(te instanceof TileBrewery){
             watt_her = ((TileBrewery) te).getLiquidMB();
-            itextcomponent = "Temperature: " + ((TileBrewery) te).getTemperature();
+            iTextComponent = "Temperature: " + ((TileBrewery) te).getTemperature();
         }
 
-        if (itextcomponent != null && this.rendererDispatcher.cameraHitResult != null && te.getPos().equals(this.rendererDispatcher.cameraHitResult.getBlockPos()))
+        if (iTextComponent != null && this.rendererDispatcher.cameraHitResult != null && te.getPos().equals(this.rendererDispatcher.cameraHitResult.getBlockPos()))
         {
             this.setLightmapDisabled(true);
-            this.drawNameplate(te, itextcomponent, x, y, z, 12);
+            this.drawNameplate(te, iTextComponent, x, y, z, 12);
             this.setLightmapDisabled(false);
         }
 
