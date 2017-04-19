@@ -21,6 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by WhiteAutumn on 2017-04-16.
@@ -41,7 +42,34 @@ public class ItemPotion extends Item {
             return stack;
         }
 
-        entityLiving.addPotionEffect(new PotionEffect(ModPotions.lowToxic, 100));
+        if(entityLiving.getActivePotionEffect(ModPotions.highToxic) != null){
+            int result = ThreadLocalRandom.current().nextInt(6);
+            switch (result) {
+                case 0:
+                    entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(20),600*5, 100));
+                    break;
+                case 1:
+                    entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(9),600*10));
+                    break;
+                case 3:
+                    entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(9),600*5));
+                    break;
+                case 2:
+                    return stack;
+                case 4:
+                    return stack;
+                case 5:
+                    entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(9),600*10));
+                    entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(20),600, 10));
+                    break;
+            }
+        }
+
+        if(entityLiving.getActivePotionEffect(ModPotions.lowToxic) != null) {
+            entityLiving.addPotionEffect(new PotionEffect(ModPotions.lowToxic, 600 * 10));
+            entityLiving.addPotionEffect(new PotionEffect(ModPotions.highToxic, 600 * 6));
+        } else
+            entityLiving.addPotionEffect(new PotionEffect(ModPotions.lowToxic, 600*2));
 
         ItemStack death = null;
         if(stack.getMaxDamage() == 2)

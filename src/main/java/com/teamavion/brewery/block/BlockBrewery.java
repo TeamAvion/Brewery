@@ -14,6 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -79,7 +80,7 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
      @Deprecated
      @SideOnly(Side.CLIENT)
      public boolean isTranslucent(IBlockState state) { return true; }
-     */
+
     @Override
     public boolean isFullCube(IBlockState state)
     {
@@ -91,5 +92,10 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
     {
         return false;
     }
+    */
+
+    @Override
+    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) { return false; }
+
 
 }
