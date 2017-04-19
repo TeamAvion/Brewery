@@ -100,7 +100,7 @@ public class ItemPotion extends Item {
         } else if(entityLiving.getActivePotionEffect(ModPotion.lowToxic) != null)
             entityLiving.addPotionEffect(new PotionEffect(ModPotion.lowToxic, 600*4, 1));
         else
-            entityLiving.addPotionEffect(new PotionEffect(ModPotion.lowToxic, 600*2));
+            entityLiving.addPotionEffect(new PotionEffect(ModPotion.lowToxic, 600*1));
 
         //Get and apply potion effect
         if(stack.getTagCompound() != null) {
