@@ -3,6 +3,7 @@ package com.teamavion.brewery.recipe;
 import com.teamavion.brewery.block.ModBlocks;
 import com.teamavion.brewery.item.ModItems;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -46,6 +47,6 @@ public class ModRecipes {
                 "SCS",
                 " S ",
                 'S', Blocks.STONE,
-                'C', Blocks.CAULDRON);
+                'C', Items.CAULDRON);
     }
 }

@@ -65,21 +65,25 @@ public class BreweryBook implements IGuideBook {
                 "SCS",
                 " S ",
                 'S', Blocks.STONE,
-                'C', Blocks.CAULDRON)));
+                'C', Items.CAULDRON)));
         BrewingPage.add(new PageText("Now that you have a " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name")+ " can start brewing!" +
                 "\n\nBrewing is simple and comes in 3 steps:" +
                 "\nPut in water" +
-                "\nPut in your ingredients" +
-                "\nScope it into a Magical container"));
-        BrewingPage.add(new PageText("§LAdding Water§0" +
+                "\n\nPut in your ingredients and heat it up" +
+                "\n\nScope it into a Magical container"));
+        BrewingPage.add(new PageText("§LAdding Water Part I§0" +
                 "\n\nTo add water just right click with a bucket!\n\n" +
-                "Each bucket of water is equal to 1000 liquid in the cauldron.\nYou can have max 3000 liquid in the "+  I18n.translateToLocal("brewery.category.cauldron.cauldron.name")+ " at a time " +
-                "\n\nNote: §4§LONCE YOU ADD INGREDENTS YOU CANT ADD ANYMORE WATER"));
-        BrewingPage.add(new PageText("§LAdding Ingredients§0" +
+                "Each bucket of water is equal to 1000 liquid in the cauldron.\nYou can have max 3000 liquid in the "+  I18n.translateToLocal("brewery.category.cauldron.cauldron.name")+ " at a time"));
+        BrewingPage.add(new PageText("§LAdding Water Part II§0" + "\n\nNote: §4§LONCE YOU ADD INGREDENTS YOU CANT ADD ANYMORE WATER"));
+        BrewingPage.add(new PageText("§LAdding Ingredients Part I§0" +
                 "\n\nTo add an ingredient just right click the " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name") +" with an ingredient\n\n" +
-                "The more of the same ingredient you add in the more potent the effect will be!" +
+                "The more of the same ingredient you add and the closer you are to the ideal temperature, the more potent the effect will be!"));
+        BrewingPage.add(new PageText("§LAdding Ingredients Part II§0" +
                 "\n\nIngredients can be found in the ingredients tab" +
                 "\n\nYou can have max of 9 ingredients in the potion so chose wisely"));
+        BrewingPage.add(new PageText("§LScope it into a Magical container§0" +
+                "\n\nScope the contents of the potions into a Magical container" +
+                "\n\nOnce the "+ I18n.translateToLocal("brewery.category.cauldron.cauldron.name") + " has reached 0, it will reset itself and you can start all over again!"));
         cauldron.put(new ResourceLocation(Reference.MODID, "CEntry0"), new EntryItemStack(BrewingPage, "How To Brew!", new ItemStack(ModBlocks.brewery)));
 
         List<IPage> BottlePage = new ArrayList<IPage>();
