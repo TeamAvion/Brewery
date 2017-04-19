@@ -165,9 +165,9 @@ public class Reference {
     public static int durationFromGradeScalable(char A) {
         int D = 1;
         if(A == 'A')
-            D = 10000*60;
+            D = 600*60*2;
         if(A == 'B')
-            D = 6000*60;
+            D = 400*60*2;
         if(A == 'C')
             D = 100*6;
         if(A == 'D')
