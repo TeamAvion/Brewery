@@ -59,7 +59,7 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
                 if(worldIn.getTileEntity(pos) instanceof TileBrewery){
                      if(((TileBrewery)worldIn.getTileEntity(pos)).addWater())
                          playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
-                }
+            }
         }
         return true;
     }
