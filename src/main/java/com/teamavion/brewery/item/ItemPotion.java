@@ -108,10 +108,12 @@ public class ItemPotion extends Item {
             }
         }
 
-        if(entityLiving.getActivePotionEffect(ModPotionEffects.lowToxic) != null) {
-            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.lowToxic, 600 * 10));
+        if(entityLiving.getActivePotionEffect(ModPotionEffects.lowToxic) != null && entityLiving.getActivePotionEffect(ModPotionEffects.lowToxic).getAmplifier() > 0) {
+            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.lowToxic, 600 * 10, 1));
             entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.highToxic, 600 * 6));
-        } else
+        } else if(entityLiving.getActivePotionEffect(ModPotionEffects.lowToxic) != null)
+            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.lowToxic, 600*4, 1));
+        else
             entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.lowToxic, 600*2));
 
         //Get and apply potion effect
