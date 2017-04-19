@@ -7,6 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -14,11 +15,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -44,8 +47,37 @@ public class ItemPotion extends Item {
                 bottleSize = "large";
                 break;
         }
+
+        //Dynamic texture swapping
+        switch (bottleSize) {
+            case "small":
+                addPropertyOverride(new ResourceLocation("potionsmall-after-use-1"),
+                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 1 ? 0.0F : 1.0F);
+                break;
+            case "medium":
+                addPropertyOverride(new ResourceLocation("potionmedium-after-use-1"),
+                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 1 ? 0.0F : 1.0F);
+                addPropertyOverride(new ResourceLocation("potionmedium-after-use-2"),
+                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 2 ? 0.0F : 1.0F);
+                addPropertyOverride(new ResourceLocation("potionmedium-after-use-3"),
+                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 3 ? 0.0F : 1.0F);
+                break;
+            case "large":
+                addPropertyOverride(new ResourceLocation("potionlarge-after-use-1"),
+                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 1 ? 0.0F : 1.0F);
+                addPropertyOverride(new ResourceLocation("potionlarge-after-use-2"),
+                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 2 ? 0.0F : 1.0F);
+                addPropertyOverride(new ResourceLocation("potionlarge-after-use-3"),
+                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 3 ? 0.0F : 1.0F);
+                addPropertyOverride(new ResourceLocation("potionlarge-after-use-4"),
+                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 4 ? 0.0F : 1.0F);
+                addPropertyOverride(new ResourceLocation("potionlarge-after-use-5"),
+                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 5 ? 0.0F : 1.0F);
+                break;
+        }
     }
 
+    //After potion has been consumed
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
         //If executed from client, return
         if(worldIn.isRemote) {
