@@ -2,6 +2,7 @@ package com.teamavion.brewery.item;
 
 import com.teamavion.brewery.Reference;
 import com.teamavion.brewery.block.tile.TileBrewery;
+import com.teamavion.brewery.potion.ModPotions;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,6 +40,8 @@ public class ItemPotion extends Item {
         if(worldIn.isRemote) {
             return stack;
         }
+
+        entityLiving.addPotionEffect(new PotionEffect(ModPotions.lowToxic, 100));
 
         ItemStack death = null;
         if(stack.getMaxDamage() == 2)
