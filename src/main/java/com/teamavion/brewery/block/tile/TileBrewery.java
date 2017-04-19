@@ -31,32 +31,6 @@ public class TileBrewery extends TileEntity implements ITickable {
     public static final int INGREDIENTLIMIT = 9;
 
     private List<Ingredient> ingredientList = new ArrayList<>(0);
-
-    //TODO:
-    /* Y U DO DIS?
-    public static final int[][] RESETLIST =
-                    {{-100, 0, 0, 0},
-                    {-100, 0, 0, 0},
-                    {-100, 0, 0, 0},
-                    {-100, 0, 0, 0},
-                    {-100, 0, 0, 0},
-                    {-100, 0, 0, 0},
-                    {-100, 0, 0, 0},
-                    {-100, 0, 0, 0},
-                    {-100, 0, 0, 0}};
-    private int[][] ingredientArray =
-            {{-100, 0, 0, 0},
-            {-100, 0, 0, 0},
-            {-100, 0, 0, 0},
-            {-100, 0, 0, 0},
-            {-100, 0, 0, 0},
-            {-100, 0, 0, 0},
-            {-100, 0, 0, 0},
-            {-100, 0, 0, 0},
-            {-100, 0, 0, 0}};
-    */
-    //id, amount, temperature, time
-
     private int liquidMB, maxLiquidMB, temperature, ingredientCount, time;
     private boolean temperatureSwitchOn;
 
@@ -110,16 +84,6 @@ public class TileBrewery extends TileEntity implements ITickable {
                 ingredient.temperature = this.temperature;
                 sync(this);
             }
-            //TODO:
-            /* Y U DO DIS?
-            for (int i = 0; i < ingredientArray.length; i++) {
-                if(ingredientArray[i][0] != -100){
-                    ingredientArray[i][3]++;
-                    sync(this);
-                }
-            }
-            */
-            //System.out.println("time: " + time + " temp: " + temperature);
         }
     }
 
@@ -138,20 +102,6 @@ public class TileBrewery extends TileEntity implements ITickable {
         }
     }
 
-    //TODO:
-    /* Y U DO DIS?
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-        temperature = compound.getInteger("temperature");
-        liquidMB = compound.getInteger("liquidMB");
-        ingredientCount = compound.getInteger("ingredientCount");
-        for(int i = 0; i < 9; i++){
-            ingredientArray[i] = compound.getIntArray("potion_"+i);
-        }
-    }
-    */
-
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
@@ -166,23 +116,6 @@ public class TileBrewery extends TileEntity implements ITickable {
         }
         return compound;
     }
-
-    //TODO:
-    /* Y U DO DIS?
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
-        if(compound == null)
-            return compound;
-        compound.setInteger("temperature", temperature);
-        compound.setInteger("liquidMB", liquidMB);
-        compound.setInteger("ingredientCount", ingredientCount);
-        for(int i = 0; i < ingredientArray.length; i++){
-            compound.setIntArray("potion_"+i, ingredientArray[i]);
-        }
-        return compound;
-    }
-    */
 
     @Override
     public NBTTagCompound getUpdateTag() {
@@ -251,16 +184,6 @@ public class TileBrewery extends TileEntity implements ITickable {
         return false;
     }
 
-    //TODO:
-    /* Y U DO DIS?
-    private void resetArray(){
-        for(int i = 0; i < RESETLIST.length; i++)
-            for(int j = 0; j < RESETLIST.length; j++)
-                ingredientArray[i][j] = RESETLIST[i][j] + 0;
-    }
-    */
-
-
     private NBTTagCompound formPotionNBT() {
         NBTTagCompound compound = new NBTTagCompound();
         for (int i = 0; i < ingredientList.size(); i++) {
@@ -269,20 +192,6 @@ public class TileBrewery extends TileEntity implements ITickable {
         }
         return compound;
     }
-
-    //TODO:
-/* Y U DO DIS?
-  private NBTTagCompound formPotionNBT(){
-        NBTTagCompound compound = new NBTTagCompound();
-        for (int i = 0; i < ingredientArray.length; i++) {
-            if (ingredientArray[i][0] != -100) {
-                compound.setInteger("potion_ID_" + i, ingredientArray[i][0]);
-                compound.setShort("potion_grade_" + i, getPotionGrade(ingredientArray[i][0], ingredientArray[i][1], ingredientArray[i][3], ingredientArray[i][2], 5, false, false));
-            }
-        }
-        return compound;
-    }
-    */
 
     public void captureItems() {
         List<EntityItem> entityItems = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ()), this.getPos()));
@@ -330,31 +239,7 @@ public class TileBrewery extends TileEntity implements ITickable {
             return true;
         }
         return false;
-
-        //TODO:
-        /* Y U DO DIS?
-        if (isIngredient(item) && ingredientCount < 9 && !world.isRemote) {
-            for(int i = 0; i < ingredientArray.length; i++) {
-                if (ingredientArray[i][0] == getPotionId(item)) {
-                    ingredientArray[i][1]++;
-                    ingredientCount++;
-                    return true;
-                }
-            }
-            for(int i = 0; i <9; i++) {
-                if (ingredientArray[i][0] == -100) {
-                    ingredientArray[i][0] = getPotionId(item);
-                    ingredientArray[i][1]++;
-                    ingredientArray[i][3] = getNewIngredientTime(ingredientArray[i]);
-                    ingredientCount++;
-                    return true;
-                }
-            }
-        }
-        return false;
-        */
     }
-
 
     public int getTemperature(){
         return temperature;
@@ -364,16 +249,6 @@ public class TileBrewery extends TileEntity implements ITickable {
 
     private int getNewIngredientTime(Ingredient ingredient) {
         return (int) (ingredient.time * ingredient.amount - 1.0 / ingredient.amount);
-
-        //TODO:
-        /* wtf was the point of this? it always returns 0.
-        int[] a;
-        return (int)((a[3]*(a[1]-1.0))/a[1]);
-        */
-        //time * amount - 1 / amount
-        //Since this is only called when adding a new ingredient, amount will always == 1 which means all that you're really doing is
-        //time * 1 - 1 / 1
-        //which is the same as doing time * 0
     }
 
     private class Ingredient {
