@@ -69,9 +69,14 @@ public class TileBrewery extends TileEntity implements ITickable {
                     sync(this);
                 }
             }
-            if ((temperature >= 100) && liquidMB > 0) {
+            if ((temperature > 100) && liquidMB > 0) {
                 sync(this);
                 liquidMB--;
+                if(liquidMB == 0) {
+                    temperature = 22;
+                    maxLiquidMB = 0;
+                    ingredientList = new ArrayList<>(0);
+                }
             }
 
             for (Ingredient ingredient : ingredientList) {

@@ -3,9 +3,11 @@ item.bottleMedium.name=Empty Bottle
 item.bottleLarge.name=Empty Flask
 
 tile.brewery.name=Cauldron of Brewing
-item.GuideBook.name=&0&Kxd &5Table of Contents &0&Kxd
+item.GuideBook.name=&0&Kxd&0 &5Table of Contents &0&Kxd
 book.category.toxicity=&N&2Toxicity
 book.category.cauldron=&N&5Brewing
 book.category.ingredients=&N&6List of Ingredients
-brewery.category.toxicity.toxic=§AToxic&0
+brewery.category.toxicity.toxic=§AToxic§0
 brewery.category.toxicity.contamination=§2Contaminated§0
+brewery.category.cauldron.blockinway=§L§4IF THERE IS A BLOCK IN BETWEEN THE FIRE AND THE CAULDRON IT WONT HEAT UP§0
+brewery.category.cauldron.cauldron.name=§NCauldron of Brewing§0

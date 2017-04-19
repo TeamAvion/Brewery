@@ -51,6 +51,20 @@ public class BreweryBook implements IGuideBook {
         Map<ResourceLocation, EntryAbstract> ingredients = new LinkedHashMap<ResourceLocation, EntryAbstract>();
         Map<ResourceLocation, EntryAbstract> toxicity = new LinkedHashMap<ResourceLocation, EntryAbstract>();
 
+        /**
+         * Adding Brewing Pages
+         */
+        List<IPage> TemperaturePage = new ArrayList<IPage>();
+        TemperaturePage.add(new PageText("To heat up the " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name") + " you need to place a fire either one or two blocks below it with water in it" +
+                "\n\nNote: " + I18n.translateToLocal("brewery.category.cauldron.blockinway")));
+        TemperaturePage.add(new PageTextImage("This will heat up", new ResourceLocation(Reference.MODID, "textures/misc/calon.png"), false));
+        TemperaturePage.add(new PageTextImage("This will also heat up", new ResourceLocation(Reference.MODID, "textures/misc/cal2on.png"), false));
+        TemperaturePage.add(new PageTextImage("This §Lwont §0heat up", new ResourceLocation(Reference.MODID, "textures/misc/cal2off.png"), false));
+        TemperaturePage.add(new PageText("If the water reaches a temperature of§4 101 §0then the brewery will start losing water, and if the water gets to zero then you lose everything and the brewery will cool down to 22 Degrees"));
+        cauldron.put(new ResourceLocation(Reference.MODID, "CEntry1"), new Entry(TemperaturePage, "Temperature"));
+        TemperaturePage.add(new PageTextImage("Since it has no water it §Lwont §0heat up", new ResourceLocation(Reference.MODID, "textures/misc/calt.png"), false));
+        TemperaturePage.add(new PageTextImage("Losing water because its over 100 Degrees", new ResourceLocation(Reference.MODID, "textures/misc/calton.png"), false));
+
 
         /**
          * Adding Ingredient pages
@@ -83,10 +97,10 @@ public class BreweryBook implements IGuideBook {
         ToxicFirstPage.add(new PageText("Potions brewed in the Cauldron are impure by nature due to contaminants present in the water and ingredients themselves" +
                 "\n" +
                 "\nWhen Drinking a potion your body will get " + I18n.translateToLocal("brewery.category.toxicity.contamination") + " for a while" +
-                "\n\n" +
-                "There are two stages of being " + I18n.translateToLocal("brewery.category.toxicity.contamination") + " and drinking any more potions will contaminate your body so much that you will become " + I18n.translateToLocal("brewery.category.toxicity.toxic")));
-        ToxicFirstPage.add(new PageText("When you are " + I18n.translateToLocal("brewery.category.toxicity.toxic") + " trying to drink another potion will either not work or end in dire consequences"));
-        toxicity.put(new ResourceLocation(Reference.MODID, "entry0"), new Entry(ToxicFirstPage, "Toxcicty Basics"));
+                "\n\n"));
+        ToxicFirstPage.add(new PageText("There are two stages of being " + I18n.translateToLocal("brewery.category.toxicity.contamination") + " and drinking any more potions will contaminate your body so much that you will become " + I18n.translateToLocal("brewery.category.toxicity.toxic") +
+                "\n\nWhen you are " + I18n.translateToLocal("brewery.category.toxicity.toxic") + " trying to drink another potion will either not work or end in dire consequences"));
+        toxicity.put(new ResourceLocation(Reference.MODID, "TEntry0"), new Entry(ToxicFirstPage, "Toxicity Basics"));
 
         List<CategoryAbstract> categories = new ArrayList<CategoryAbstract>();
         categories.add(new CategoryItemStack(cauldron, I18n.translateToLocal("book.category.cauldron"), new ItemStack(ModItems.potionLarge)));
