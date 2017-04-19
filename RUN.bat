@@ -1,1 +1,1 @@
-gradlew build -stacktrace
+gradlew setupDecompworkspace
