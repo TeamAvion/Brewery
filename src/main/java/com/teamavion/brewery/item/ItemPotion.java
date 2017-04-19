@@ -84,7 +84,7 @@ public class ItemPotion extends Item {
 
         //Get and apply potion effect
         if(stack.getTagCompound() != null) {
-            for(int i = 0; i < TileBrewery.INGREDIENTLIMIT; i++)
+            for(int i = 0; i < TileBrewery.CAPACITY; i++)
                 if (stack.getTagCompound().hasKey("potion_ID_"+i, 99))
                     addPotionEffect(entityLiving, stack.getTagCompound().getInteger("potion_ID_"+i), stack.getTagCompound().getShort("potion_grade_"+i), Reference.EFFECTS_SCALABLE[stack.getTagCompound().getInteger("potion_ID_"+i)]);
         }
@@ -142,7 +142,7 @@ public class ItemPotion extends Item {
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced){
         String a ="";
         if(stack.getTagCompound() != null)
-            for(int i = 0; i < TileBrewery.INGREDIENTLIMIT; i++)
+            for(int i = 0; i < TileBrewery.CAPACITY; i++)
                 if (stack.getTagCompound().hasKey("potion_ID_"+i, 99)){
                     if(Reference.EFFECTS_SCALABLE[stack.getTagCompound().getInteger("potion_ID_"+i)])
                         a = " " + Reference.amplification((char)stack.getTagCompound().getShort("potion_grade_"+i)) + " ";

@@ -25,7 +25,7 @@ import static com.teamavion.brewery.recipe.BreweryRecipeHandler.isIngredient;
 
 public class TileBrewery extends TileEntity implements ITickable {
 
-    public static final int INGREDIENTLIMIT = 9;
+    public static final int CAPACITY = 9;
 
     private List<Ingredient> ingredientList = new ArrayList<>(0);
     private int liquidMB, maxLiquidMB, temperature, ingredientCount, time;
@@ -202,10 +202,9 @@ public class TileBrewery extends TileEntity implements ITickable {
         }
     }
 
-    private boolean isLit(){
-      if (world.isRemote) return false;
-        return  world.getBlockState(this.getPos().down()).getBlock() == Blocks.FIRE
-                || world.getBlockState(this.getPos().down(2)).getBlock() == Blocks.FIRE && !world.getBlockState(this.getPos().down()).isFullBlock();
+    private boolean isLit() {
+        return !world.isRemote && (world.getBlockState(this.getPos().down()).getBlock() == Blocks.FIRE
+                || world.getBlockState(this.getPos().down(2)).getBlock() == Blocks.FIRE && !world.getBlockState(this.getPos().down()).isFullBlock());
     }
 
     private int timeToIncrease(){
@@ -217,7 +216,8 @@ public class TileBrewery extends TileEntity implements ITickable {
     }
 
     public boolean addIngredient(Item item) {
-        if (isIngredient(item) && ingredientCount < INGREDIENTLIMIT && !world.isRemote) {
+        //Check if a new ingredient should be added
+        if (isIngredient(item) && ingredientCount < CAPACITY && !world.isRemote) {
             //Check if ingredient already exists
             for (Ingredient ingredient : ingredientList) {
                 if (ingredient.id == getPotionId(item)) {
@@ -239,7 +239,9 @@ public class TileBrewery extends TileEntity implements ITickable {
         return temperature;
     }
 
-    public int getLiquidMB() {return liquidMB;}
+    public int getLiquidMB() {
+        return liquidMB;
+    }
 
     private int getNewIngredientTime(Ingredient ingredient) {
         return (int) (ingredient.time * ingredient.amount - 1.0 / ingredient.amount);
@@ -251,14 +253,14 @@ public class TileBrewery extends TileEntity implements ITickable {
         int temperature;
         int time;
 
-        public Ingredient(int id, int amount, int temperature, int time)
+        Ingredient(int id, int amount, int temperature, int time)
         {
             this.id = id;
             this.amount = amount;
             this.temperature = temperature;
             this.time = time;
         }
-        public Ingredient(int[] array) {
+        Ingredient(int[] array) {
             id = array[0];
             amount = array[1];
             temperature = array[2];
@@ -266,8 +268,7 @@ public class TileBrewery extends TileEntity implements ITickable {
         }
 
         int[] getArray() {
-            int[] array = {id, amount, temperature, time};
-            return array;
+            return new int[]{id, amount, temperature, time};
         }
     }
 }
