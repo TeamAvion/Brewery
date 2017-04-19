@@ -2,7 +2,7 @@ package com.teamavion.brewery.item;
 
 import com.teamavion.brewery.Reference;
 import com.teamavion.brewery.block.tile.TileBrewery;
-import com.teamavion.brewery.potion.ModPotionEffects;
+import com.teamavion.brewery.potion.ModPotion;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -49,32 +49,16 @@ public class ItemPotion extends Item {
         }
 
         //Dynamic texture swapping
-        switch (bottleSize) {
-            case "small":
-                addPropertyOverride(new ResourceLocation("potionsmall-after-use-1"),
-                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 1 ? 0.0F : 1.0F);
-                break;
-            case "medium":
-                addPropertyOverride(new ResourceLocation("potionmedium-after-use-1"),
-                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 1 ? 0.0F : 1.0F);
-                addPropertyOverride(new ResourceLocation("potionmedium-after-use-2"),
-                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 2 ? 0.0F : 1.0F);
-                addPropertyOverride(new ResourceLocation("potionmedium-after-use-3"),
-                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 3 ? 0.0F : 1.0F);
-                break;
-            case "large":
-                addPropertyOverride(new ResourceLocation("potionlarge-after-use-1"),
-                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 1 ? 0.0F : 1.0F);
-                addPropertyOverride(new ResourceLocation("potionlarge-after-use-2"),
-                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 2 ? 0.0F : 1.0F);
-                addPropertyOverride(new ResourceLocation("potionlarge-after-use-3"),
-                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 3 ? 0.0F : 1.0F);
-                addPropertyOverride(new ResourceLocation("potionlarge-after-use-4"),
-                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 4 ? 0.0F : 1.0F);
-                addPropertyOverride(new ResourceLocation("potionlarge-after-use-5"),
-                        (stack, worldIn, entityIn) -> stack.getItemDamage() == 5 ? 0.0F : 1.0F);
-                break;
-        }
+        addPropertyOverride(new ResourceLocation("afterUse1"),
+                (stack, worldIn, entityIn) -> stack.getItemDamage() != 1 ? 0.0F : 1.0F);
+        addPropertyOverride(new ResourceLocation("afterUse2"),
+                (stack, worldIn, entityIn) -> stack.getItemDamage() != 2 ? 0.0F : 1.0F);
+        addPropertyOverride(new ResourceLocation("afterUse3"),
+                (stack, worldIn, entityIn) -> stack.getItemDamage() != 3 ? 0.0F : 1.0F);
+        addPropertyOverride(new ResourceLocation("afterUse4"),
+                (stack, worldIn, entityIn) -> stack.getItemDamage() != 4 ? 0.0F : 1.0F);
+        addPropertyOverride(new ResourceLocation("afterUse5"),
+                (stack, worldIn, entityIn) -> stack.getItemDamage() != 5 ? 0.0F : 1.0F);
     }
 
     //After potion has been consumed
@@ -85,7 +69,7 @@ public class ItemPotion extends Item {
         }
 
         //If player has effect high toxic, apply random negative effect or do nothing
-        if(entityLiving.getActivePotionEffect(ModPotionEffects.highToxic) != null){
+        if(entityLiving.getActivePotionEffect(ModPotion.highToxic) != null){
             int result = ThreadLocalRandom.current().nextInt(6);
             switch (result) {
                 case 0:
@@ -108,13 +92,13 @@ public class ItemPotion extends Item {
             }
         }
 
-        if(entityLiving.getActivePotionEffect(ModPotionEffects.lowToxic) != null && entityLiving.getActivePotionEffect(ModPotionEffects.lowToxic).getAmplifier() > 0) {
-            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.lowToxic, 600 * 10, 1));
-            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.highToxic, 600 * 6));
-        } else if(entityLiving.getActivePotionEffect(ModPotionEffects.lowToxic) != null)
-            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.lowToxic, 600*4, 1));
+        if(entityLiving.getActivePotionEffect(ModPotion.lowToxic) != null && entityLiving.getActivePotionEffect(ModPotion.lowToxic).getAmplifier() > 0) {
+            entityLiving.addPotionEffect(new PotionEffect(ModPotion.lowToxic, 600 * 10, 1));
+            entityLiving.addPotionEffect(new PotionEffect(ModPotion.highToxic, 600 * 6));
+        } else if(entityLiving.getActivePotionEffect(ModPotion.lowToxic) != null)
+            entityLiving.addPotionEffect(new PotionEffect(ModPotion.lowToxic, 600*4, 1));
         else
-            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.lowToxic, 600*2));
+            entityLiving.addPotionEffect(new PotionEffect(ModPotion.lowToxic, 600*2));
 
         //Get and apply potion effect
         if(stack.getTagCompound() != null) {

@@ -2,5 +2,13 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "brewery:items/potionsmall"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "afterUse1": 1
+      },
+      "model": "brewery:item/itempotionsmalluse1"
+    }
+  ]
 }

@@ -8,11 +8,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EffectToxic extends Potion{
+public class PotionToxic extends Potion{
 
     public static ResourceLocation texture;
 
-    public EffectToxic(boolean isBadEffectIn, int liquidColorIn, String name) {
+    public PotionToxic(boolean isBadEffectIn, int liquidColorIn, String name) {
         super(isBadEffectIn, liquidColorIn);
         texture = new ResourceLocation(Reference.MODID, "textures/misc/potionEffect"+name+".png");
         this.setPotionName(name);

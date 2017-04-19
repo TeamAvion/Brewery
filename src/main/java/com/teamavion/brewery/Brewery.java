@@ -2,7 +2,7 @@ package com.teamavion.brewery;
 
 import com.teamavion.brewery.block.ModBlocks;
 import com.teamavion.brewery.item.ModItems;
-import com.teamavion.brewery.potion.ModPotionEffects;
+import com.teamavion.brewery.potion.ModPotion;
 import com.teamavion.brewery.recipe.ModRecipes;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -22,7 +22,7 @@ public class Brewery {
     public void preInt(FMLPreInitializationEvent e){
         ModBlocks.init();
         ModItems.init();
-        ModPotionEffects.init();
+        ModPotion.init();
         ModBlocks.register();
         ModItems.register();
         proxy.preInit();
