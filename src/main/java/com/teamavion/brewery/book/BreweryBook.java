@@ -70,7 +70,7 @@ public class BreweryBook implements IGuideBook {
                 "\n\nBrewing is simple and comes in 3 steps:" +
                 "\nPut in water" +
                 "\n\nPut in your ingredients and heat it up" +
-                "\n\nScope it into a Magical container"));
+                "\n\nScoop it into a Magical container"));
         BrewingPage.add(new PageText("§LAdding Water Part I§0" +
                 "\n\nTo add water just right click with a bucket!\n\n" +
                 "Each bucket of water is equal to 1000 liquid in the cauldron.\nYou can have max 3000 liquid in the "+  I18n.translateToLocal("brewery.category.cauldron.cauldron.name")+ " at a time"));
@@ -81,8 +81,8 @@ public class BreweryBook implements IGuideBook {
         BrewingPage.add(new PageText("§LAdding Ingredients Part II§0" +
                 "\n\nIngredients can be found in the ingredients tab" +
                 "\n\nYou can have max of 9 ingredients in the potion so chose wisely"));
-        BrewingPage.add(new PageText("§LScope it into a Magical container§0" +
-                "\n\nScope the contents of the potions into a Magical container" +
+        BrewingPage.add(new PageText("§LScoop it into a Magical container§0" +
+                "\n\nScoop the contents of the potions into a Magical container" +
                 "\n\nOnce the "+ I18n.translateToLocal("brewery.category.cauldron.cauldron.name") + " has reached 0, it will reset itself and you can start all over again!"));
         cauldron.put(new ResourceLocation(Reference.MODID, "CEntry0"), new EntryItemStack(BrewingPage, "How To Brew!", new ItemStack(ModBlocks.brewery)));
 

@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 
 public class Reference {
 
-    public static final String MODID = "brewery", VERSION = "0.1a";
+    public static final String MODID = "brewery", VERSION = "0.4";
     public static final Item[] EFFECT_ITEMS = {
             null,
             Items.SUGAR,
