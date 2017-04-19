@@ -1,0 +1,5 @@
+item.bottleSmall.name=Empty Vial
+item.bottleMedium.name=Empty Bottle
+item.bottleLarge.name=Empty Flask
+
+tile.brewery.name=Cauldron of Brewing

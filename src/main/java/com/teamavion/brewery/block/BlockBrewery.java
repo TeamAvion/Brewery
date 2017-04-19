@@ -29,6 +29,9 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
         super(Material.IRON);
         setUnlocalizedName("brewery");
         setRegistryName("blockbrewery");
+        setHarvestLevel("pickaxe", 1);
+        setResistance(30F);
+        setHardness(5F);
     }
 
     @Override
@@ -77,5 +80,16 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
      @SideOnly(Side.CLIENT)
      public boolean isTranslucent(IBlockState state) { return true; }
      */
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFullBlock(IBlockState state)
+    {
+        return false;
+    }
 
 }
