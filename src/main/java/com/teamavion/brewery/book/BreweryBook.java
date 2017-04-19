@@ -45,8 +45,8 @@ public class BreweryBook implements IGuideBook {
 
         List<CategoryAbstract> categories = new ArrayList<CategoryAbstract>();
         categories.add(new CategoryItemStack(cauldron, "Brewing", new ItemStack(ModBlocks.brewery)));
-        categories.add(new CategoryItemStack(cauldron, "Ingredients", new ItemStack(Items.BLAZE_POWDER)));
-        categories.add(new CategoryItemStack(cauldron, "Toxicity", new ItemStack(Items.SPIDER_EYE)));
+        categories.add(new CategoryItemStack(toxicity, "Ingredients", new ItemStack(Items.BLAZE_POWDER)));
+        categories.add(new CategoryItemStack(ingredients, "Toxicity", new ItemStack(Items.SPIDER_EYE)));
 
         breweryGuide = new Book();
         breweryGuide.setTitle("A Players Guide to Brewing");
