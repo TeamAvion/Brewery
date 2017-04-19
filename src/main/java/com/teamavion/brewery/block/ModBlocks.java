@@ -11,9 +11,6 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import static net.minecraftforge.fml.common.registry.GameRegistry.registerTileEntity;
 
-/**
- * Created by TjKenMate on 4/15/2017.
- */
 public class ModBlocks {
 
     public static Block brewery;
@@ -23,7 +20,7 @@ public class ModBlocks {
     }
 
     public static void register(){
-        //blocks
+        //Blocks
         registerBlock(brewery);
 
         registerTileEntity(TileBrewery.class, "brewery");

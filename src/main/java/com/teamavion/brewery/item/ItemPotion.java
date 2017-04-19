@@ -2,7 +2,7 @@ package com.teamavion.brewery.item;
 
 import com.teamavion.brewery.Reference;
 import com.teamavion.brewery.block.tile.TileBrewery;
-import com.teamavion.brewery.potion.ModPotions;
+import com.teamavion.brewery.potion.ModPotionEffects;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,10 +21,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-
-/**
- * Created by WhiteAutumn on 2017-04-16.
- */
 
 public class ItemPotion extends Item {
 
@@ -57,7 +53,7 @@ public class ItemPotion extends Item {
         }
 
         //If player has effect high toxic, apply random negative effect or do nothing
-        if(entityLiving.getActivePotionEffect(ModPotions.highToxic) != null){
+        if(entityLiving.getActivePotionEffect(ModPotionEffects.highToxic) != null){
             int result = ThreadLocalRandom.current().nextInt(6);
             switch (result) {
                 case 0:
@@ -80,11 +76,11 @@ public class ItemPotion extends Item {
             }
         }
 
-        if(entityLiving.getActivePotionEffect(ModPotions.lowToxic) != null) {
-            entityLiving.addPotionEffect(new PotionEffect(ModPotions.lowToxic, 600 * 10));
-            entityLiving.addPotionEffect(new PotionEffect(ModPotions.highToxic, 600 * 6));
+        if(entityLiving.getActivePotionEffect(ModPotionEffects.lowToxic) != null) {
+            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.lowToxic, 600 * 10));
+            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.highToxic, 600 * 6));
         } else
-            entityLiving.addPotionEffect(new PotionEffect(ModPotions.lowToxic, 600*2));
+            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.lowToxic, 600*2));
 
         //Get and apply potion effect
         if(stack.getTagCompound() != null) {

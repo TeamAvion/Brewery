@@ -5,9 +5,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-/**
- * Created by WhiteAutumn on 2017-04-15.
- */
 public class ModItems {
 
     public static Item potionSmall;

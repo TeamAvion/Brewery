@@ -1,23 +1,16 @@
 package com.teamavion.brewery.block.tile;
 
-import com.teamavion.brewery.Reference;
 import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 
-/**
- * Created by TjKenMate on 4/16/2017.
- */
 public class TileBreweryRenderer extends TileEntitySpecialRenderer {
 
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage){
 
         String iTextComponent = null;
-        int watt_her = -100; //TODO: "YOU DON'T HAVE TO COMMENT IF YOU NAME YOUR VARIABLES WELL"
+        int watt_her = -100; //TODO: not used?
 
         if(te instanceof TileBrewery){
             watt_her = ((TileBrewery) te).getLiquidMB();

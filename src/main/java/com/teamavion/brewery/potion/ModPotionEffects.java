@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 /**
  * Created by TjKenMate on 4/18/2017.
  */
-public class ModPotions {
+public class ModPotionEffects {
 
     public static Potion lowToxic;
     public static Potion highToxic;
@@ -19,7 +19,7 @@ public class ModPotions {
 
     private static Potion registerPotion(String name, ResourceLocation location, boolean badEffect, int potionColour)
     {
-        Potion potion = new PotionToxic(badEffect, potionColour, name);
+        Potion potion = new EffectToxic(badEffect, potionColour, name);
         GameRegistry.register(potion.setRegistryName(location.getResourcePath()));
         return potion;
     }

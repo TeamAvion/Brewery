@@ -2,21 +2,17 @@ package com.teamavion.brewery.potion;
 
 import com.teamavion.brewery.Reference;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-/**
- * Created by TjKenMate on 4/18/2017.
- */
-public class PotionToxic extends Potion{
+public class EffectToxic extends Potion{
 
     public static ResourceLocation texture;
 
-    public PotionToxic(boolean isBadEffectIn, int liquidColorIn, String name) {
+    public EffectToxic(boolean isBadEffectIn, int liquidColorIn, String name) {
         super(isBadEffectIn, liquidColorIn);
         texture = new ResourceLocation(Reference.MODID, "textures/misc/potionEffect"+name+".png");
         this.setPotionName(name);
@@ -38,5 +34,4 @@ public class PotionToxic extends Potion{
 
         return super.getStatusIconIndex();
     }
-
 }

@@ -2,7 +2,6 @@ package com.teamavion.brewery.block;
 
 import com.teamavion.brewery.block.tile.TileBrewery;
 import com.teamavion.brewery.item.ModItems;
-import com.teamavion.brewery.recipe.BreweryRecipeHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -16,14 +15,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-/**
- * Created by TjKenMate on 4/15/2017.
- */
 public class BlockBrewery extends Block implements ITileEntityProvider {
 
     public BlockBrewery(){
@@ -96,6 +90,4 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
 
     @Override
     public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) { return false; }
-
-
 }

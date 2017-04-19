@@ -23,9 +23,6 @@ import static com.teamavion.brewery.recipe.BreweryRecipeHandler.getPotionGrade;
 import static com.teamavion.brewery.recipe.BreweryRecipeHandler.getPotionId;
 import static com.teamavion.brewery.recipe.BreweryRecipeHandler.isIngredient;
 
-/**
- * Created by TjKenMate on 4/15/2017XD
- */
 public class TileBrewery extends TileEntity implements ITickable {
 
     public static final int INGREDIENTLIMIT = 9;
@@ -39,15 +36,12 @@ public class TileBrewery extends TileEntity implements ITickable {
         liquidMB = 0;
         maxLiquidMB = 0;
         this.markDirty();
-        //For Testing Purposes only
-        //ingredient1PotionID = 1;
     }
 
     @Override
     public void update() {
         if (!world.isRemote) {
             captureItems();
-            //System.out.println("im ruining update");
             if (!temperatureSwitchOn && isLit()) {
                 time = 0;
                 temperatureSwitchOn = true;
@@ -162,7 +156,7 @@ public class TileBrewery extends TileEntity implements ITickable {
        potionEntity.motionY = ThreadLocalRandom.current().nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;
        world.spawnEntity(potionEntity);
 
-       liquidMB-=((size+1)*1000);;
+       liquidMB-=((size+1)*1000);
        ingredientCount = 0;
        if(liquidMB == 0) {
            temperature = 22;
