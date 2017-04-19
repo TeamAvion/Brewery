@@ -10,18 +10,22 @@ import amerifrance.guideapi.api.impl.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.impl.abstraction.EntryAbstract;
 import amerifrance.guideapi.category.CategoryItemStack;
 import amerifrance.guideapi.entry.EntryItemStack;
+import amerifrance.guideapi.page.PageIRecipe;
 import amerifrance.guideapi.page.PageItemStack;
 import amerifrance.guideapi.page.PageText;
 import amerifrance.guideapi.page.PageTextImage;
 import com.teamavion.brewery.Reference;
 import com.teamavion.brewery.block.ModBlocks;
 import com.teamavion.brewery.item.ModItems;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -54,6 +58,56 @@ public class BreweryBook implements IGuideBook {
         /**
          * Adding Brewing Pages
          */
+        List<IPage> BrewingPage = new ArrayList<IPage>();
+        BrewingPage.add(new PageItemStack("To do any brewing you need a " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name"), new ItemStack(ModBlocks.brewery)));
+        BrewingPage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.brewery),
+                " S ",
+                "SCS",
+                " S ",
+                'S', Blocks.STONE,
+                'C', Blocks.CAULDRON)));
+        BrewingPage.add(new PageText("Now that you have a " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name")+ " can start brewing!" +
+                "\n\nBrewing is simple and comes in 3 steps:" +
+                "\nPut in water" +
+                "\nPut in your ingredients" +
+                "\nScope it into a Magical container"));
+        BrewingPage.add(new PageText("§LAdding Water§0" +
+                "\n\nTo add water just right click with a bucket!\n\n" +
+                "Each bucket of water is equal to 1000 liquid in the cauldron.\nYou can have max 3000 liquid in the "+  I18n.translateToLocal("brewery.category.cauldron.cauldron.name")+ " at a time " +
+                "\n\nNote: §4§LONCE YOU ADD INGREDENTS YOU CANT ADD ANYMORE WATER"));
+        BrewingPage.add(new PageText("§LAdding Ingredients§0" +
+                "\n\nTo add an ingredient just right click the " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name") +" with an ingredient\n\n" +
+                "The more of the same ingredient you add in the more potent the effect will be!" +
+                "\n\nIngredients can be found in the ingredients tab" +
+                "\n\nYou can have max of 9 ingredients in the potion so chose wisely"));
+        cauldron.put(new ResourceLocation(Reference.MODID, "CEntry0"), new EntryItemStack(BrewingPage, "How To Brew!", new ItemStack(ModBlocks.brewery)));
+
+        List<IPage> BottlePage = new ArrayList<IPage>();
+        BottlePage.add(new PageText("To get potions from the brewery you need to use a magical container.\n\nContainers come in three sizes each holding 1000, 2000, 3000 liquid respectively"));
+        BottlePage.add(new PageText("The three types of container are in order of largest to smallest:\n" +I18n.translateToLocal("item.bottleLarge.name") + ", "+ I18n.translateToLocal("item.bottleMedium.name")+ ", " + I18n.translateToLocal("item.bottleSmall.name") + ", "));
+        BottlePage.add(new PageItemStack(I18n.translateToLocal("item.bottleLarge.name") + ":\nHolds 6 Swigs requires 3000 Liquid to fill", ModItems.bottleLarge));
+        BottlePage.add(new PageItemStack(I18n.translateToLocal("item.bottleMedium.name") + ":\nHolds 4 Swigs requires 2000 Liquid to fill", ModItems.bottleMedium));
+        BottlePage.add(new PageItemStack(I18n.translateToLocal("item.bottleSmall.name") + ":\nHolds 2 Swigs requires 1000 Liquid to fill", ModItems.bottleSmall));
+        BottlePage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleSmall, 3),
+                " W ",
+                " G ",
+                "   ",
+                'W', Blocks.WOODEN_SLAB,
+                'G', Blocks.GLASS)));
+        BottlePage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleMedium, 2),
+                " W ",
+                "G G",
+                " G ",
+                'W', Blocks.PLANKS,
+                'G', Blocks.GLASS)));
+        BottlePage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleLarge),
+                "GLG",
+                "G G",
+                "GGG",
+                'L', Blocks.LOG,
+                'G', Blocks.GLASS)));
+        cauldron.put(new ResourceLocation(Reference.MODID, "CEntry1"), new EntryItemStack(BottlePage, "Magical Containers", new ItemStack(ModItems.bottleLarge)));
+
         List<IPage> TemperaturePage = new ArrayList<IPage>();
         TemperaturePage.add(new PageText("To heat up the " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name") + " you need to place a fire either one or two blocks below it with water in it" +
                 "\n\nNote: " + I18n.translateToLocal("brewery.category.cauldron.blockinway")));
@@ -61,9 +115,9 @@ public class BreweryBook implements IGuideBook {
         TemperaturePage.add(new PageTextImage("This will also heat up", new ResourceLocation(Reference.MODID, "textures/misc/cal2on.png"), false));
         TemperaturePage.add(new PageTextImage("This §Lwont §0heat up", new ResourceLocation(Reference.MODID, "textures/misc/cal2off.png"), false));
         TemperaturePage.add(new PageText("If the water reaches a temperature of§4 101 §0then the brewery will start losing water, and if the water gets to zero then you lose everything and the brewery will cool down to 22 Degrees"));
-        cauldron.put(new ResourceLocation(Reference.MODID, "CEntry1"), new Entry(TemperaturePage, "Temperature"));
         TemperaturePage.add(new PageTextImage("Since it has no water it §Lwont §0heat up", new ResourceLocation(Reference.MODID, "textures/misc/calt.png"), false));
         TemperaturePage.add(new PageTextImage("Losing water because its over 100 Degrees", new ResourceLocation(Reference.MODID, "textures/misc/calton.png"), false));
+        cauldron.put(new ResourceLocation(Reference.MODID, "CEntry2"), new Entry(TemperaturePage, "Temperature"));
 
 
         /**

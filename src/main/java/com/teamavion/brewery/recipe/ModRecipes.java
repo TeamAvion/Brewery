@@ -1,5 +1,6 @@
 package com.teamavion.brewery.recipe;
 
+import com.teamavion.brewery.block.ModBlocks;
 import com.teamavion.brewery.item.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -40,5 +41,11 @@ public class ModRecipes {
                 "GGG",
                 'L', Blocks.LOG,
                 'G', Blocks.GLASS);
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.brewery),
+                " S ",
+                "SCS",
+                " S ",
+                'S', Blocks.STONE,
+                'C', Blocks.CAULDRON);
     }
 }
