@@ -132,6 +132,7 @@ public class TileBrewery extends TileEntity implements ITickable {
         ingredientCount = compound.getInteger("ingredientCount");
         ingredientList = new ArrayList<>(0);
         for (int i = 0; i < ingredientCount; i++) {
+            //TODO: Mystery to be solved for a rainy day.
             if(compound.hasKey("potion_"+i))
                 ingredientList.add(new Ingredient(compound.getIntArray("potion_" + i)));
         }
@@ -207,8 +208,10 @@ public class TileBrewery extends TileEntity implements ITickable {
     }
 
    public boolean createPotion(int size) {
+       //If there isn't enough space in the bottle, return false
        if(!((liquidMB-((size+1)*1000)) >= 0))
            return false;
+
        ItemStack potion = null;
        switch (size) {
            case 0:
