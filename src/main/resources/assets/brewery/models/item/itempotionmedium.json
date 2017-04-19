@@ -2,5 +2,22 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "brewery:items/potionmedium"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "afterUse1": 1
+      }, "model": "brewery:item/itempotionmediumuse1"
+    },
+    {
+      "predicate": {
+        "afterUse2": 1
+      }, "model": "brewery:item/itempotionmediumuse2"
+    },
+    {
+      "predicate": {
+        "afterUse3": 1
+      }, "model": "brewery:item/itempotionmediumuse3"
+    }
+  ]
 }

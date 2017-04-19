@@ -7,8 +7,7 @@
     {
       "predicate": {
         "afterUse1": 1
-      },
-      "model": "brewery:item/itempotionsmalluse1"
+      }, "model": "brewery:item/itempotionsmalluse1"
     }
   ]
 }
