@@ -73,9 +73,11 @@ public class ItemPotion extends Item {
             int result = ThreadLocalRandom.current().nextInt(6);
             switch (result) {
                 case 0:
+                    entityLiving.setHealth(0.5F);
                     entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(20),600*5, 100));
                     break;
                 case 1:
+                    entityLiving.setHealth(5.0F);
                     entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(9),600*10));
                     break;
                 case 3:
