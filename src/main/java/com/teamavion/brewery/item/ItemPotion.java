@@ -6,7 +6,6 @@ import com.teamavion.brewery.potion.ModPotions;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,19 +28,35 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ItemPotion extends Item {
 
+    private String bottleSize;
+
     ItemPotion(String unlocalizedName, String registryName, int maxDamage) {
         setCreativeTab(CreativeTabs.BREWING);
         setMaxStackSize(1);
         setMaxDamage(maxDamage);
         setUnlocalizedName(unlocalizedName);
         setRegistryName(registryName);
+
+        switch (maxDamage) {
+            case 2:
+                bottleSize = "small";
+                break;
+            case 4:
+                bottleSize = "medium";
+                break;
+            case 6:
+                bottleSize = "large";
+                break;
+        }
     }
 
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+        //If executed from client, return
         if(worldIn.isRemote) {
             return stack;
         }
 
+        //If player has effect high toxic, apply random negative effect or do nothing
         if(entityLiving.getActivePotionEffect(ModPotions.highToxic) != null){
             int result = ThreadLocalRandom.current().nextInt(6);
             switch (result) {
@@ -71,37 +86,40 @@ public class ItemPotion extends Item {
         } else
             entityLiving.addPotionEffect(new PotionEffect(ModPotions.lowToxic, 600*2));
 
-        ItemStack death = null;
-        if(stack.getMaxDamage() == 2)
-            death = new ItemStack(ModItems.bottleSmall);
-        if(stack.getMaxDamage() == 4)
-            death = new ItemStack(ModItems.bottleMedium);
-        if(stack.getMaxDamage() == 6)
-            death = new ItemStack(ModItems.bottleLarge);
-
+        //Get and apply potion effect
         if(stack.getTagCompound() != null) {
             for(int i = 0; i < TileBrewery.INGREDIENTLIMIT; i++)
                 if (stack.getTagCompound().hasKey("potion_ID_"+i, 99))
-                    addPotion(entityLiving, stack.getTagCompound().getInteger("potion_ID_"+i), stack.getTagCompound().getShort("potion_grade_"+i), Reference.EFFECTS_SCALABLE[stack.getTagCompound().getInteger("potion_ID_"+i)]);
+                    addPotionEffect(entityLiving, stack.getTagCompound().getInteger("potion_ID_"+i), stack.getTagCompound().getShort("potion_grade_"+i), Reference.EFFECTS_SCALABLE[stack.getTagCompound().getInteger("potion_ID_"+i)]);
         }
 
+        //Remove durability
         stack.damageItem(1, entityLiving);
+
+        //If potion is empty, return bottle
         if (stack.getItemDamage() == stack.getMaxDamage()) {
-            return death;
+            switch (bottleSize) {
+                case "small":
+                    return new ItemStack(ModItems.bottleSmall);
+                case "medium":
+                    return new ItemStack(ModItems.bottleMedium);
+                case "large":
+                    return new ItemStack(ModItems.bottleLarge);
+            }
         }
         return stack;
     }
 
-    private void addPotion(EntityLivingBase entityLiving, int id, short grade, boolean isScalable) {
+    private void addPotionEffect(EntityLivingBase entityLiving, int id, short grade, boolean isScalable) {
         if(isScalable)
             entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(id), Reference.durationFromGradeScalable((char)grade), Reference.amplification((char)grade)));
         else
             entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(id), Reference.durationFromGradeNotScalable((char)grade)));
     }
 
-        public String getItemStackDisplayName(ItemStack stack) {
+    public String getItemStackDisplayName(ItemStack stack) {
         if(stack.getTagCompound() == null)
-                return "Is Inconceivable";
+            return "Is Inconceivable";
         return "Custom Potion";
     }
 
@@ -117,14 +135,17 @@ public class ItemPotion extends Item {
                     a="";
     }}
 
+    //Set animation to drink
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.DRINK;
     }
 
+    //Set usage time
     public int getMaxItemUseDuration(ItemStack stack) {
         return 32;
     }
 
+    //Set item glow
     @SideOnly(Side.CLIENT)
     public boolean hasEffect(ItemStack stack) {
         return true;
