@@ -2,12 +2,11 @@ package com.teamavion.brewery.item;
 
 import com.teamavion.brewery.Reference;
 import com.teamavion.brewery.block.tile.TileBrewery;
-import com.teamavion.brewery.potion.ModPotionEffects;
+import com.teamavion.brewery.potion.ModPotion;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -21,7 +20,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -85,7 +83,7 @@ public class ItemPotion extends Item {
         }
 
         //If player has effect high toxic, apply random negative effect or do nothing
-        if(entityLiving.getActivePotionEffect(ModPotionEffects.highToxic) != null){
+        if(entityLiving.getActivePotionEffect(ModPotion.highToxic) != null){
             int result = ThreadLocalRandom.current().nextInt(6);
             switch (result) {
                 case 0:
@@ -108,13 +106,13 @@ public class ItemPotion extends Item {
             }
         }
 
-        if(entityLiving.getActivePotionEffect(ModPotionEffects.lowToxic) != null && entityLiving.getActivePotionEffect(ModPotionEffects.lowToxic).getAmplifier() > 0) {
-            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.lowToxic, 600 * 10, 1));
-            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.highToxic, 600 * 6));
-        } else if(entityLiving.getActivePotionEffect(ModPotionEffects.lowToxic) != null)
-            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.lowToxic, 600*4, 1));
+        if(entityLiving.getActivePotionEffect(ModPotion.lowToxic) != null && entityLiving.getActivePotionEffect(ModPotion.lowToxic).getAmplifier() > 0) {
+            entityLiving.addPotionEffect(new PotionEffect(ModPotion.lowToxic, 600 * 10, 1));
+            entityLiving.addPotionEffect(new PotionEffect(ModPotion.highToxic, 600 * 6));
+        } else if(entityLiving.getActivePotionEffect(ModPotion.lowToxic) != null)
+            entityLiving.addPotionEffect(new PotionEffect(ModPotion.lowToxic, 600*4, 1));
         else
-            entityLiving.addPotionEffect(new PotionEffect(ModPotionEffects.lowToxic, 600*2));
+            entityLiving.addPotionEffect(new PotionEffect(ModPotion.lowToxic, 600*2));
 
         //Get and apply potion effect
         if(stack.getTagCompound() != null) {
