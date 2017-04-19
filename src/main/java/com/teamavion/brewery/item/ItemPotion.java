@@ -117,10 +117,29 @@ public class ItemPotion extends Item {
             entityLiving.addPotionEffect(new PotionEffect(Potion.getPotionById(id), Reference.durationFromGradeNotScalable((char)grade)));
     }
 
+    //Set item name
     public String getItemStackDisplayName(ItemStack stack) {
-        if(stack.getTagCompound() == null)
-            return "Is Inconceivable";
-        return "Custom Potion";
+        //If item has no NBT
+        if(stack.getTagCompound() == null) {
+            switch (bottleSize) {
+                case "small":
+                    return "Small Inconceivable Potion";
+                case "medium":
+                    return "Medium Inconceivable Potion";
+                case "large":
+                    return "Large Inconceivable Potion";
+            }
+        }
+        //Else
+        switch (bottleSize) {
+            case "small":
+                return "Small Custom Potion";
+            case "medium":
+                return "Medium Custom Potion";
+            case "large":
+                return "Large Custom Potion";
+        }
+        return "This should never happen";
     }
 
     @Override
