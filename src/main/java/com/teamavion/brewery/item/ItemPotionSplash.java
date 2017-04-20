@@ -4,12 +4,14 @@ import com.teamavion.brewery.entity.projectile.EntityPotion;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 public class ItemPotionSplash extends Item {
@@ -31,6 +33,7 @@ public class ItemPotionSplash extends Item {
         EntityPotion entityPotion = new EntityPotion(worldIn, entityPlayer, stack);
         entityPotion.setHeadingFromThrower(entityPlayer, entityPlayer.rotationPitch, entityPlayer.rotationYaw, -20.0F, 0.03F * ((getMaxItemUseDuration(stack)-timeLeft) < 32 ? (getMaxItemUseDuration(stack)-timeLeft) : 32), 0.0F);
         worldIn.spawnEntity(entityPotion);
+        worldIn.playSound(null, entityPlayer.posX, entityPlayer.posY, entityPlayer.posZ, SoundEvents.ENTITY_SPLASH_POTION_THROW, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
         stack.setCount(0);
     }
