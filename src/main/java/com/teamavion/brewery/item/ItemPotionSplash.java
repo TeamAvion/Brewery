@@ -29,7 +29,7 @@ public class ItemPotionSplash extends Item {
         EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
 
         EntityPotion entityPotion = new EntityPotion(worldIn, entityPlayer, stack);
-        entityPotion.setHeadingFromThrower(entityPlayer, entityPlayer.rotationPitch, entityPlayer.rotationYaw, -20.0F, 0.5F, 1.0F); //TODO: MAKE VELOCITY BASED ON timeLeft
+        entityPotion.setHeadingFromThrower(entityPlayer, entityPlayer.rotationPitch, entityPlayer.rotationYaw, -20.0F, 0.03F * ((getMaxItemUseDuration(stack)-timeLeft) < 32 ? (getMaxItemUseDuration(stack)-timeLeft) : 32), 0.0F);
         worldIn.spawnEntity(entityPotion);
 
         stack.setCount(0);
