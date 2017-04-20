@@ -24,7 +24,7 @@ public class PotionEvents {
         if (event.getEntity() instanceof EntityLivingBase)
             if(((EntityLivingBase) event.getEntity()).getActivePotionEffect(ModPotion.highToxic) != null){
                 if(ThreadLocalRandom.current().nextInt(101) < 1){
-                    ((EntityLivingBase) event.getEntity()).addPotionEffect(new PotionEffect(Potion.getPotionById(ThreadLocalRandom.current().nextInt(1,28)), 20, 255));
+                    ((EntityLivingBase) event.getEntity()).addPotionEffect(new PotionEffect(Potion.getPotionById(ThreadLocalRandom.current().nextInt(1,28)), 60, 255));
                 }
             }
     }}
