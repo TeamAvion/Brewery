@@ -16,7 +16,12 @@ public class EntityPotion extends EntityThrowable {
     }
 
     @Override
-    protected void onImpact(RayTraceResult result) {
+    public void onImpact(RayTraceResult result) {
 
+    }
+
+    //Falling speed
+    public float getGravityVelocity() {
+        return 0.05F;
     }
 }
