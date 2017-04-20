@@ -4,6 +4,7 @@ import com.teamavion.brewery.potion.CustomPotionHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -23,10 +24,10 @@ public class EntityPotion extends EntityThrowable {
     @Override
     public void onImpact(RayTraceResult result) {
         if (world.isRemote) {
+            //this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX - this.motionX * 0.25D, this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX, this.motionY, this.motionZ, new int[0]);
             return;
         }
         applySplash(result);
-
         world.playEvent(2002, new BlockPos(this), 16253176);
         setDead();
     }

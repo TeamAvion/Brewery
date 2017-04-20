@@ -55,7 +55,7 @@ public class TileBrewery extends TileEntity implements ITickable {
                     time++;
                 if (liquidMB > 0 &&(time >= timeToIncrease()) && temperature < 101) {
                     temperature++;
-                    System.out.println(temperature);
+                    //System.out.println(temperature);
                     time = 0;
                     sync(this);
                 }

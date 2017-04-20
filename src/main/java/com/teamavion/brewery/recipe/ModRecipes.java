@@ -54,7 +54,7 @@ public class ModRecipes {
                 'L', Blocks.LOG,
                 'G', Blocks.GLASS);
         //Splash bottle
-        GameRegistry.addRecipe(new ItemStack(ModItems.bottleSplash),
+        GameRegistry.addRecipe(new ItemStack(ModItems.bottleSplash, 4),
                 "GWS",
                 "G G",
                 " G ",

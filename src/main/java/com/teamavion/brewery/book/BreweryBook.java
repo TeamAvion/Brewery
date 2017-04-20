@@ -10,10 +10,7 @@ import amerifrance.guideapi.api.impl.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.impl.abstraction.EntryAbstract;
 import amerifrance.guideapi.category.CategoryItemStack;
 import amerifrance.guideapi.entry.EntryItemStack;
-import amerifrance.guideapi.page.PageIRecipe;
-import amerifrance.guideapi.page.PageItemStack;
-import amerifrance.guideapi.page.PageText;
-import amerifrance.guideapi.page.PageTextImage;
+import amerifrance.guideapi.page.*;
 import com.teamavion.brewery.Reference;
 import com.teamavion.brewery.block.ModBlocks;
 import com.teamavion.brewery.item.ModItems;
@@ -60,11 +57,19 @@ public class BreweryBook implements IGuideBook {
          */
         List<IPage> BrewingPage = new ArrayList<IPage>();
         BrewingPage.add(new PageItemStack("To do any brewing you need a " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name"), new ItemStack(ModBlocks.brewery)));
+        BrewingPage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModItems.darkstoneCompound, 4),
+                "COC",
+                "OCO",
+                "COC",
+                'C', Blocks.COBBLESTONE,
+                'O', Blocks.OBSIDIAN)));
+        BrewingPage.add(new PageFurnaceRecipe(ModItems.darkstoneCompound));
         BrewingPage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.brewery),
-                " S ",
-                "SCS",
-                " S ",
-                'S', Blocks.STONE,
+                "IDI",
+                "DCD",
+                "IDI",
+                'I', Items.IRON_INGOT,
+                'D', ModItems.darkstone,
                 'C', Items.CAULDRON)));
         BrewingPage.add(new PageText("Now that you have a " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name")+ " can start brewing!" +
                 "\n\nBrewing is simple and comes in 3 steps:" +
@@ -87,11 +92,12 @@ public class BreweryBook implements IGuideBook {
         cauldron.put(new ResourceLocation(Reference.MODID, "CEntry0"), new EntryItemStack(BrewingPage, "How To Brew!", new ItemStack(ModBlocks.brewery)));
 
         List<IPage> BottlePage = new ArrayList<IPage>();
-        BottlePage.add(new PageText("To get potions from the brewery you need to use a magical container.\n\nContainers come in three sizes each holding 1000, 2000, 3000 liquid respectively"));
-        BottlePage.add(new PageText("The three types of container are in order of largest to smallest:\n" +I18n.translateToLocal("item.bottleLarge.name") + ", "+ I18n.translateToLocal("item.bottleMedium.name")+ ", " + I18n.translateToLocal("item.bottleSmall.name") + ", "));
+        BottlePage.add(new PageText("To get potions from the brewery you need to use a magical container.\n\nDrinkable containers come in three sizes each holding 1000, 2000, 3000 liquid respectively, and " + I18n.translateToLocal("item.bottleSplash.name") + " comes in one size only holding 1000 liquid"));
+        BottlePage.add(new PageText("The three types of drinkable container are in order of largest to smallest:\n" +I18n.translateToLocal("item.bottleLarge.name") + ", "+ I18n.translateToLocal("item.bottleMedium.name")+ ", " + I18n.translateToLocal("item.bottleSmall.name") + ", "));
         BottlePage.add(new PageItemStack(I18n.translateToLocal("item.bottleLarge.name") + ":\nHolds 6 Swigs requires 3000 Liquid to fill", ModItems.bottleLarge));
         BottlePage.add(new PageItemStack(I18n.translateToLocal("item.bottleMedium.name") + ":\nHolds 4 Swigs requires 2000 Liquid to fill", ModItems.bottleMedium));
         BottlePage.add(new PageItemStack(I18n.translateToLocal("item.bottleSmall.name") + ":\nHolds 2 Swigs requires 1000 Liquid to fill", ModItems.bottleSmall));
+        BottlePage.add(new PageItemStack(I18n.translateToLocal("item.bottleSplash.name") + ":\nOne use\nrequires 1000 Liquid to fill", ModItems.bottleSplash));
         BottlePage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleSmall, 3),
                 " W ",
                 " G ",
@@ -110,6 +116,14 @@ public class BreweryBook implements IGuideBook {
                 "GGG",
                 'L', Blocks.LOG,
                 'G', Blocks.GLASS)));
+        BottlePage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleSplash, 4),
+                "GWS",
+                "G G",
+                " G ",
+                'W', Blocks.PLANKS,
+                'G', Blocks.GLASS,
+                'G', Items.GUNPOWDER,
+                'S', Items.STRING)));
         cauldron.put(new ResourceLocation(Reference.MODID, "CEntry1"), new EntryItemStack(BottlePage, "Magical Containers", new ItemStack(ModItems.bottleLarge)));
 
         List<IPage> TemperaturePage = new ArrayList<IPage>();
@@ -161,7 +175,7 @@ public class BreweryBook implements IGuideBook {
         toxicity.put(new ResourceLocation(Reference.MODID, "TEntry0"), new Entry(ToxicFirstPage, "Toxicity Basics"));
 
         List<IPage> ToxicPassivePage = new ArrayList<IPage>();
-        ToxicFirstPage.add(new PageText("If your contaminated to the point of being " + I18n.translateToLocal("brewery.category.toxicity.toxic") + ", your body will try and cleans itself of the magic by trying manifesting. \n\nBrewer's call this effect the §5Toxic Flu§0\n\n" +
+        ToxicPassivePage.add(new PageText("If your contaminated to the point of being " + I18n.translateToLocal("brewery.category.toxicity.toxic") + ", your body will try and cleans itself of the magic by trying manifesting. \n\nBrewer's call this effect the §5Toxic Flu§0\n\n" +
                 "Since your body is purifying §K§5Wild§0 Magic, it will manifest it self randomly as short potent potion efects"));
         toxicity.put(new ResourceLocation(Reference.MODID, "TEntry1"), new Entry(ToxicPassivePage, "Toxic Flu"));
 
