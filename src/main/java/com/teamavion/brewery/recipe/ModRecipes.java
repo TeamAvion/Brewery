@@ -5,6 +5,7 @@ import com.teamavion.brewery.item.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
@@ -13,6 +14,16 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModRecipes {
 
     public static void register() {
+        //Darkstone compound
+        GameRegistry.addRecipe(new ItemStack(ModItems.darkstoneCompound, 4),
+                "COC",
+                "OCO",
+                "COC",
+                'C', Blocks.COBBLESTONE,
+                'O', Blocks.OBSIDIAN);
+        //Darkstone
+        GameRegistry.addSmelting(ModItems.darkstoneCompound, new ItemStack(ModItems.darkstone), 0F);
+
         //Small bottle
         GameRegistry.addRecipe(new ItemStack(ModItems.bottleSmall, 3),
                 "   ",
@@ -42,11 +53,23 @@ public class ModRecipes {
                 "GGG",
                 'L', Blocks.LOG,
                 'G', Blocks.GLASS);
+        //Splash bottle
+        GameRegistry.addRecipe(new ItemStack(ModItems.bottleSplash),
+                "GWS",
+                "G G",
+                " G ",
+                'W', Blocks.PLANKS,
+                'G', Blocks.GLASS,
+                'G', Items.GUNPOWDER,
+                'S', Items.STRING);
+
+        //Brewery
         GameRegistry.addRecipe(new ItemStack(ModBlocks.brewery),
-                " S ",
-                "SCS",
-                " S ",
-                'S', Blocks.STONE,
+                "IDI",
+                "DCD",
+                "IDI",
+                'I', Items.IRON_INGOT,
+                'D', ModItems.darkstone,
                 'C', Items.CAULDRON);
     }
 }
