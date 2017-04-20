@@ -56,13 +56,17 @@ public class ModItems {
         registerRender(potionMedium);
         registerRender(potionLarge);
 
-        registerRender(potionSmallSplash);
-        registerRender(potionMediumSplash);
-        registerRender(potionLargeSplash);
+        registerRender(potionSmallSplash, potionSmall.getRegistryName() + "");
+        registerRender(potionMediumSplash, potionMedium.getRegistryName() + "");
+        registerRender(potionLargeSplash, potionLarge.getRegistryName() + "");
     }
 
     private static void registerRender(Item item) {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0,
                 new ModelResourceLocation(item.getRegistryName(), "inventory"));
+    }
+    private static void registerRender(Item item, String name) {
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0,
+                new ModelResourceLocation(name, "inventory"));
     }
 }

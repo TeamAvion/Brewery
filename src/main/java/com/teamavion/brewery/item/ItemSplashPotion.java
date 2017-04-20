@@ -29,9 +29,11 @@ public class ItemSplashPotion extends Item {
         EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
 
         EntityPotion entityPotion = new EntityPotion(worldIn, entityPlayer, stack);
-        entityPotion.setHeadingFromThrower(entityPlayer, entityPlayer.rotationPitch, entityPlayer.rotationYaw, -20.0F, 0.5F, 1.0F);
+        entityPotion.setHeadingFromThrower(entityPlayer, entityPlayer.rotationPitch, entityPlayer.rotationYaw, -20.0F, 0.5F, 1.0F); //TODO: MAKE VELOCITY BASED ON timeLeft
         worldIn.spawnEntity(entityPotion);
         System.out.println("!AFTER ENTITY POTION SPAWN SHOULD HAVE HAPPENED");
+
+        stack.setCount(0);
     }
 
     //Set animation to bow
