@@ -17,7 +17,7 @@ public class EntityPotion extends EntityThrowable {
 
     @Override
     public void onImpact(RayTraceResult result) {
-
+        System.out.println("!POTION IMPACT!");
     }
 
     //Falling speed

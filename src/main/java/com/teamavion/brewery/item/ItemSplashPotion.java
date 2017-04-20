@@ -1,5 +1,7 @@
 package com.teamavion.brewery.item;
 
+import com.teamavion.brewery.entity.projectile.EntityPotion;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -13,11 +15,23 @@ import net.minecraft.world.World;
 public class ItemSplashPotion extends Item {
 
     public ItemSplashPotion(String unlocalizedName, String registryName) {
-
+        setCreativeTab(CreativeTabs.BREWING);
+        setMaxStackSize(1);
+        setUnlocalizedName(unlocalizedName);
+        setRegistryName(registryName);
     }
 
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
+        if (worldIn.isRemote) {
+            return;
+        }
 
+        EntityPlayer entityPlayer = (EntityPlayer) entityLiving;
+
+        EntityPotion entityPotion = new EntityPotion(worldIn, entityPlayer, stack);
+        entityPotion.setHeadingFromThrower(entityPlayer, entityPlayer.rotationPitch, entityPlayer.rotationYaw, -20.0F, 0.5F, 1.0F);
+        worldIn.spawnEntity(entityPotion);
+        System.out.println("!AFTER ENTITY POTION SPAWN SHOULD HAVE HAPPENED");
     }
 
     //Set animation to bow
