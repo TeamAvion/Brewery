@@ -1,23 +1,51 @@
 package com.teamavion.brewery.entity.projectile;
 
+import com.teamavion.brewery.potion.CustomPotionHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityPotion extends EntityThrowable {
 
     private ItemStack potion;
 
-    public EntityPotion(World worldIn, EntityLivingBase throwerIn, ItemStack potion) {
+    public EntityPotion(World worldIn, EntityLivingBase throwerIn, ItemStack stack) {
         super(worldIn, throwerIn);
-        this.potion = potion;
+        potion = stack;
     }
 
     @Override
     public void onImpact(RayTraceResult result) {
-        System.out.println("!POTION IMPACT!");
+        if (world.isRemote) {
+            return;
+        }
+
+        System.out.println("!POTION IMPACT");
+
+        applySplash(result);
+    }
+
+    private void applySplash(RayTraceResult result) {
+        AxisAlignedBB axisalignedbb = this.getEntityBoundingBox().expand(4.0D, 2.0D, 4.0D);
+        List<EntityLivingBase> list = this.world.<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb);
+
+        if (!list.isEmpty()) {
+            for (EntityLivingBase entityLiving : list) {
+                if (entityLiving.canBeHitWithPotion()) {
+                    double distance = this.getDistanceSqToEntity(entityLiving);
+
+                    if (distance < 16.0D) {
+                        CustomPotionHandler.addToxicity(entityLiving);
+                        CustomPotionHandler.addPotionEffectFromNBT(potion.getTagCompound(), entityLiving);
+                    }
+                }
+            }
+        }
     }
 
     //Falling speed
