@@ -12,9 +12,9 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class ItemSplashPotion extends Item {
+public class ItemPotionSplash extends Item {
 
-    public ItemSplashPotion(String unlocalizedName, String registryName) {
+    public ItemPotionSplash(String unlocalizedName, String registryName) {
         setCreativeTab(CreativeTabs.BREWING);
         setMaxStackSize(1);
         setUnlocalizedName(unlocalizedName);

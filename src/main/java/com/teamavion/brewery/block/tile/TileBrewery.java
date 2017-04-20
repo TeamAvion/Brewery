@@ -139,7 +139,7 @@ public class TileBrewery extends TileEntity implements ITickable {
         }
     }
 
-   public boolean createPotion(int size) {
+   public boolean createPotion(int size, boolean isSplash) {
        //If there isn't enough space in the bottle, return false
        if(!((liquidMB-((size+1)*1000)) >= 0))
            return false;
@@ -147,7 +147,7 @@ public class TileBrewery extends TileEntity implements ITickable {
        ItemStack potion = null;
        switch (size) {
            case 0:
-               potion = new ItemStack(ModItems.potionSmall);
+               potion = new ItemStack(isSplash ? ModItems.potionSplash : ModItems.potionSmall);
                break;
            case 1:
                potion = new ItemStack(ModItems.potionMedium);

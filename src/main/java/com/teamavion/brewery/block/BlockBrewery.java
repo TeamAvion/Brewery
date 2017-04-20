@@ -40,15 +40,19 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
             }
             if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(ModItems.bottleSmall.getUnlocalizedName())))
                 if(worldIn.getTileEntity(pos) instanceof TileBrewery)
-                    if(((TileBrewery)worldIn.getTileEntity(pos)).createPotion(0))
+                    if(((TileBrewery)worldIn.getTileEntity(pos)).createPotion(0, false))
                         playerIn.getHeldItem(hand).setCount(playerIn.getHeldItem(hand).getCount() - 1);
             if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(ModItems.bottleMedium.getUnlocalizedName())))
                 if(worldIn.getTileEntity(pos) instanceof TileBrewery)
-                    if(((TileBrewery)worldIn.getTileEntity(pos)).createPotion(1))
+                    if(((TileBrewery)worldIn.getTileEntity(pos)).createPotion(1, false))
                         playerIn.getHeldItem(hand).setCount(playerIn.getHeldItem(hand).getCount() - 1);
             if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(ModItems.bottleLarge.getUnlocalizedName())))
                 if(worldIn.getTileEntity(pos) instanceof TileBrewery)
-                    if(((TileBrewery)worldIn.getTileEntity(pos)).createPotion(2))
+                    if(((TileBrewery)worldIn.getTileEntity(pos)).createPotion(2, false))
+                        playerIn.getHeldItem(hand).setCount(playerIn.getHeldItem(hand).getCount() - 1);
+            if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(ModItems.bottleSplash.getUnlocalizedName())))
+                if(worldIn.getTileEntity(pos) instanceof TileBrewery)
+                    if(((TileBrewery)worldIn.getTileEntity(pos)).createPotion(0, true))
                         playerIn.getHeldItem(hand).setCount(playerIn.getHeldItem(hand).getCount() - 1);
             if((playerIn.getHeldItemMainhand().getItem() != null) && (playerIn.getHeldItemMainhand().getItem().getUnlocalizedName().equals(Items.WATER_BUCKET.getUnlocalizedName())))
                 if(worldIn.getTileEntity(pos) instanceof TileBrewery){
