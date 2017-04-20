@@ -9,9 +9,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Created by TjKenMate on 4/19/2017.
- */
 public class PotionEvents {
 
     public PotionEvents(){
@@ -20,12 +17,19 @@ public class PotionEvents {
 
     @SubscribeEvent
     public void onEntityUpdate(LivingEvent.LivingUpdateEvent event) {
-        if(!event.getEntity().getEntityWorld().isRemote){
+        if(!event.getEntity().getEntityWorld().isRemote) {
         if (event.getEntity() instanceof EntityLivingBase)
             if(((EntityLivingBase) event.getEntity()).getActivePotionEffect(ModPotion.highToxic) != null){
-                if(ThreadLocalRandom.current().nextInt(101) < 1){
-                    ((EntityLivingBase) event.getEntity()).addPotionEffect(new PotionEffect(Potion.getPotionById(ThreadLocalRandom.current().nextInt(1,28)), 60, 255));
+                if(ThreadLocalRandom.current().nextInt(101) < 1) {
+                    int randomId;
+                    while (true) {
+                        randomId = ThreadLocalRandom.current().nextInt(1,28);
+                        if (randomId != 7) break;
+                    }
+
+                    ((EntityLivingBase) event.getEntity()).addPotionEffect(new PotionEffect(Potion.getPotionById(randomId), 60, 100));
                 }
             }
-    }}
+        }
+    }
 }
