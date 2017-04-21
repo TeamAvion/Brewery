@@ -17,7 +17,7 @@ public class PotionToxic extends Potion{
         String path = name.substring(2);
         texture = new ResourceLocation(Reference.MODID, "textures/misc/potionEffect"+path+".png");
         this.setPotionName(name);
-        this.setIconIndex(0,1);
+        this.setIconIndex(6,0);
 
     }
 
@@ -26,13 +26,9 @@ public class PotionToxic extends Potion{
     {
         return true;
     }
-
+    /*
     @Override
     @SideOnly(Side.CLIENT)
-    public int getStatusIconIndex()
-    {
-        Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-
-        return super.getStatusIconIndex();
-    }
+    public boolean hasStatusIcon(){return false;}
+    */
 }

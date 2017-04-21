@@ -97,7 +97,7 @@ public class BreweryBook implements IGuideBook {
         BottlePage.add(new PageItemStack(I18n.translateToLocal("item.bottleLarge.name") + ":\nHolds 6 Swigs requires 3000 Liquid to fill", ModItems.bottleLarge));
         BottlePage.add(new PageItemStack(I18n.translateToLocal("item.bottleMedium.name") + ":\nHolds 4 Swigs requires 2000 Liquid to fill", ModItems.bottleMedium));
         BottlePage.add(new PageItemStack(I18n.translateToLocal("item.bottleSmall.name") + ":\nHolds 2 Swigs requires 1000 Liquid to fill", ModItems.bottleSmall));
-        BottlePage.add(new PageItemStack(I18n.translateToLocal("item.bottleSplash.name") + ":\nOne use\nrequires 1000 Liquid to fill", ModItems.bottleSplash));
+        BottlePage.add(new PageItemStack(I18n.translateToLocal("item.bottleSplash.name") + ":\nOne use requires 1000 Liquid to fill", ModItems.bottleSplash));
         BottlePage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleSmall, 3),
                 " W ",
                 " G ",

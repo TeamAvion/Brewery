@@ -15,7 +15,7 @@ public class ModPotion {
 
     public static void init(){
         lowToxic = registerPotion(ChatFormatting.DARK_GREEN + "Contaminated", new ResourceLocation("contaminated"), true, 0x000000);
-        highToxic = registerPotion(ChatFormatting.GREEN + "Toxic", new ResourceLocation("Toxic"), true, 0x000000);
+        highToxic = registerPotion(ChatFormatting.GREEN + "Toxic", new ResourceLocation("Toxic"), true, 0x09f725);
     }
 
     private static Potion registerPotion(String name, ResourceLocation location, boolean badEffect, int potionColour)
