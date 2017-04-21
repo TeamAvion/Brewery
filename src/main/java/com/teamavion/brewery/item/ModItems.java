@@ -11,6 +11,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModItems {
 
@@ -56,9 +58,10 @@ public class ModItems {
         GameRegistry.register(potionLarge);
         GameRegistry.register(potionSplash);
 
-        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID + "_potion"), EntityPotion.class, "brewery_splashPotion", entityId, Brewery.instance, 64, 1, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, "potion"), EntityPotion.class, "brewery_splashPotion", entityId, Brewery.instance, 64, 1, true);
     }
 
+    @SideOnly(Side.CLIENT)
     public static void registerRenders() {
         registerRender(darkstoneCompound);
 
