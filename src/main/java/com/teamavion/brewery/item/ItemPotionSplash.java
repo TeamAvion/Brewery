@@ -1,8 +1,6 @@
 package com.teamavion.brewery.item;
 
-import com.teamavion.brewery.Reference;
 import com.teamavion.brewery.entity.projectile.EntityPotion;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -14,6 +12,8 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemPotionSplash extends Item {
 
@@ -47,6 +47,12 @@ public class ItemPotionSplash extends Item {
     //Set usage time
     public int getMaxItemUseDuration(ItemStack stack) {
         return 72000;
+    }
+
+    //Set item glow
+    @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack stack) {
+        return true;
     }
 
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {

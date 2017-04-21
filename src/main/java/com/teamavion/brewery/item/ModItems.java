@@ -31,7 +31,6 @@ public class ModItems {
 
     public static void init(){
         darkstoneCompound = new ItemBasic("darkstoneCompound", "ItemDarkstoneCompound", 64);
-        //darkstone = new ItemBasic("darkstone", "ItemDarkstone", 64);
 
         bottleSplash = new ItemBasic("bottleSplash", "ItemBottleSplash", 64);
         bottleSmall = new ItemBasic("bottleSmall", "ItemBottleSmall", 64);
@@ -46,7 +45,6 @@ public class ModItems {
 
     public static void register() {
         GameRegistry.register(darkstoneCompound);
-        //GameRegistry.register(darkstone);
 
         GameRegistry.register(bottleSplash);
         GameRegistry.register(bottleSmall);
@@ -63,7 +61,6 @@ public class ModItems {
 
     public static void registerRenders() {
         registerRender(darkstoneCompound);
-        //registerRender(darkstone);
 
         registerRender(bottleSplash);
         registerRender(bottleSmall);

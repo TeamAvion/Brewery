@@ -4,7 +4,6 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import com.teamavion.brewery.Reference;
 import com.teamavion.brewery.block.tile.TileBrewery;
 import com.teamavion.brewery.potion.CustomPotionHandler;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
