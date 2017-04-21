@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public class ItemPotionSplash extends Item {
 
     public ItemPotionSplash(String unlocalizedName, String registryName) {
-        setCreativeTab(Reference.tabBrewery);
+        //setCreativeTab(Reference.tabBrewery);
         setMaxStackSize(1);
         setUnlocalizedName(unlocalizedName);
         setRegistryName(registryName);

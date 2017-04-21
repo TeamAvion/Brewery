@@ -27,7 +27,7 @@ public class ItemPotion extends Item {
     private String bottleSize;
 
     ItemPotion(String unlocalizedName, String registryName, int maxDamage) {
-        setCreativeTab(Reference.tabBrewery);
+        //setCreativeTab(Reference.tabBrewery);
         setMaxStackSize(1);
         setMaxDamage(maxDamage);
         setUnlocalizedName(unlocalizedName);
