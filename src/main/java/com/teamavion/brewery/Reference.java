@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class Reference {
 
-    public static final String MODID = "brewery", VERSION = "0.4";
+    public static final String MODID = "brewery", VERSION = "1.0";
     public static final CreativeTabs tabBrewery = new CreativeTabs("brewery") { @Override public ItemStack getTabIconItem() { return new ItemStack(ModItems.potionMedium); } };
     public static final Item[] EFFECT_ITEMS = {
             null,

@@ -137,6 +137,11 @@ public class BreweryBook implements IGuideBook {
         TemperaturePage.add(new PageTextImage("Losing water because its over 100 Degrees", new ResourceLocation(Reference.MODID, "textures/misc/calton.png"), false));
         cauldron.put(new ResourceLocation(Reference.MODID, "CEntry2"), new Entry(TemperaturePage, "Temperature"));
 
+        List<IPage> SplashPage = new ArrayList<IPage>();
+        SplashPage.add(new PageText("Due to the valuable nature of the splash potions from the cauldron, you don't just instantly chuck the potion out but rather you §4AIM§0 them" +
+                "\n\nTo Aim simply hold right click and let go to throw, the longer you hold it in the farther it will go"));
+        cauldron.put(new ResourceLocation(Reference.MODID, "CEntry3"), new EntryItemStack(SplashPage, "Splash Potions", new ItemStack(ModItems.potionSplash)));
+
 
         /**
          * Adding Ingredient pages
