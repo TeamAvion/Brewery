@@ -1,7 +1,6 @@
 package com.teamavion.brewery.item;
 
 import com.teamavion.brewery.Reference;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 public class ItemBasic extends Item {
