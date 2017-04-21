@@ -1,5 +1,6 @@
 package com.teamavion.brewery.item;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import com.teamavion.brewery.Reference;
 import com.teamavion.brewery.block.tile.TileBrewery;
 import com.teamavion.brewery.potion.CustomPotionHandler;
@@ -118,8 +119,8 @@ public class ItemPotion extends Item {
             for(int i = 0; i < TileBrewery.CAPACITY; i++)
                 if (stack.getTagCompound().hasKey("potion_ID_"+i, 99)){
                     if(Reference.EFFECTS_SCALABLE[stack.getTagCompound().getInteger("potion_ID_"+i)])
-                        a = " " + Reference.amplification((char)stack.getTagCompound().getShort("potion_grade_"+i)) + " ";
-                    tooltip.add(I18n.translateToLocal(Potion.getPotionById(stack.getTagCompound().getInteger("potion_ID_"+i)).getName())+ a +": (" + Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i))) + ")");
+                        a = " " + (Reference.amplification((char)stack.getTagCompound().getShort("potion_grade_"+i)) + 1) + " ";
+                    tooltip.add(ChatFormatting.GOLD + I18n.translateToLocal(Potion.getPotionById(stack.getTagCompound().getInteger("potion_ID_"+i)).getName())+ a + ChatFormatting.WHITE +":" + " (" + ChatFormatting.AQUA + Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i)))/600 + ChatFormatting.WHITE + ":" + ChatFormatting.AQUA + String.format("%02d",(Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i)))%600)/10) + ChatFormatting.WHITE + ")");
                     a="";
     }}
 

@@ -136,13 +136,13 @@ public class Reference {
     public static int durationFromGradeNotScalable(char A){
         int D = 1;
         if(A == 'A')
-            D = 600*60;
+            D = 18000/2;
         if(A == 'B')
-            D = 400*60;
+            D = 12000/2;
         if(A == 'C')
-            D = 100*6;
+            D = 3600/2;
         if(A == 'D')
-            D = 10*6;
+            D = 600/2;
         return D;
     }
 
@@ -162,13 +162,13 @@ public class Reference {
     public static int durationFromGradeScalable(char A) {
         int D = 1;
         if(A == 'A')
-            D = 600*60*2;
+            D = 18000;
         if(A == 'B')
-            D = 400*60*2;
+            D = 12000;
         if(A == 'C')
-            D = 100*6;
+            D = 3600/2;
         if(A == 'D')
-            D = 10*6;
+            D = 600;
         return D;
     }
 }

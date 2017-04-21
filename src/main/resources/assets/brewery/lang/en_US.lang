@@ -1,6 +1,8 @@
 item.bottleSmall.name=Empty Vial
 item.bottleMedium.name=Empty Bottle
 item.bottleLarge.name=Empty Flask
+item.bottleSplash.name=Empty Throwing Flask
+item.potionSplash.name=Custom Throwing Potion
 
 tile.brewery.name=Cauldron of Brewing
 item.GuideBook.name=&0&Kxd&0 &5Table of Contents &0&Kxd

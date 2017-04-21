@@ -14,7 +14,8 @@ public class PotionToxic extends Potion{
 
     public PotionToxic(boolean isBadEffectIn, int liquidColorIn, String name) {
         super(isBadEffectIn, liquidColorIn);
-        texture = new ResourceLocation(Reference.MODID, "textures/misc/potionEffect"+name+".png");
+        String path = name.substring(2);
+        texture = new ResourceLocation(Reference.MODID, "textures/misc/potionEffect"+path+".png");
         this.setPotionName(name);
         this.setIconIndex(0,1);
 
