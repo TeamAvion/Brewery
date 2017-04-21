@@ -3,7 +3,9 @@ item.bottleMedium.name=Empty Bottle
 item.bottleLarge.name=Empty Flask
 item.bottleSplash.name=Empty Throwing Flask
 item.potionSplash.name=Custom Throwing Potion
+item.darkstoneCompound.name=Raw Cobble-Obsidian Chunk
 
+tile.darkstone.name=Dark Stone
 tile.brewery.name=Cauldron of Brewing
 item.GuideBook.name=&0&Kxd&0 &5Table of Contents &0&Kxd
 book.category.toxicity=&N&2Toxicity

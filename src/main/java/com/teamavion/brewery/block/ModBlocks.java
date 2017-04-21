@@ -14,14 +14,17 @@ import static net.minecraftforge.fml.common.registry.GameRegistry.registerTileEn
 public class ModBlocks {
 
     public static Block brewery;
+    public static Block darkstone;
 
     public static void init(){
         brewery = new BlockBrewery();
+        darkstone = new BlockDarkstone();
     }
 
     public static void register(){
         //Blocks
         registerBlock(brewery);
+        registerBlock(darkstone);
 
         registerTileEntity(TileBrewery.class, "brewery");
     }
@@ -35,6 +38,7 @@ public class ModBlocks {
 
     public static void registerRenders(){
         registerRender(brewery);
+        registerRender(darkstone);
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileBrewery.class, new TileBreweryRenderer());
     }

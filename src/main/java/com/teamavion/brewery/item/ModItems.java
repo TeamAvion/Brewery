@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModItems {
 
     public static Item darkstoneCompound;
-    public static Item darkstone;
+    //public static Item darkstone;
 
     public static Item bottleSplash;
     public static Item bottleSmall;
@@ -22,7 +22,7 @@ public class ModItems {
 
     public static void init(){
         darkstoneCompound = new ItemBasic("darkstoneCompound", "ItemDarkstoneCompound", 64);
-        darkstone = new ItemBasic("darkstone", "ItemDarkstone", 64);
+        //darkstone = new ItemBasic("darkstone", "ItemDarkstone", 64);
 
         bottleSplash = new ItemBasic("bottleSplash", "ItemBottleSplash", 64);
         bottleSmall = new ItemBasic("bottleSmall", "ItemBottleSmall", 64);
@@ -37,7 +37,7 @@ public class ModItems {
 
     public static void register() {
         GameRegistry.register(darkstoneCompound);
-        GameRegistry.register(darkstone);
+        //GameRegistry.register(darkstone);
 
         GameRegistry.register(bottleSplash);
         GameRegistry.register(bottleSmall);
@@ -52,7 +52,7 @@ public class ModItems {
 
     public static void registerRenders() {
         registerRender(darkstoneCompound);
-        registerRender(darkstone);
+        //registerRender(darkstone);
 
         registerRender(bottleSplash);
         registerRender(bottleSmall);

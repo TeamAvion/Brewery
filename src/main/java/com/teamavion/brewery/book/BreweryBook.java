@@ -57,7 +57,7 @@ public class BreweryBook implements IGuideBook {
          */
         List<IPage> BrewingPage = new ArrayList<IPage>();
         BrewingPage.add(new PageItemStack("To do any brewing you need a " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name"), new ItemStack(ModBlocks.brewery)));
-        BrewingPage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModItems.darkstoneCompound, 4),
+        BrewingPage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModItems.darkstoneCompound, 16),
                 "COC",
                 "OCO",
                 "COC",
@@ -69,7 +69,7 @@ public class BreweryBook implements IGuideBook {
                 "DCD",
                 "IDI",
                 'I', Items.IRON_INGOT,
-                'D', ModItems.darkstone,
+                'D', ModBlocks.darkstone,
                 'C', Items.CAULDRON)));
         BrewingPage.add(new PageText("Now that you have a " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name")+ " can start brewing!" +
                 "\n\nBrewing is simple and comes in 3 steps:" +

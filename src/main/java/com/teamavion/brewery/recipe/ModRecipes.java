@@ -15,14 +15,14 @@ public class ModRecipes {
 
     public static void register() {
         //Darkstone compound
-        GameRegistry.addRecipe(new ItemStack(ModItems.darkstoneCompound, 4),
+        GameRegistry.addRecipe(new ItemStack(ModItems.darkstoneCompound, 16),
                 "COC",
                 "OCO",
                 "COC",
                 'C', Blocks.COBBLESTONE,
                 'O', Blocks.OBSIDIAN);
         //Darkstone
-        GameRegistry.addSmelting(ModItems.darkstoneCompound, new ItemStack(ModItems.darkstone), 0F);
+        GameRegistry.addSmelting(ModItems.darkstoneCompound, new ItemStack(ModBlocks.darkstone), 0F);
 
         //Small bottle
         GameRegistry.addRecipe(new ItemStack(ModItems.bottleSmall, 3),
@@ -69,7 +69,7 @@ public class ModRecipes {
                 "DCD",
                 "IDI",
                 'I', Items.IRON_INGOT,
-                'D', ModItems.darkstone,
+                'D', ModBlocks.darkstone,
                 'C', Items.CAULDRON);
     }
 }

@@ -26,12 +26,12 @@ public class Brewery {
         ModPotion.init();
         ModBlocks.register();
         ModItems.register();
+        ModRecipes.register();
         proxy.preInit();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent e){
-        ModRecipes.register();
         proxy.init();
         new PotionEvents();
     }
