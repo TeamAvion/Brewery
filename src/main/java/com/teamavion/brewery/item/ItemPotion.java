@@ -13,6 +13,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -117,7 +118,7 @@ public class ItemPotion extends Item {
                 if (stack.getTagCompound().hasKey("potion_ID_"+i, 99)){
                     if(Reference.EFFECTS_SCALABLE[stack.getTagCompound().getInteger("potion_ID_"+i)])
                         a = " " + (Reference.amplification((char)stack.getTagCompound().getShort("potion_grade_"+i)) + 1) + " ";
-                    tooltip.add("§6" + I18n.translateToLocal(Potion.getPotionById(stack.getTagCompound().getInteger("potion_ID_"+i)).getName())+ a + "§0" +":" + " (" + "§b" + Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i)))/600 + "§0" + ":" + "§b" + String.format("%02d",(Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i)))%600)/10) + "§0" + ")");
+                    tooltip.add(TextFormatting.GOLD + I18n.translateToLocal(Potion.getPotionById(stack.getTagCompound().getInteger("potion_ID_"+i)).getName())+ a + TextFormatting.WHITE +":" + " (" + TextFormatting.AQUA + Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i)))/600 + TextFormatting.WHITE + ":" + TextFormatting.AQUA + String.format("%02d",(Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i)))%600)/10) + TextFormatting.WHITE + ")");
                     a="";
     }}
 

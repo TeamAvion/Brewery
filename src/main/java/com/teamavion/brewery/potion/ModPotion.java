@@ -2,6 +2,7 @@ package com.teamavion.brewery.potion;
 
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
@@ -13,8 +14,8 @@ public class ModPotion {
     public static Potion highToxic;
 
     public static void init(){
-        lowToxic = registerPotion("§2" + "Contaminated", new ResourceLocation("contaminated"), true, 0x000000);
-        highToxic = registerPotion("§a" + "Toxic", new ResourceLocation("Toxic"), true, 0x09f725);
+        lowToxic = registerPotion(TextFormatting.DARK_GREEN + "Contaminated", new ResourceLocation("contaminated"), true, 0x000000);
+        highToxic = registerPotion(TextFormatting.GREEN + "Toxic", new ResourceLocation("Toxic"), true, 0x09f725);
     }
 
     private static Potion registerPotion(String name, ResourceLocation location, boolean badEffect, int potionColour)
