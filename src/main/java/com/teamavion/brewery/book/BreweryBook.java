@@ -133,7 +133,7 @@ public class BreweryBook implements IGuideBook {
         TemperaturePage.add(new PageTextImage("This will also heat up", new ResourceLocation(Reference.MODID, "textures/misc/cal2on.png"), false));
         TemperaturePage.add(new PageTextImage("This §Lwont §0heat up", new ResourceLocation(Reference.MODID, "textures/misc/cal2off.png"), false));
         TemperaturePage.add(new PageText("If the water reaches a temperature of§4 101 §0then the brewery will start losing water, and if the water gets to zero then you lose everything and the brewery will cool down to 22 Degrees"));
-        TemperaturePage.add(new PageTextImage("Since it has no water it §Lwont §0heat up", new ResourceLocation(Reference.MODID, "textures/misc/calt.png"), false));
+        TemperaturePage.add(new PageTextImage("Since it has water it will heat up", new ResourceLocation(Reference.MODID, "textures/misc/calt.png"), false));
         TemperaturePage.add(new PageTextImage("Losing water because its over 100 Degrees", new ResourceLocation(Reference.MODID, "textures/misc/calton.png"), false));
         cauldron.put(new ResourceLocation(Reference.MODID, "CEntry2"), new Entry(TemperaturePage, "Temperature"));
 
