@@ -1,5 +1,6 @@
 package com.teamavion.brewery.entity.projectile;
 
+import com.teamavion.brewery.item.ModItems;
 import com.teamavion.brewery.potion.CustomPotionHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -15,6 +16,11 @@ import java.util.List;
 public class EntityPotion extends EntityThrowable {
 
     private ItemStack potion;
+
+    public EntityPotion(World worldIn) {
+        super(worldIn);
+        potion = new ItemStack(ModItems.potionSplash);
+    }
 
     public EntityPotion(World worldIn, EntityLivingBase throwerIn, ItemStack stack) {
         super(worldIn, throwerIn);

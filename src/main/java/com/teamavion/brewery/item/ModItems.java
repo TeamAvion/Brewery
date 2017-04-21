@@ -1,11 +1,20 @@
 package com.teamavion.brewery.item;
 
+import com.teamavion.brewery.Brewery;
+import com.teamavion.brewery.Reference;
+import com.teamavion.brewery.entity.projectile.EntityPotion;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModItems {
+
+    public static int entityId = 400; //Base entity ID for Brewery
 
     public static Item darkstoneCompound;
     //public static Item darkstone;
@@ -48,6 +57,8 @@ public class ModItems {
         GameRegistry.register(potionMedium);
         GameRegistry.register(potionLarge);
         GameRegistry.register(potionSplash);
+
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID + "_potion"), EntityPotion.class, "brewery_splashPotion", entityId, Brewery.instance, 64, 1, true);
     }
 
     public static void registerRenders() {
@@ -63,6 +74,7 @@ public class ModItems {
         registerRender(potionMedium);
         registerRender(potionLarge);
         registerRender(potionSplash);
+        RenderingRegistry.registerEntityRenderingHandler(EntityPotion.class, new RenderSnowball<EntityPotion>(Minecraft.getMinecraft().getRenderManager(), potionSplash, Minecraft.getMinecraft().getRenderItem()));
     }
 
     private static void registerRender(Item item) {

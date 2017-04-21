@@ -19,6 +19,9 @@ public class Brewery {
     @SidedProxy(clientSide = "com.teamavion.brewery.proxy.ClientProxy", serverSide = "com.teamavion.brewery.proxy.ServerProxy")
     public static CommonProxy proxy;
 
+    @Mod.Instance(value = Reference.MODID)
+    public static Brewery instance;
+
     @EventHandler
     public void preInt(FMLPreInitializationEvent e){
         ModBlocks.init();
