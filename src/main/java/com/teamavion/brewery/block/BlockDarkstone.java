@@ -1,5 +1,6 @@
 package com.teamavion.brewery.block;
 
+import com.teamavion.brewery.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,6 +17,6 @@ public class BlockDarkstone extends Block {
         setHarvestLevel("pickaxe", 1);
         setResistance(30F);
         setHardness(5F);
-        setCreativeTab(CreativeTabs.BREWING);
+        setCreativeTab(Reference.tabBrewery);
     }
 }

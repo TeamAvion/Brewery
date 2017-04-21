@@ -1,12 +1,16 @@
 package com.teamavion.brewery;
 
+import com.teamavion.brewery.item.ModItems;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class Reference {
 
     public static final String MODID = "brewery", VERSION = "0.4";
+    public static final CreativeTabs tabBrewery = new CreativeTabs("brewery") { @Override public ItemStack getTabIconItem() { return new ItemStack(ModItems.potionMedium); } };
     public static final Item[] EFFECT_ITEMS = {
             null,
             Items.SUGAR,

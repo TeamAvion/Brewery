@@ -1,5 +1,6 @@
 package com.teamavion.brewery.item;
 
+import com.teamavion.brewery.Reference;
 import com.teamavion.brewery.entity.projectile.EntityPotion;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,7 +18,7 @@ import net.minecraft.world.World;
 public class ItemPotionSplash extends Item {
 
     public ItemPotionSplash(String unlocalizedName, String registryName) {
-        setCreativeTab(CreativeTabs.BREWING);
+        setCreativeTab(Reference.tabBrewery);
         setMaxStackSize(1);
         setUnlocalizedName(unlocalizedName);
         setRegistryName(registryName);

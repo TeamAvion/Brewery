@@ -1,5 +1,6 @@
 package com.teamavion.brewery.block;
 
+import com.teamavion.brewery.Reference;
 import com.teamavion.brewery.block.tile.TileBrewery;
 import com.teamavion.brewery.item.ModItems;
 import net.minecraft.block.Block;
@@ -29,7 +30,7 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
         setHarvestLevel("pickaxe", 1);
         setResistance(30F);
         setHardness(5F);
-        setCreativeTab(CreativeTabs.BREWING);
+        setCreativeTab(Reference.tabBrewery);
     }
 
     @Override

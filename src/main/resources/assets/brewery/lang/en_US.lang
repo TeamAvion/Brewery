@@ -15,3 +15,5 @@ brewery.category.toxicity.toxic=§AToxic§0
 brewery.category.toxicity.contamination=§2Contaminated§0
 brewery.category.cauldron.blockinway=§L§4IF THERE IS A BLOCK IN BETWEEN THE FIRE AND THE CAULDRON IT WONT HEAT UP§0
 brewery.category.cauldron.cauldron.name=§5Cauldron of Brewing§0
+
+itemGroup.brewery=Brewery!
