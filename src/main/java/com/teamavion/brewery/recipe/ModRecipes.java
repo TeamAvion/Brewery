@@ -47,7 +47,7 @@ public class ModRecipes {
                 "GLG",
                 "G G",
                 "GGG",
-                'L', "treeWood",
+                'L', "logWood",
                 'G', "blockGlass"));
         //Splash bottle
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleSplash, 4),

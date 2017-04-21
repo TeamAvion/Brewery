@@ -61,14 +61,14 @@ public class BreweryBook implements IGuideBook {
                 "COC",
                 "OCO",
                 "COC",
-                'C', Blocks.COBBLESTONE,
+                'C', "cobblestone",
                 'O', Blocks.OBSIDIAN)));
         BrewingPage.add(new PageFurnaceRecipe(ModItems.darkstoneCompound));
         BrewingPage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.brewery),
                 "IDI",
                 "DCD",
                 "IDI",
-                'I', Items.IRON_INGOT,
+                'I', "ingotIron",
                 'D', ModBlocks.darkstone,
                 'C', Items.CAULDRON)));
         BrewingPage.add(new PageText("Now that you have a " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name")+ " can start brewing!" +
@@ -108,20 +108,20 @@ public class BreweryBook implements IGuideBook {
                 " W ",
                 "G G",
                 " G ",
-                'W', Blocks.PLANKS,
-                'G', Blocks.GLASS)));
+                'W', "plankWood",
+                'G', "blockGlass")));
         BottlePage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleLarge),
                 "GLG",
                 "G G",
                 "GGG",
-                'L', Blocks.LOG,
-                'G', Blocks.GLASS)));
+                'L', "logWood",
+                'G', "blockGlass")));
         BottlePage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleSplash, 4),
                 "GWS",
-                "G G",
-                " G ",
-                'W', Blocks.PLANKS,
-                'G', Blocks.GLASS,
+                "P P",
+                " P ",
+                'W', "plankWood",
+                'P', Blocks.GLASS_PANE,
                 'G', Items.GUNPOWDER,
                 'S', Items.STRING)));
         cauldron.put(new ResourceLocation(Reference.MODID, "CEntry1"), new EntryItemStack(BottlePage, "Magical Containers", new ItemStack(ModItems.bottleLarge)));
