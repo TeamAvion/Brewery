@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "brewery:blocks/stonedark",
+    "particle": "brewery:blocks/stonedark"
+  }
+}

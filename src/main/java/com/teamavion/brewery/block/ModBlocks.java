@@ -11,20 +11,20 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import static net.minecraftforge.fml.common.registry.GameRegistry.registerTileEntity;
 
-/**
- * Created by TjKenMate on 4/15/2017.
- */
 public class ModBlocks {
 
     public static Block brewery;
+    public static Block darkstone;
 
     public static void init(){
         brewery = new BlockBrewery();
+        darkstone = new BlockDarkstone();
     }
 
     public static void register(){
-        //blocks
+        //Blocks
         registerBlock(brewery);
+        registerBlock(darkstone);
 
         registerTileEntity(TileBrewery.class, "brewery");
     }
@@ -38,6 +38,7 @@ public class ModBlocks {
 
     public static void registerRenders(){
         registerRender(brewery);
+        registerRender(darkstone);
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileBrewery.class, new TileBreweryRenderer());
     }

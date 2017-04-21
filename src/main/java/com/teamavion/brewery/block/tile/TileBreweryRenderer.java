@@ -5,25 +5,33 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 
-/**
- * Created by TjKenMate on 4/16/2017.
- */
 public class TileBreweryRenderer extends TileEntitySpecialRenderer {
 
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage){
 
-        String itextcomponent = null;
+        String iTextComponent = null;
+        int watt_her = -100; //TODO: not used?
 
         if(te instanceof TileBrewery){
-            itextcomponent = "Tempreture: " + ((TileBrewery) te).getTemperature();
+            watt_her = ((TileBrewery) te).getLiquidMB();
+            iTextComponent = "Temperature: " + ((TileBrewery) te).getTemperature() + " WaterLvl: " +((TileBrewery) te).getLiquidMB();
         }
 
-        if (itextcomponent != null && this.rendererDispatcher.cameraHitResult != null && te.getPos().equals(this.rendererDispatcher.cameraHitResult.getBlockPos()))
+        if (iTextComponent != null && this.rendererDispatcher.cameraHitResult != null && te.getPos().equals(this.rendererDispatcher.cameraHitResult.getBlockPos()))
         {
             this.setLightmapDisabled(true);
-            this.drawNameplate(te, itextcomponent, x, y, z, 12);
+            this.drawNameplate(te, iTextComponent, x, y, z, 12);
             this.setLightmapDisabled(false);
         }
+        /**
+        if(watt_her > 0){
+         ResourceLocation image = new ResourceLocation(Reference.MODID + ":waterStill");
+         this.bindTexture(image);
+         Tessellator t = Tessellator.getInstance();
+         GL11.glPushMatrix();
+         GL11.glTranslated(x, y + 1, z);
+        }
+         */
     }
 
     protected void drawNameplate(TileEntity te, String str, double x, double y, double z, int maxDistance)

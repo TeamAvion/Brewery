@@ -1,0 +1,33 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "brewery:items/potionlarge"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "afterUse1": 1
+      }, "model": "brewery:item/itempotionlargeuse1"
+    },
+    {
+      "predicate": {
+        "afterUse2": 1
+      }, "model": "brewery:item/itempotionlargeuse2"
+    },
+    {
+      "predicate": {
+        "afterUse3": 1
+      }, "model": "brewery:item/itempotionlargeuse3"
+    },
+    {
+      "predicate": {
+        "afterUse4": 1
+      }, "model": "brewery:item/itempotionlargeuse4"
+    },
+    {
+      "predicate": {
+        "afterUse5": 1
+      }, "model": "brewery:item/itempotionlargeuse5"
+    }
+  ]
+}
