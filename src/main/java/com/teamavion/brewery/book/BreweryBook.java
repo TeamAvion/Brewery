@@ -176,7 +176,7 @@ public class BreweryBook implements IGuideBook {
 
         List<IPage> ToxicPassivePage = new ArrayList<IPage>();
         ToxicPassivePage.add(new PageText("If your contaminated to the point of being " + I18n.translateToLocal("brewery.category.toxicity.toxic") + ", your body will try and cleans itself of the magic by trying manifesting. \n\nBrewer's call this effect the §5Toxic Flu§0\n\n" +
-                "Since your body is purifying §K§5Wild§0 Magic, it will manifest it self randomly as short potent potion efects"));
+                "Since your body is purifying §5§kWild§0 Magic, it will manifest it self randomly as short potent potion efects"));
         toxicity.put(new ResourceLocation(Reference.MODID, "TEntry1"), new Entry(ToxicPassivePage, "Toxic Flu"));
 
         List<CategoryAbstract> categories = new ArrayList<CategoryAbstract>();
