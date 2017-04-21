@@ -5,71 +5,67 @@ import com.teamavion.brewery.item.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
-/**
- * Created by White Autumn on 2017-04-17.
- */
 public class ModRecipes {
 
     public static void register() {
         //Darkstone compound
-        GameRegistry.addRecipe(new ItemStack(ModItems.darkstoneCompound, 16),
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.darkstoneCompound, 16),
                 "COC",
                 "OCO",
                 "COC",
-                'C', Blocks.COBBLESTONE,
-                'O', Blocks.OBSIDIAN);
+                'C', "cobblestone",
+                'O', Blocks.OBSIDIAN));
         //Darkstone
         GameRegistry.addSmelting(ModItems.darkstoneCompound, new ItemStack(ModBlocks.darkstone), 0F);
 
         //Small bottle
-        GameRegistry.addRecipe(new ItemStack(ModItems.bottleSmall, 3),
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleSmall, 3),
                 "   ",
                 " W ",
                 " G ",
-                'W', Blocks.WOODEN_SLAB,
-                'G', Blocks.GLASS);
-        GameRegistry.addRecipe(new ItemStack(ModItems.bottleSmall, 3),
+                'W', "slabWood",
+                'G', "blockGlass"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleSmall, 3),
                 " W ",
                 " G ",
                 "   ",
-                'W', Blocks.WOODEN_SLAB,
-                'G', Blocks.GLASS);
+                'W', "slabWood",
+                'G', "blockGlass"));
 
         //Medium bottle
-        GameRegistry.addRecipe(new ItemStack(ModItems.bottleMedium, 2),
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleMedium, 2),
                 " W ",
                 "G G",
                 " G ",
-                'W', Blocks.PLANKS,
-                'G', Blocks.GLASS);
-
+                'W', "plankWood",
+                'G', "blockGlass"));
         //Large bottle
-        GameRegistry.addRecipe(new ItemStack(ModItems.bottleLarge),
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleLarge),
                 "GLG",
                 "G G",
                 "GGG",
-                'L', Blocks.LOG,
-                'G', Blocks.GLASS);
+                'L', "treeWood",
+                'G', "blockGlass"));
         //Splash bottle
-        GameRegistry.addRecipe(new ItemStack(ModItems.bottleSplash, 4),
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bottleSplash, 4),
                 "GWS",
-                "G G",
-                " G ",
-                'W', Blocks.PLANKS,
-                'G', Blocks.GLASS,
+                "P P",
+                " P ",
+                'W', "plankWood",
+                'P', Blocks.GLASS_PANE,
                 'G', Items.GUNPOWDER,
-                'S', Items.STRING);
+                'S', Items.STRING));
 
         //Brewery
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.brewery),
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.brewery),
                 "IDI",
                 "DCD",
                 "IDI",
-                'I', Items.IRON_INGOT,
+                'I', "ingotIron",
                 'D', ModBlocks.darkstone,
-                'C', Items.CAULDRON);
+                'C', Items.CAULDRON));
     }
 }
