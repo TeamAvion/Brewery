@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import com.teamavion.brewery.proxy.*;
 
-@Mod(modid = Reference.MODID, version = Reference.VERSION)
+@Mod(modid = Reference.MODID, name="Brewery", version = Reference.VERSION, dependencies = "required-before:guideapi")
 public class Brewery {
 
     @SidedProxy(clientSide = "com.teamavion.brewery.proxy.ClientProxy", serverSide = "com.teamavion.brewery.proxy.ServerProxy")
