@@ -34,6 +34,7 @@ import java.util.Map;
 /**
  * Created by TjKenMate on 4/19/2017.
  */
+/*
 @GuideBook
 public class BreweryBook implements IGuideBook {
 
@@ -45,6 +46,7 @@ public class BreweryBook implements IGuideBook {
      *
      * @return a built book to be registered.
      */
+/*
     @Nullable
     @Override
     public Book buildBook() {
@@ -55,6 +57,7 @@ public class BreweryBook implements IGuideBook {
         /**
          * Adding Brewing Pages
          */
+/*
         List<IPage> BrewingPage = new ArrayList<IPage>();
         BrewingPage.add(new PageItemStack("To do any brewing you need a " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name"), new ItemStack(ModBlocks.brewery)));
         BrewingPage.add(new PageIRecipe(new ShapedOreRecipe(new ItemStack(ModItems.darkstoneCompound, 16),
@@ -146,6 +149,8 @@ public class BreweryBook implements IGuideBook {
         /**
          * Adding Ingredient pages
          */
+
+/*
         List<IPage> IngredientFirstPage = new ArrayList<IPage>();
         IngredientFirstPage.add(new PageText("How the ingredient pages are Read:" +
                 "\n" +
@@ -170,6 +175,7 @@ public class BreweryBook implements IGuideBook {
          * Adding Toxicity Pages
          */
 
+/*
         List<IPage> ToxicFirstPage = new ArrayList<IPage>();
         ToxicFirstPage.add(new PageText("Potions brewed in the Cauldron are impure by nature due to contaminants present in the water and ingredients themselves" +
                 "\n" +
@@ -204,6 +210,8 @@ public class BreweryBook implements IGuideBook {
      *
      * @param bookStack - The ItemStack assigned to your book.
      */
+
+/*
     @Override
     public void handleModel(ItemStack bookStack) {
         GuideAPI.setModel(breweryGuide);
@@ -214,6 +222,8 @@ public class BreweryBook implements IGuideBook {
      *
      * @param bookStack
      */
+
+/*
     @Override
     public void handlePost(ItemStack bookStack) {
         GameRegistry.addShapelessRecipe(bookStack, Items.BOOK, ModItems.bottleSmall);
@@ -221,3 +231,4 @@ public class BreweryBook implements IGuideBook {
         GameRegistry.addShapelessRecipe(bookStack, Items.BOOK, ModItems.bottleLarge);
     }
 }
+*/
