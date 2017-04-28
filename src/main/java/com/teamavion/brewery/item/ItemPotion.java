@@ -1,6 +1,5 @@
 package com.teamavion.brewery.item;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
 import com.teamavion.brewery.Reference;
 import com.teamavion.brewery.block.tile.TileBrewery;
 import com.teamavion.brewery.potion.CustomPotionHandler;
@@ -14,6 +13,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -118,7 +118,7 @@ public class ItemPotion extends Item {
                 if (stack.getTagCompound().hasKey("potion_ID_"+i, 99)){
                     if(Reference.EFFECTS_SCALABLE[stack.getTagCompound().getInteger("potion_ID_"+i)])
                         a = " " + (Reference.amplification((char)stack.getTagCompound().getShort("potion_grade_"+i)) + 1) + " ";
-                    tooltip.add(ChatFormatting.GOLD + I18n.translateToLocal(Potion.getPotionById(stack.getTagCompound().getInteger("potion_ID_"+i)).getName())+ a + ChatFormatting.WHITE +":" + " (" + ChatFormatting.AQUA + Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i)))/600 + ChatFormatting.WHITE + ":" + ChatFormatting.AQUA + String.format("%02d",(Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i)))%600)/10) + ChatFormatting.WHITE + ")");
+                    tooltip.add(TextFormatting.GOLD + I18n.translateToLocal(Potion.getPotionById(stack.getTagCompound().getInteger("potion_ID_"+i)).getName())+ a + TextFormatting.WHITE +":" + " (" + TextFormatting.AQUA + Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i)))/600 + TextFormatting.WHITE + ":" + TextFormatting.AQUA + String.format("%02d",(Reference.durationFromGradeNotScalable(((char)stack.getTagCompound().getShort("potion_grade_"+i)))%600)/10) + TextFormatting.WHITE + ")");
                     a="";
     }}
 

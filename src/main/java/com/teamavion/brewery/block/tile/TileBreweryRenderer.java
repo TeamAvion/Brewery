@@ -4,9 +4,11 @@ import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileBreweryRenderer extends TileEntitySpecialRenderer {
-
+    @SideOnly(Side.CLIENT)
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage){
 
         String iTextComponent = null;

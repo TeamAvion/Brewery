@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -79,17 +80,17 @@ public class BreweryBook implements IGuideBook {
                 "\nPut in water" +
                 "\n\nPut in your ingredients and heat it up" +
                 "\n\nScoop it into a Magical container"));
-        BrewingPage.add(new PageText("§LAdding Water Part I§0" +
+        BrewingPage.add(new PageText(TextFormatting.BOLD +"Adding Water Part I" + TextFormatting.RESET +
                 "\n\nTo add water just right click with a bucket!\n\n" +
                 "Each bucket of water is equal to 1000 liquid in the cauldron.\nYou can have max 3000 liquid in the "+  I18n.translateToLocal("brewery.category.cauldron.cauldron.name")+ " at a time"));
-        BrewingPage.add(new PageText("§LAdding Water Part II§0" + "\n\nNote: §4§LONCE YOU ADD INGREDENTS YOU CANT ADD ANYMORE WATER"));
-        BrewingPage.add(new PageText("§LAdding Ingredients Part I§0" +
+        BrewingPage.add(new PageText(TextFormatting.BOLD + "Adding Water Part II" + TextFormatting.RESET + "\n\nNote: " + TextFormatting.BOLD + TextFormatting.DARK_RED +"ONCE YOU ADD INGREDENTS YOU CANT ADD ANYMORE WATER"));
+        BrewingPage.add(new PageText(TextFormatting.BOLD + "Adding Ingredients Part I"+ TextFormatting.RESET +
                 "\n\nTo add an ingredient just right click the " + I18n.translateToLocal("brewery.category.cauldron.cauldron.name") +" with an ingredient\n\n" +
                 "The more of the same ingredient you add and the closer you are to the ideal temperature, the more potent the effect will be!"));
-        BrewingPage.add(new PageText("§LAdding Ingredients Part II§0" +
+        BrewingPage.add(new PageText(TextFormatting.BOLD + "Adding Ingredients Part II" + TextFormatting.RESET +
                 "\n\nIngredients can be found in the ingredients tab" +
                 "\n\nYou can have max of 9 ingredients in the potion so chose wisely"));
-        BrewingPage.add(new PageText("§LScoop it into a Magical container§0" +
+        BrewingPage.add(new PageText(TextFormatting.BOLD + "Scoop it into a Magical container" + TextFormatting.RESET +
                 "\n\nScoop the contents of the potions into a Magical container" +
                 "\n\nOnce the "+ I18n.translateToLocal("brewery.category.cauldron.cauldron.name") + " has reached 0, it will reset itself and you can start all over again!"));
         cauldron.put(new ResourceLocation(Reference.MODID, "CEntry0"), new EntryItemStack(BrewingPage, "How To Brew!", new ItemStack(ModBlocks.brewery)));
@@ -134,8 +135,8 @@ public class BreweryBook implements IGuideBook {
                 "\n\nNote: " + I18n.translateToLocal("brewery.category.cauldron.blockinway")));
         TemperaturePage.add(new PageTextImage("This will heat up", new ResourceLocation(Reference.MODID, "textures/misc/calon.png"), false));
         TemperaturePage.add(new PageTextImage("This will also heat up", new ResourceLocation(Reference.MODID, "textures/misc/cal2on.png"), false));
-        TemperaturePage.add(new PageTextImage("This §Lwont §0heat up", new ResourceLocation(Reference.MODID, "textures/misc/cal2off.png"), false));
-        TemperaturePage.add(new PageText("If the water reaches a temperature of§4 101 §0then the brewery will start losing water, and if the water gets to zero then you lose everything and the brewery will cool down to 22 Degrees"));
+        TemperaturePage.add(new PageTextImage("This wont heat up", new ResourceLocation(Reference.MODID, "textures/misc/cal2off.png"), false));
+        TemperaturePage.add(new PageText("If the water reaches a temperature of " + TextFormatting.DARK_RED + "101"  + TextFormatting.RESET + " then the brewery will start losing water, and if the water gets to zero then you lose everything and the brewery will cool down to 22 Degrees"));
         TemperaturePage.add(new PageTextImage("Since it has water it will heat up", new ResourceLocation(Reference.MODID, "textures/misc/calt.png"), false));
         TemperaturePage.add(new PageTextImage("Losing water because its over 100 Degrees", new ResourceLocation(Reference.MODID, "textures/misc/calton.png"), false));
         cauldron.put(new ResourceLocation(Reference.MODID, "CEntry2"), new Entry(TemperaturePage, "Temperature"));
@@ -187,7 +188,7 @@ public class BreweryBook implements IGuideBook {
 
         List<IPage> ToxicPassivePage = new ArrayList<IPage>();
         ToxicPassivePage.add(new PageText("If your contaminated to the point of being " + I18n.translateToLocal("brewery.category.toxicity.toxic") + ", your body will try and cleans itself of the magic by trying manifesting. \n\nBrewer's call this effect the §5Toxic Flu§0\n\n" +
-                "Since your body is purifying §5§kWild§0 Magic, it will manifest it self randomly as short potent potion efects"));
+                "Since your body is purifying " + TextFormatting.OBFUSCATED + TextFormatting.DARK_PURPLE +"Wild" + TextFormatting.RESET + " Magic, it will manifest it self randomly as short potent potion efects"));
         toxicity.put(new ResourceLocation(Reference.MODID, "TEntry1"), new Entry(ToxicPassivePage, "Toxic Flu"));
 
         List<CategoryAbstract> categories = new ArrayList<CategoryAbstract>();

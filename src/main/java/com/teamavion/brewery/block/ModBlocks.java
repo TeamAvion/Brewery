@@ -9,6 +9,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import static net.minecraftforge.fml.common.registry.GameRegistry.registerTileEntity;
 
 public class ModBlocks {
@@ -35,7 +38,7 @@ public class ModBlocks {
         item.setRegistryName(block.getRegistryName());
         GameRegistry.register(item);
     }
-
+    @SideOnly(Side.CLIENT)
     public static void registerRenders(){
         registerRender(brewery);
         registerRender(darkstone);
