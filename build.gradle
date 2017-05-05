@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 
 version = "1.0.2"
-group = "com.teamavion.brewery" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = "org.teamavion.brewery" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "brewery"
 
 sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
