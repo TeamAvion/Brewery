@@ -29,7 +29,7 @@ public class BlockBrewery extends Block implements ITileEntityProvider {
         setHarvestLevel("pickaxe", 1);
         setResistance(30F);
         setHardness(5F);
-        setCreativeTab(Reference.tabBrewery);
+        setCreativeTab(Reference.BREWERY_TAB);
     }
 
     @Override

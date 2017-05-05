@@ -16,6 +16,6 @@ public class BlockDarkstone extends Block {
         setHarvestLevel("pickaxe", 1);
         setResistance(30F);
         setHardness(5F);
-        setCreativeTab(Reference.tabBrewery);
+        setCreativeTab(Reference.BREWERY_TAB);
     }
 }
